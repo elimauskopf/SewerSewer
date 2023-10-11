@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class StationController : MonoBehaviour
 {
+    protected Animator _animator;
+    protected GameObject _ui;
+    protected GameObject _chargeBarObject;
+    protected ChargeBarController _chargeBarController;
+
     //does the station recharge on its own or require player participation to charge
     public bool isPassive;
 
@@ -17,24 +22,35 @@ public class StationController : MonoBehaviour
     //what does the station require from the player to activate (example: loom requires spider silk)
     public GameObject itemRequiredToStart;
 
-    GameObject _ui;
-    bool _playerInRange;
-    bool _timer;
-    bool _isReady;
+    protected bool _playerInRange;
+    protected float _timer;
+    protected bool _isReady;
 
-    private void Awake()
+    public float Timer { get { return _timer; } }
+
+    protected virtual void Awake()
     {
+        _animator = GetComponent<Animator>();
         _ui = transform.Find(Tags.UI)?.gameObject;
+
+        _chargeBarObject = transform.Find(Tags.ChargeBar)?.gameObject;
+        _chargeBarController = _chargeBarObject?.GetComponent<ChargeBarController>();
+
         _ui?.SetActive(false);
+        //_chargeBarObject?.SetActive(false);
     }
 
-    private void Update()
+    protected virtual void Update()
     {
+        if(_timer < timeToComplete)
+        {
+            _timer += Time.deltaTime;
+        }
         //if player presses action button
         //call InteractWithStation()
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
         if(!collision.transform.CompareTag(Tags.Player))
         {
@@ -45,7 +61,7 @@ public class StationController : MonoBehaviour
         _playerInRange = true;
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    protected virtual void OnTriggerExit2D(Collider2D collision)
     {
         if (!collision.transform.CompareTag(Tags.Player))
         {
@@ -56,7 +72,7 @@ public class StationController : MonoBehaviour
         _playerInRange = false;
     }
 
-    void InteractWithStation()
+    protected virtual void InteractWithStation()
     {
         //if station isPassive
             //check to see if isReady = true
