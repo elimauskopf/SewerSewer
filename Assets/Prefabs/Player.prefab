@@ -123,6 +123,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 5
+  _itemOnStart: {fileID: 11400000, guid: 33b4c96309d0fe6448c20a4bada0c9ca, type: 2}
 --- !u!95 &9021006536876041272
 Animator:
   serializedVersion: 5
@@ -229,6 +230,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5867571126799124739}
     m_Modifications:
+    - target: {fileID: 1100531531466351200, guid: 9a0ec3133aac9a34c8f9ff1786991c73, type: 3}
+      propertyPath: m_Name
+      value: Dress
+      objectReference: {fileID: 0}
     - target: {fileID: 2968103875001369707, guid: 9a0ec3133aac9a34c8f9ff1786991c73, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

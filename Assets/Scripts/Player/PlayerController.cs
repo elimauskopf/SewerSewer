@@ -13,6 +13,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     float _speed;
 
+    [SerializeField]//just used for testing, player will not start with an item
+    ItemObject _itemOnStart;
+
+    ItemObject _currentItem;
+    Transform _itemsParent;
+    List<GameObject> _items = new List<GameObject>();
+
 
     private void Awake()
     {
@@ -21,6 +28,16 @@ public class PlayerController : MonoBehaviour
 
         rb = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
+        _itemsParent = transform.GetChild(0).Find(Tags.Items);
+        foreach(Transform child in _itemsParent)
+        {
+            _items.Add(child.gameObject);
+        }
+    }
+
+    void Start()
+    {
+        AssignItem(_itemOnStart);
     }
 
    /* private void OnEnable()
@@ -33,11 +50,6 @@ public class PlayerController : MonoBehaviour
         _playerControls.Player.Disable();
     } */
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
@@ -63,4 +75,25 @@ public class PlayerController : MonoBehaviour
         rb.velocity = movementVector * _speed;
         _animator.SetBool(Tags.Moving, true);
     }
+
+    public void DropItem()
+    {
+        _currentItem = null;
+    }
+
+    public void AssignItem(ItemObject newItem)
+    {
+        foreach(GameObject item in _items)
+        {
+            if(newItem.type.ToString().Equals(item.name))
+            {
+                item.SetActive(true);
+            }
+            else
+            {
+                item.SetActive(false);
+            }
+        }
+    }
+
 }
