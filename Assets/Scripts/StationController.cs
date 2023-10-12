@@ -8,7 +8,6 @@ public class StationController : MonoBehaviour
     protected GameObject _ui;
     protected GameObject _chargeBarObject;
     protected ChargeBarController _chargeBarController;
-
     //does the station recharge on its own or require player participation to charge
     public bool isPassive;
 
@@ -28,6 +27,8 @@ public class StationController : MonoBehaviour
 
     public float Timer { get { return _timer; } }
 
+    // Connected player
+
     protected virtual void Awake()
     {
         _animator = GetComponent<Animator>();
@@ -37,12 +38,11 @@ public class StationController : MonoBehaviour
         _chargeBarController = _chargeBarObject?.GetComponent<ChargeBarController>();
 
         _ui?.SetActive(false);
-        //_chargeBarObject?.SetActive(false);
     }
 
     protected virtual void Update()
     {
-        if(_timer < timeToComplete)
+        if (_timer < timeToComplete && isPassive)
         {
             _timer += Time.deltaTime;
         }
@@ -52,13 +52,15 @@ public class StationController : MonoBehaviour
 
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
-        if(!collision.transform.CompareTag(Tags.Player))
+        if (!collision.transform.CompareTag(Tags.Player))
         {
             return;
         }
 
         _ui?.SetActive(true);
         _playerInRange = true;
+        //connectedPlayer = collision.gameObject
+        // player in bounds = true
     }
 
     protected virtual void OnTriggerExit2D(Collider2D collision)
@@ -71,8 +73,13 @@ public class StationController : MonoBehaviour
         _ui?.SetActive(false);
         _playerInRange = false;
     }
+}
 
-    protected virtual void InteractWithStation()
+    /**
+     * oNinteract(input action ctx)
+      * - if player in bounds and ctx.started
+      *     - initate station(connectedPlayer)
+    void InteractWithStation()
     {
         //if station isPassive
             //check to see if isReady = true
@@ -88,3 +95,4 @@ public class StationController : MonoBehaviour
                     //show message saying they are missing the item they need
     }
 }
+    */

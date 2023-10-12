@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     Rigidbody2D rb;
+    Animator _animator;
     //private PlayerControls _playerControls;
 
     [SerializeField]
@@ -19,6 +20,7 @@ public class PlayerController : MonoBehaviour
        // _playerControls = new PlayerControls();
 
         rb = GetComponent<Rigidbody2D>();
+        _animator = GetComponent<Animator>();
     }
 
    /* private void OnEnable()
@@ -40,7 +42,10 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(rb.velocity.magnitude <= 0.05)
+        {
+            _animator.SetBool(Tags.Moving, false);
+        }
     }
 
   /*  private void FixedUpdate()
@@ -56,5 +61,6 @@ public class PlayerController : MonoBehaviour
     void MovePlayer(Vector2 movementVector)
     {
         rb.velocity = movementVector * _speed;
+        _animator.SetBool(Tags.Moving, true);
     }
 }
