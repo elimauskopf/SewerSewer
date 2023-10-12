@@ -24,12 +24,17 @@ public class PlayerController : MonoBehaviour
     Transform _itemsParent;
     List<GameObject> _items = new List<GameObject>();
 
+
     //public bool isNextToStation;
     public GameObject currentStation;
     public bool workingStation;
 
     // Properties
     public PlayerState playerState { get; private set; }
+
+    Vector2 _lookRight = new Vector2(-1, 1);
+    Vector2 _lookLeft = new Vector2(1, 1);
+
 
     private void Awake()
     {
@@ -110,6 +115,14 @@ public class PlayerController : MonoBehaviour
 
     void MovePlayer(Vector2 movementVector)
     {
+        if(movementVector.x > 0)
+        {
+            transform.localScale = _lookRight;
+        }
+        else if(movementVector.x < 0)
+        {
+            transform.localScale = _lookLeft;
+        }
         rb.velocity = movementVector * _speed;
         _animator.SetBool(Tags.Moving, true);
     }
@@ -123,13 +136,13 @@ public class PlayerController : MonoBehaviour
     {
         foreach(GameObject item in _items)
         {
-            if(newItem.type.ToString().Equals(item.name))
+            if(newItem == null || !newItem.type.ToString().Equals(item.name))
             {
-                item.SetActive(true);
+                item.SetActive(false);
             }
             else
             {
-                item.SetActive(false);
+                item.SetActive(true);
             }
         }
     }
