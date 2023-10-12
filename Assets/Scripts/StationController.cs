@@ -8,6 +8,15 @@ public class StationController : MonoBehaviour
     protected GameObject _ui;
     protected GameObject _chargeBarObject;
     protected ChargeBarController _chargeBarController;
+
+    public delegate void StationAction(GameObject player);
+    public static event StationAction OnPlayerNearStation;
+    public static event StationAction OnPlayerExitStation;
+
+    // Player currently controlling station
+    private GameObject _assignedPlayer;
+    private int playersByStation;
+
     //does the station recharge on its own or require player participation to charge
     public bool isPassive;
 
@@ -24,6 +33,7 @@ public class StationController : MonoBehaviour
     protected bool _playerInRange;
     protected float _timer;
     protected bool _isReady;
+    protected bool _stationInUse;
 
     public float Timer { get { return _timer; } }
 
@@ -52,26 +62,73 @@ public class StationController : MonoBehaviour
 
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!collision.transform.CompareTag(Tags.Player))
+        if (!collision.transform.CompareTag(Tags.Player)
+            || _stationInUse)
         {
             return;
         }
 
         _ui?.SetActive(true);
         _playerInRange = true;
+        //Debug.Log(collision.gameObject);
+
+        PlayerController playerController = collision.gameObject.GetComponent<PlayerController>();
+        //playerController.isNextToStation = true;
+        playerController.currentStation = gameObject;
+        playersByStation++;
+        //OnPlayerNearStation?.Invoke(_assignedPlayer);
+
         //connectedPlayer = collision.gameObject
         // player in bounds = true
     }
 
     protected virtual void OnTriggerExit2D(Collider2D collision)
     {
-        if (!collision.transform.CompareTag(Tags.Player))
+        if (!collision.gameObject.CompareTag(Tags.Player)
+            || _stationInUse)
         {
             return;
         }
 
+        playersByStation--;
+        
+        if (playersByStation == 0)
+        {
+            _ui?.SetActive(false);
+            _playerInRange = false;
+        }     
+
+        collision.gameObject.GetComponent<PlayerController>().currentStation = null;
+
+    }
+    
+    public void Initiate(GameObject player)
+    {
+        if (_stationInUse)
+        {
+            return;
+        }
+
+        _stationInUse = true;
+        _assignedPlayer = player;
         _ui?.SetActive(false);
-        _playerInRange = false;
+        Debug.Log("station in use");
+       
+    }
+
+    public void Disengage()
+    {
+        if (!_stationInUse)
+        {
+            return;
+        }
+
+        _stationInUse = false;
+        _assignedPlayer = null;
+        _ui?.SetActive(true);
+
+        // Reset art and stuff
+        Debug.Log("STATION OUT OF USE");
     }
 }
 
