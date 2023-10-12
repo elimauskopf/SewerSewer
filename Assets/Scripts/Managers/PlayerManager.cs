@@ -26,7 +26,7 @@ public class PlayerManager : MonoBehaviour
 
     public void OnPlayerJoined(PlayerInput playerInput)
     {
-        Debug.Log(playerInput.gameObject.name);
+        //Debug.Log(playerInput.gameObject.name);
         GameObject player = playerInput.gameObject;
 
         player.name = _playerNames[_playerNameIndex];

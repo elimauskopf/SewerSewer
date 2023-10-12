@@ -1428,7 +1428,15 @@ PrefabInstance:
       value: PlayerManager
       objectReference: {fileID: 0}
     - target: {fileID: 7671177424222078355, guid: 35958afd69824064492ce558194bd43c, type: 3}
+      propertyPath: m_PlayerLeftEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7671177424222078355, guid: 35958afd69824064492ce558194bd43c, type: 3}
       propertyPath: m_PlayerJoinedEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7671177424222078355, guid: 35958afd69824064492ce558194bd43c, type: 3}
+      propertyPath: m_PlayerLeftEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7671177424222078355, guid: 35958afd69824064492ce558194bd43c, type: 3}
@@ -1436,9 +1444,17 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7671177424222078355, guid: 35958afd69824064492ce558194bd43c, type: 3}
+      propertyPath: m_PlayerLeftEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 851086089}
+    - target: {fileID: 7671177424222078355, guid: 35958afd69824064492ce558194bd43c, type: 3}
       propertyPath: m_PlayerJoinedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 851086089}
+    - target: {fileID: 7671177424222078355, guid: 35958afd69824064492ce558194bd43c, type: 3}
+      propertyPath: m_PlayerLeftEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7671177424222078355, guid: 35958afd69824064492ce558194bd43c, type: 3}
       propertyPath: m_PlayerJoinedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2

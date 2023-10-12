@@ -3,9 +3,13 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Playables;
+
+public enum PlayerState { INSTATION, NONE};
 
 public class PlayerController : MonoBehaviour
 {
+   
     Rigidbody2D rb;
     Animator _animator;
     //private PlayerControls _playerControls;
@@ -20,6 +24,12 @@ public class PlayerController : MonoBehaviour
     Transform _itemsParent;
     List<GameObject> _items = new List<GameObject>();
 
+    //public bool isNextToStation;
+    public GameObject currentStation;
+    public bool workingStation;
+
+    // Properties
+    public PlayerState playerState { get; private set; }
 
     private void Awake()
     {
@@ -37,7 +47,9 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        SetPlayerState(PlayerState.NONE);
         AssignItem(_itemOnStart);
+
     }
 
    /* private void OnEnable()
@@ -60,14 +72,40 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-  /*  private void FixedUpdate()
+    public void SetPlayerState(PlayerState newState)
     {
-        MovePlayer(_playerControls.Player.Movement.ReadValue<Vector2>()
-    }*/
+        playerState = newState;
+    }
+
+    /*  private void FixedUpdate()
+      {
+          MovePlayer(_playerControls.Player.Movement.ReadValue<Vector2>()
+      }*/
 
     public void OnMovement(InputAction.CallbackContext ctx)
     {
+        if (playerState == PlayerState.INSTATION)
+        {
+            return;
+        }
+
         MovePlayer(ctx.ReadValue<Vector2>());   
+    }
+
+    public void OnInteract(InputAction.CallbackContext ctx)
+    {
+        if (!workingStation && currentStation)
+        {
+            currentStation.GetComponent<StationController>().Initiate(gameObject);
+            workingStation = true;
+            SetPlayerState(PlayerState.INSTATION);
+        } else if(workingStation)
+        {
+            currentStation.GetComponent<StationController>().Disengage();
+            workingStation = false;
+            SetPlayerState(PlayerState.NONE);
+
+        }
     }
 
     void MovePlayer(Vector2 movementVector)
@@ -96,4 +134,5 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    
 }
