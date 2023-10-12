@@ -25,6 +25,16 @@ public class ChargeBarController : MonoBehaviour
 
     void AssignChargeBarSprite()
     {
+        if(_percentReloaded >= 1)
+        {
+            _renderer.enabled = false;
+            return;
+        }
+        else
+        {
+            _renderer.enabled = true;
+        }
+
         int spriteIndex = Mathf.Clamp(Mathf.FloorToInt(_percentReloaded * (chargeBarSprites.Length - 1)), 0, chargeBarSprites.Length - 1);
 
         _renderer.sprite = chargeBarSprites[spriteIndex];
