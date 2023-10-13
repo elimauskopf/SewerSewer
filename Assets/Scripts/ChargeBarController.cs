@@ -10,11 +10,13 @@ public class ChargeBarController : MonoBehaviour
     SpriteRenderer _renderer;
 
     float _percentReloaded;
+    bool _passiveStation;
 
     private void Awake()
     {
         _currentStation = transform.parent.GetComponent<StationController>();
         _renderer = GetComponent<SpriteRenderer>();
+        _passiveStation = _currentStation.isPassive;
     }
 
     private void Update()
@@ -25,7 +27,13 @@ public class ChargeBarController : MonoBehaviour
 
     void AssignChargeBarSprite()
     {
-        if(_percentReloaded >= 1)
+        //active station renderer should be disabled if station not in use
+        if(!_passiveStation && _percentReloaded == 0)
+        {
+            _renderer.enabled = false;
+            return;
+        }
+        else if (_percentReloaded >= 1)
         {
             _renderer.enabled = false;
             return;

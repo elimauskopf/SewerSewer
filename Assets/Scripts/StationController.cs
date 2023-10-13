@@ -99,7 +99,6 @@ public class StationController : MonoBehaviour
         }     
 
         collision.gameObject.GetComponent<PlayerController>().currentStation = null;
-
     }
     
     public void Initiate(GameObject player)
@@ -113,7 +112,6 @@ public class StationController : MonoBehaviour
         _assignedPlayer = player;
         _ui?.SetActive(false);
         Debug.Log("station in use");
-       
     }
 
     public void Disengage()

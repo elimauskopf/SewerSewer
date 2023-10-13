@@ -44,5 +44,4 @@ public class LineManager : MonoBehaviour
         completedOrder.CompleteOrder();
         //tell each shoe which position to move towards
     }
-
 }

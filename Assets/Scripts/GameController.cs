@@ -30,13 +30,6 @@ public class GameManager : MonoBehaviour
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
-    //can be deleted I think, mostly for testing
-    void Start()
-    {
-        currentLevel = 2;
-        CalculateOrders();
-    }
-
     private void Update()
     {
         //used to test order system, delete in final
@@ -54,8 +47,7 @@ public class GameManager : MonoBehaviour
         if(timer > timeUntilNextOrder)
         {
             AddOrder();
-            //timeUntilNextOrder = Random.Range(5f, secondsPerLevel / totalOrdersThisLevel);
-            timeUntilNextOrder = 3f;
+            timeUntilNextOrder = Random.Range(5f, secondsPerLevel / totalOrdersThisLevel);
             timer = 0;
         }
     }
