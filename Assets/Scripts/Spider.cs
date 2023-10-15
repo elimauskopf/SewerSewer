@@ -4,11 +4,6 @@ using UnityEngine;
 
 public class Spider : StationController
 {
-    private void Start()
-    {
-        
-    }
-
     protected override void OnTriggerEnter2D(Collider2D collision)
     {
         base.OnTriggerEnter2D(collision);

@@ -12,6 +12,7 @@ internal static class Tags
     //misc names
     public const string ChargeBar = "ChargeBar";
     public const string Items = "Items";
+    public const string Icon = "Icon";
 
     //animation tags
     public const string InRange = "InRange";
