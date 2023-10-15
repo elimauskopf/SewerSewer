@@ -192,7 +192,7 @@ public class StationController : MonoBehaviour
         Debug.Log("STATION OUT OF USE");
     }
 
-    public void CompleteTask()
+    protected virtual void CompleteTask()
     {
         Debug.Log("Completing task, giving player " + itemOnCompletion);
         PlayerController currentPlayer = _assignedPlayer?.GetComponent<PlayerController>();
