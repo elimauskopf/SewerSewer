@@ -36,7 +36,7 @@ public class StationController : MonoBehaviour
     protected float _timer;
     protected bool _isReadyToHarvest;
     protected bool _isReadyToStart;
-    protected bool _stationInUse;
+    public bool stationInUse;
 
     protected Color _translucent = new Color(0.7f, 0.7f, 0.7f, 1);
 
@@ -76,7 +76,7 @@ public class StationController : MonoBehaviour
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
         if (!collision.transform.CompareTag(Tags.Player)
-            || _stationInUse)
+            || stationInUse)
         {
             return;
         }
@@ -123,7 +123,7 @@ public class StationController : MonoBehaviour
     protected virtual void OnTriggerExit2D(Collider2D collision)
     {
         if (!collision.gameObject.CompareTag(Tags.Player)
-            || _stationInUse)
+            || stationInUse)
         {
             return;
         }
@@ -143,14 +143,15 @@ public class StationController : MonoBehaviour
     
     public void Initiate(GameObject player)
     {
-        if (_stationInUse)
+        if (stationInUse)
         {
             return;
         }
 
-        _stationInUse = true;
+        stationInUse = true;
         _assignedPlayer = player;
         _uiButton?.SetActive(false);
+        _chargeBarController.StartChargeBar();
         Debug.Log("station in use");
 
         //BELOW USED FOR TESTING OF ITEMS
@@ -179,17 +180,27 @@ public class StationController : MonoBehaviour
 
     public void Disengage()
     {
-        if (!_stationInUse)
+        if (!stationInUse)
         {
             return;
         }
 
-        _stationInUse = false;
+        stationInUse = false;
         _assignedPlayer = null;
         _uiButton?.SetActive(true);
+        _chargeBarController.HideChargeBar();
 
-        // Reset art and stuff
-        Debug.Log("STATION OUT OF USE");
+    }
+
+    public void WorkStation()
+    {
+        _chargeBarController.AddCharge();
+
+        if (_chargeBarController.percentReloaded >=1 )
+        {
+            // Player finished station
+            _assignedPlayer.GetComponent<PlayerController>().LeaveStation();
+        }
     }
 
     protected virtual void CompleteTask()
