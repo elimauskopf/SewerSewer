@@ -5,13 +5,14 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Playables;
 
-public enum PlayerState { INSTATION, NONE};
+public enum PlayerState { INSTATION, NONE };
 
 public class PlayerController : MonoBehaviour
 {
-   
+
     Rigidbody2D rb;
     Animator _animator;
+    Transform rayCastTransform;
     //private PlayerControls _playerControls;
 
     [SerializeField]
@@ -38,20 +39,35 @@ public class PlayerController : MonoBehaviour
     public ItemObject CurrentItem { get { return _currentItem; } }
 
     // Movement vars
+    [SerializeField]
     bool _isGrounded;
+    RaycastHit2D groundCheckRay;
+    [SerializeField]
+    LayerMask groundCheckLayers;
+    [SerializeField]
+    float circleCastRadius;
+    [SerializeField]
+    float jumpVelocity;
+    [SerializeField]
+    float _airSpeedModifer;
+
+
+
 
     private void Awake()
     {
 
-       // _playerControls = new PlayerControls();
+        // _playerControls = new PlayerControls();
 
         rb = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
         _itemsParent = transform.GetChild(0).Find(Tags.Items);
-        foreach(Transform child in _itemsParent)
+        foreach (Transform child in _itemsParent)
         {
             _items.Add(child.gameObject);
         }
+
+        rayCastTransform = transform.Find("BottomPlayer");
     }
 
     void Start()
@@ -61,21 +77,23 @@ public class PlayerController : MonoBehaviour
 
     }
 
-   /* private void OnEnable()
-    {
-        _playerControls.Player.Enable();
-    }
+    /* private void OnEnable()
+     {
+         _playerControls.Player.Enable();
+     }
 
-    private void OnDisable()
-    {
-        _playerControls.Player.Disable();
-    } */
+     private void OnDisable()
+     {
+         _playerControls.Player.Disable();
+     } */
 
 
     // Update is called once per frame
     void Update()
     {
-        if(rb.velocity.magnitude <= 0.05)
+        IsGroundedCheck();
+
+        if (rb.velocity.magnitude <= 0.05)
         {
             _animator.SetBool(Tags.Moving, false);
         }
@@ -98,23 +116,30 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        MovePlayer(ctx.ReadValue<Vector2>());   
+        MovePlayer(ctx.ReadValue<Vector2>());
+
+
     }
 
     public void OnInteract(InputAction.CallbackContext ctx)
     {
-        if (!workingStation && currentStation)
+        if (ctx.started)
         {
-            if(!currentStation.GetComponent<StationController>().Initiate(gameObject))
+            if (!workingStation && currentStation)
             {
-                return;
+                if (currentStation.GetComponent<StationController>().Initiate(gameObject) == false)
+                {
+                    return;
+                }
+                workingStation = true;
+                SetPlayerState(PlayerState.INSTATION);
             }
-            workingStation = true;
-            SetPlayerState(PlayerState.INSTATION);
-        } else if(workingStation)
-        {
-            LeaveStation();
+            else if (workingStation)
+            {
+                LeaveStation();
+            }
         }
+
     }
 
     public void OnWork(InputAction.CallbackContext ctx)
@@ -123,6 +148,29 @@ public class PlayerController : MonoBehaviour
         {
             currentStation.GetComponent<StationController>().WorkStation();
 
+        }
+    }
+
+    public void OnJump(InputAction.CallbackContext ctx)
+    {
+        if (ctx.started && _isGrounded)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, jumpVelocity);
+        }
+    }
+
+    void IsGroundedCheck()
+    {
+        groundCheckRay = Physics2D.CircleCast(rayCastTransform.position, circleCastRadius, -Vector2.up, 0, groundCheckLayers);
+
+        //print(groundCheckRay.collider.gameObject.layer);
+        if (groundCheckRay.collider && groundCheckRay.collider.gameObject.layer == 6)
+        {
+            _isGrounded = true;
+        }
+        else
+        {
+            _isGrounded = false;
         }
     }
 
@@ -135,26 +183,44 @@ public class PlayerController : MonoBehaviour
 
     void MovePlayer(Vector2 movementVector)
     {
-        if(movementVector.x > 0)
+
+        if (movementVector.x > 0)
         {
             transform.localScale = _lookRight;
         }
-        else if(movementVector.x < 0)
+        else if (movementVector.x < 0)
         {
             transform.localScale = _lookLeft;
         }
 
-        Vector2 newVelocity = new Vector2
+        Vector2 newVelocity;
+        if (_isGrounded)
         {
-            x = movementVector.x,
-            y = rb.velocity.y
-        };
+            newVelocity = new Vector2
+            {
+                x = movementVector.x * _speed,
+                y = rb.velocity.y
+            };
+        } else 
+        {
+            newVelocity = new Vector2
+            {
+                x = movementVector.x * _speed * _airSpeedModifer,
+                y = rb.velocity.y
+            };
+        }
+        
 
-        rb.velocity = newVelocity * _speed;
+        rb.velocity = newVelocity;
+
+
+
         _animator.SetBool(Tags.Moving, true);
+
+
     }
 
-    //void Jump()
+    
 
     public void DropItem()
     {
@@ -165,9 +231,9 @@ public class PlayerController : MonoBehaviour
     public void AssignItem(ItemObject newItem)
     {
         _currentItem = newItem;
-        foreach(GameObject item in _items)
+        foreach (GameObject item in _items)
         {
-            if(newItem == null || !newItem.type.ToString().Equals(item.name))
+            if (newItem == null || !newItem.type.ToString().Equals(item.name))
             {
                 item.SetActive(false);
             }
@@ -176,5 +242,12 @@ public class PlayerController : MonoBehaviour
                 item.SetActive(true);
             }
         }
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        // Draw a yellow sphere at the transform's position
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawSphere(rayCastTransform.position, circleCastRadius);
     }
 }
