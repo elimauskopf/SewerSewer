@@ -1928,6 +1928,7 @@ MonoBehaviour:
   timeToComplete: 8
   itemOnCompletion: {fileID: 0}
   itemRequiredToStart: {fileID: 0}
+  stationInUse: 0
 --- !u!1 &1572938169
 GameObject:
   m_ObjectHideFlags: 0
@@ -2756,6 +2757,10 @@ PrefabInstance:
     - target: {fileID: 102746057351714730, guid: b1889428083936d449756da06d06b435, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2658492183006304955, guid: b1889428083936d449756da06d06b435, type: 3}
+      propertyPath: _barChargeIncrement
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 7520295353744414722, guid: b1889428083936d449756da06d06b435, type: 3}
       propertyPath: m_Name

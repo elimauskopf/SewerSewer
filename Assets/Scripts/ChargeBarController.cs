@@ -9,7 +9,10 @@ public class ChargeBarController : MonoBehaviour
     StationController _currentStation;
     SpriteRenderer _renderer;
 
-    float _percentReloaded;
+    public float percentReloaded;
+    [SerializeField]
+    float _barChargeIncrement;
+    [SerializeField]
     bool _passiveStation;
 
     private void Awake()
@@ -19,21 +22,30 @@ public class ChargeBarController : MonoBehaviour
         _passiveStation = _currentStation.isPassive;
     }
 
+    private void Start()
+    {
+        AssignChargeBarSprite();
+    }
+
     private void Update()
     {
-        _percentReloaded = _currentStation.Timer / _currentStation.timeToComplete;
-        AssignChargeBarSprite();
+        //percentReloaded = _currentStation.Timer / _currentStation.timeToComplete;
+        if (_currentStation.stationInUse)
+        {
+            UpdateChargeBar();
+        }
+        
     }
 
     void AssignChargeBarSprite()
     {
         //active station renderer should be disabled if station not in use
-        if(!_passiveStation && _percentReloaded == 0)
+        if(!_passiveStation && percentReloaded == 0)
         {
             _renderer.enabled = false;
             return;
         }
-        else if (_percentReloaded >= 1)
+        else if (percentReloaded >= 1)
         {
             _renderer.enabled = false;
             return;
@@ -43,9 +55,42 @@ public class ChargeBarController : MonoBehaviour
             _renderer.enabled = true;
         }
 
-        int spriteIndex = Mathf.Clamp(Mathf.FloorToInt(_percentReloaded * (chargeBarSprites.Length - 1)), 0, chargeBarSprites.Length - 1);
+        
+    }
+
+    public void AddCharge()
+    {
+        if (percentReloaded + _barChargeIncrement > 1)
+        {
+            percentReloaded = 1;
+        } else
+        {
+            percentReloaded += _barChargeIncrement;
+        }
+
+        //print(percentReloaded);       
+    } 
+
+    void UpdateChargeBar()
+    {
+        int spriteIndex = Mathf.Clamp(Mathf.FloorToInt(percentReloaded * (chargeBarSprites.Length - 1)), 0, chargeBarSprites.Length - 1);
 
         _renderer.sprite = chargeBarSprites[spriteIndex];
     }
+
+    public void StartChargeBar()
+    {
+        percentReloaded = 0;
+        _renderer.enabled = true;
+    }
+
+    public void HideChargeBar()
+    {
+        
+        _renderer.enabled = false;
+        percentReloaded = 0;
+    }
+
+    
 
 }

@@ -37,6 +37,9 @@ public class PlayerController : MonoBehaviour
 
     public ItemObject CurrentItem { get { return _currentItem; } }
 
+    // Movement vars
+    bool _isGrounded;
+
     private void Awake()
     {
 
@@ -107,11 +110,25 @@ public class PlayerController : MonoBehaviour
             SetPlayerState(PlayerState.INSTATION);
         } else if(workingStation)
         {
-            currentStation.GetComponent<StationController>().Disengage();
-            workingStation = false;
-            SetPlayerState(PlayerState.NONE);
+            LeaveStation();
 
         }
+    }
+
+    public void OnWork(InputAction.CallbackContext ctx)
+    {
+        if (ctx.started && workingStation)
+        {
+            currentStation.GetComponent<StationController>().WorkStation();
+
+        }
+    }
+
+    public void LeaveStation()
+    {
+        currentStation.GetComponent<StationController>().Disengage();
+        workingStation = false;
+        SetPlayerState(PlayerState.NONE);
     }
 
     void MovePlayer(Vector2 movementVector)
@@ -124,9 +141,18 @@ public class PlayerController : MonoBehaviour
         {
             transform.localScale = _lookLeft;
         }
-        rb.velocity = movementVector * _speed;
+
+        Vector2 newVelocity = new Vector2
+        {
+            x = movementVector.x,
+            y = rb.velocity.y
+        };
+
+        rb.velocity = newVelocity * _speed;
         _animator.SetBool(Tags.Moving, true);
     }
+
+    void Jump()
 
     public void DropItem()
     {
