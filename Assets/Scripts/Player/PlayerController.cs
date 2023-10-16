@@ -105,13 +105,15 @@ public class PlayerController : MonoBehaviour
     {
         if (!workingStation && currentStation)
         {
-            currentStation.GetComponent<StationController>().Initiate(gameObject);
+            if(!currentStation.GetComponent<StationController>().Initiate(gameObject))
+            {
+                return;
+            }
             workingStation = true;
             SetPlayerState(PlayerState.INSTATION);
         } else if(workingStation)
         {
             LeaveStation();
-
         }
     }
 

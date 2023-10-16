@@ -35,12 +35,13 @@ public class StationController : MonoBehaviour
     protected bool _playerInRange;
     protected float _timer;
     protected bool _isReadyToHarvest;
-    protected bool _isReadyToStart;
+    protected bool _isAbleToCharge;
     public bool stationInUse;
 
     protected Color _translucent = new Color(0.7f, 0.7f, 0.7f, 1);
 
     public float Timer { get { return _timer; } }
+    public bool IsAbleToCharge { get { return _isAbleToCharge; } }
 
     // Connected player
 
@@ -65,9 +66,10 @@ public class StationController : MonoBehaviour
 
     protected virtual void Update()
     {
-        if (_timer < timeToComplete && isPassive)
+        if (_timer < timeToComplete && isPassive && _isAbleToCharge)
         {
             _timer += Time.deltaTime;
+
         }
         //if player presses action button
         //call InteractWithStation()
@@ -94,21 +96,18 @@ public class StationController : MonoBehaviour
 
         if(itemRequiredToStart == null)
         {
-            _isReadyToStart = true;
+            //lmao
         }
         else if(playerController.CurrentItem == null)
         {
-            _isReadyToStart = false;
             _iconRenderer.color = _translucent;
         }
         else if(playerController.CurrentItem.type.Equals(itemRequiredToStart.type))
         {
-            _isReadyToStart = true;
             _iconRenderer.color = Color.white;
         }
         else
         {
-            _isReadyToStart = false;
             _iconRenderer.color = _translucent;
         }
         //playerController.isNextToStation = true;
@@ -141,43 +140,72 @@ public class StationController : MonoBehaviour
         _iconObject?.SetActive(false);
     }
     
-    public void Initiate(GameObject player)
+    public virtual bool Initiate(GameObject player)
     {
         if (stationInUse)
         {
-            return;
+            return false;
         }
 
-        stationInUse = true;
-        _assignedPlayer = player;
-        _uiButton?.SetActive(false);
-        _chargeBarController.StartChargeBar();
-        Debug.Log("station in use");
+        PlayerController currentPlayer = player.GetComponent<PlayerController>();
 
-        //BELOW USED FOR TESTING OF ITEMS
-        /*PlayerController currentPlayer = _assignedPlayer.GetComponent<PlayerController>();
-        if(currentPlayer == null)
+        if (isPassive)
         {
-            return;
+            if(_timer == 0)//station is not active, waiting for input
+            {
+                if(HandlePlayerItem(currentPlayer))
+                {
+                    _isAbleToCharge=true;
+                    _chargeBarController.StartChargeBar();
+                }
+            }
+            else if(_timer >= timeToComplete)//station is ready
+            {
+                
+                _assignedPlayer = player;
+                CompleteTask();
+            }
+            return false;
+        }
+        else //if station is active (not passive)
+        {
+            if (!HandlePlayerItem(currentPlayer))
+            {
+                return false;
+            }
+
+            stationInUse = true;
+            _assignedPlayer = player;
+            _uiButton?.SetActive(false);
+            _chargeBarController.StartChargeBar();
+            Debug.Log("station in use");
+            return true;
+        }
+    }
+
+    protected bool HandlePlayerItem(PlayerController currentPlayer)
+    {
+        if (currentPlayer == null)
+        {
+            return false;
         }
 
         if (itemRequiredToStart == null)
         {
             currentPlayer.DropItem();
-            CompleteTask();
         }
-        if(currentPlayer.CurrentItem == null)
+        else if (currentPlayer.CurrentItem == null)
         {
             Debug.Log("Player isn't carrying anything");
-            return;
+            return false;
         }
         else if (currentPlayer.CurrentItem.type.Equals(itemRequiredToStart.type))
         {
             currentPlayer.DropItem();
-            CompleteTask();
-        }*/
-    }
+        }
 
+        return true;
+    }
     public void Disengage()
     {
         if (!stationInUse)
@@ -206,6 +234,12 @@ public class StationController : MonoBehaviour
 
     protected virtual void CompleteTask()
     {
+        if(isPassive)
+        {
+            _timer = 0;
+            _isAbleToCharge = false;
+            _chargeBarController.HideChargeBar();
+        }
         Debug.Log("Completing task, giving player " + itemOnCompletion);
         PlayerController currentPlayer = _assignedPlayer?.GetComponent<PlayerController>();
         currentPlayer.AssignItem(itemOnCompletion);

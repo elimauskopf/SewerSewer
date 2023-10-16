@@ -272,10 +272,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8e46f6d97934f841badc26a31ef9e0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isPassive: 1
+  isPassive: 0
   timeToComplete: 8
   itemOnCompletion: {fileID: 11400000, guid: 8892ac90d8fdb70479f13bdc03b7dec7, type: 2}
   itemRequiredToStart: {fileID: 0}
+  stationInUse: 0
 --- !u!61 &1673952203412969291
 BoxCollider2D:
   m_ObjectHideFlags: 0
