@@ -155,7 +155,7 @@ public class StationController : MonoBehaviour
         Debug.Log("station in use");
 
         //BELOW USED FOR TESTING OF ITEMS
-        PlayerController currentPlayer = _assignedPlayer.GetComponent<PlayerController>();
+        /*PlayerController currentPlayer = _assignedPlayer.GetComponent<PlayerController>();
         if(currentPlayer == null)
         {
             return;
@@ -175,7 +175,7 @@ public class StationController : MonoBehaviour
         {
             currentPlayer.DropItem();
             CompleteTask();
-        }
+        }*/
     }
 
     public void Disengage()
@@ -199,6 +199,7 @@ public class StationController : MonoBehaviour
         if (_chargeBarController.percentReloaded >=1 )
         {
             // Player finished station
+            CompleteTask();
             _assignedPlayer.GetComponent<PlayerController>().LeaveStation();
         }
     }

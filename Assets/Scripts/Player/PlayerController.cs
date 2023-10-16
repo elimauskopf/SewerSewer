@@ -152,7 +152,7 @@ public class PlayerController : MonoBehaviour
         _animator.SetBool(Tags.Moving, true);
     }
 
-    void Jump()
+    //void Jump()
 
     public void DropItem()
     {
