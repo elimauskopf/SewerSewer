@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
     int totalOrdersThisLevel;
 
     //the amount of orders in the easiest level, used as the order number floor
-    int _lowestOrderNumber = 3;
+    int _lowestOrderNumber = 5;
     float _secondsPerLevel = (3*60f);
     float _levelTimer;
     float _orderTimer;
@@ -24,12 +24,14 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        if(Instance != null)
+        if (Instance != null && Instance != this)
         {
-            Destroy(this);
+            Destroy(this.gameObject);
             return;
         }
+
         Instance = this;
+        DontDestroyOnLoad(gameObject);
 
         _levelTimer = _secondsPerLevel;
         _timerText = transform.Find(Tags.Timer)?.GetComponent<TMP_Text>();
@@ -38,6 +40,11 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        //JUST USED TO TEST UI
+        if(Input.GetMouseButtonDown(0))
+        {
+            CompleteLevel();
+        }
         //if all the orders for the level have entered the scene, don't add any more
         if(ordersComplete + pendingOrders.Count >= totalOrdersThisLevel)
         {
@@ -66,6 +73,17 @@ public class GameManager : MonoBehaviour
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         CalculateOrders();
+        string sceneName = SceneManager.GetActiveScene().name;
+
+        // Parse the level number from the scene name
+        if (int.TryParse(sceneName.Replace("Level_", ""), out int level))
+        {
+            currentLevel = level;
+        }
+        else
+        {
+            currentLevel = 0;
+        }
     }
 
     void AddOrder()
@@ -80,11 +98,24 @@ public class GameManager : MonoBehaviour
         ordersComplete++;
         pendingOrders.Remove(true);
         LineManager.Instance.CompleteOrder();
+
+        if(ordersComplete == totalOrdersThisLevel)
+        {
+            CompleteLevel();
+        }
     }
 
-    void NextLevel()
+    void CompleteLevel()
     {
-        currentLevel++;
+        //will want to add more UI to this and not make it immediate
+        if (EndLevelUI.Instance != null)
+        {
+            EndLevelUI.Instance.LevelComplete();
+        }
+        else
+        {
+            SceneNavigator.Instance.LoadScene();
+        }
     }
 
     void CalculateOrders()

@@ -18,4 +18,6 @@ internal static class Tags
     //animation tags
     public const string InRange = "InRange";
     public const string Moving = "Moving";
+    public const string Next = "Next";
+    public const string Return = "Return";
 }

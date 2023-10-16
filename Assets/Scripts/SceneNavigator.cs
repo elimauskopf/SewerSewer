@@ -27,6 +27,11 @@ public class SceneNavigator : MonoBehaviour
         StartCoroutine(WaitToStart());
     }
 
+    public void LoadHome()
+    {
+        SceneManager.LoadScene(Scenes.Home.ToString());
+    }
+
     IEnumerator WaitToStart()
     {
         float timer = 0;
