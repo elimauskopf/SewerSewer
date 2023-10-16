@@ -2,10 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
+
+    TMP_Text _timerText;
 
     public List<bool> pendingOrders;
     int ordersComplete;
@@ -13,10 +16,11 @@ public class GameManager : MonoBehaviour
     int totalOrdersThisLevel;
 
     //the amount of orders in the easiest level, used as the order number floor
-    int lowestOrderNumber = 3;
-    float secondsPerLevel = (3*60f);
-    float timer;
-    float timeUntilNextOrder;
+    int _lowestOrderNumber = 3;
+    float _secondsPerLevel = (3*60f);
+    float _levelTimer;
+    float _orderTimer;
+    float _timeUntilNextOrder;
 
     private void Awake()
     {
@@ -27,28 +31,35 @@ public class GameManager : MonoBehaviour
         }
         Instance = this;
 
+        _levelTimer = _secondsPerLevel;
+        _timerText = transform.Find(Tags.Timer)?.GetComponent<TMP_Text>();
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     private void Update()
     {
-        //used to test order system, delete in final
-        if(Input.GetMouseButtonDown(0))
-        {
-            CompleteOrder();
-        }
         //if all the orders for the level have entered the scene, don't add any more
         if(ordersComplete + pendingOrders.Count >= totalOrdersThisLevel)
         {
             return;
         }
 
-        timer += Time.deltaTime;
-        if(timer > timeUntilNextOrder)
+        if(!SceneManager.GetActiveScene().name.Equals("Tutorial"))
+        {
+            _levelTimer -= Time.deltaTime;
+            CalculateTimer();
+        }
+        else
+        {
+            CalculateTimer();
+        }
+
+        _orderTimer += Time.deltaTime;
+        if(_orderTimer > _timeUntilNextOrder)
         {
             AddOrder();
-            timeUntilNextOrder = Random.Range(5f, secondsPerLevel / totalOrdersThisLevel);
-            timer = 0;
+            _timeUntilNextOrder = Random.Range(5f, _secondsPerLevel / totalOrdersThisLevel);
+            _orderTimer = 0;
         }
     }
 
@@ -78,6 +89,14 @@ public class GameManager : MonoBehaviour
 
     void CalculateOrders()
     {
-        totalOrdersThisLevel = lowestOrderNumber + currentLevel;
+        totalOrdersThisLevel = _lowestOrderNumber + currentLevel;
+    }
+
+    void CalculateTimer()
+    {
+        int minutes = Mathf.FloorToInt(_levelTimer / 60);
+        int seconds = Mathf.FloorToInt(_levelTimer % 60);
+
+        _timerText.text = "Time left: " + string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 }

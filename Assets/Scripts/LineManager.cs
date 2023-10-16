@@ -35,6 +35,11 @@ public class LineManager : MonoBehaviour
 
     public void CompleteOrder()
     {
+        if(ordersInLine.Count == 0)
+        {
+            return;
+        }
+
         for(int i = 1; i < ordersInLine.Count; i++)
         {
             ordersInLine[i].MoveTowards(positionsInLine[i - 1].position);

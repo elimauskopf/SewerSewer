@@ -139,7 +139,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 18
-  _itemOnStart: {fileID: 11400000, guid: 33b4c96309d0fe6448c20a4bada0c9ca, type: 2}
+  _itemOnStart: {fileID: 0}
   currentStation: {fileID: 0}
   workingStation: 0
 --- !u!95 &9021006536876041272

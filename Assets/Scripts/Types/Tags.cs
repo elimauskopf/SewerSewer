@@ -4,6 +4,7 @@ internal static class Tags
     //tags
     public const string Player = "Player";
     public const string UI = "UI";
+    public const string Timer = "Timer";
 
 
     //layers
@@ -12,6 +13,7 @@ internal static class Tags
     //misc names
     public const string ChargeBar = "ChargeBar";
     public const string Items = "Items";
+    public const string Icon = "Icon";
 
     //animation tags
     public const string InRange = "InRange";

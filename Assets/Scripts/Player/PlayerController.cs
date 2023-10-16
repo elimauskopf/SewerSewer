@@ -35,6 +35,7 @@ public class PlayerController : MonoBehaviour
     Vector2 _lookRight = new Vector2(-1, 1);
     Vector2 _lookLeft = new Vector2(1, 1);
 
+    public ItemObject CurrentItem { get { return _currentItem; } }
 
     private void Awake()
     {
@@ -130,10 +131,12 @@ public class PlayerController : MonoBehaviour
     public void DropItem()
     {
         _currentItem = null;
+        AssignItem(null);
     }
 
     public void AssignItem(ItemObject newItem)
     {
+        _currentItem = newItem;
         foreach(GameObject item in _items)
         {
             if(newItem == null || !newItem.type.ToString().Equals(item.name))
@@ -146,6 +149,4 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
-
-    
 }

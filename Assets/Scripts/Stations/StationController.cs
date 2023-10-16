@@ -5,8 +5,10 @@ using UnityEngine;
 public class StationController : MonoBehaviour
 {
     protected Animator _animator;
-    protected GameObject _ui;
+    protected GameObject _uiButton;
     protected GameObject _chargeBarObject;
+    protected GameObject _iconObject;
+    protected SpriteRenderer _iconRenderer;
     protected ChargeBarController _chargeBarController;
 
     public delegate void StationAction(GameObject player);
@@ -14,8 +16,8 @@ public class StationController : MonoBehaviour
     public static event StationAction OnPlayerExitStation;
 
     // Player currently controlling station
-    private GameObject _assignedPlayer;
-    private int playersByStation;
+    protected GameObject _assignedPlayer;
+    protected int playersByStation;
 
     //does the station recharge on its own or require player participation to charge
     public bool isPassive;
@@ -25,15 +27,18 @@ public class StationController : MonoBehaviour
 
     //what does the station give the player when the task is complete (example: spiders give silk)
     //(data type might change from GameObject to something custom)
-    public GameObject itemOnCompletion;
+    public ItemObject itemOnCompletion;
 
     //what does the station require from the player to activate (example: loom requires spider silk)
-    public GameObject itemRequiredToStart;
+    public ItemObject itemRequiredToStart;
 
     protected bool _playerInRange;
     protected float _timer;
-    protected bool _isReady;
+    protected bool _isReadyToHarvest;
+    protected bool _isReadyToStart;
     protected bool _stationInUse;
+
+    protected Color _translucent = new Color(0.7f, 0.7f, 0.7f, 1);
 
     public float Timer { get { return _timer; } }
 
@@ -42,12 +47,20 @@ public class StationController : MonoBehaviour
     protected virtual void Awake()
     {
         _animator = GetComponent<Animator>();
-        _ui = transform.Find(Tags.UI)?.gameObject;
+        _uiButton = transform.Find(Tags.UI)?.gameObject;
 
         _chargeBarObject = transform.Find(Tags.ChargeBar)?.gameObject;
         _chargeBarController = _chargeBarObject?.GetComponent<ChargeBarController>();
 
-        _ui?.SetActive(false);
+        _iconObject = transform.Find(Tags.Icon)?.gameObject;
+        _iconRenderer = _iconObject?.GetComponent<SpriteRenderer>();
+        if(itemRequiredToStart != null && _iconRenderer)
+        {
+            _iconRenderer.sprite = itemRequiredToStart.icon;
+        }
+
+        _uiButton?.SetActive(false);
+        _iconObject?.SetActive(false);
     }
 
     protected virtual void Update()
@@ -68,11 +81,36 @@ public class StationController : MonoBehaviour
             return;
         }
 
-        _ui?.SetActive(true);
+        _uiButton?.SetActive(true);
+        _iconObject?.SetActive(true);
         _playerInRange = true;
         //Debug.Log(collision.gameObject);
 
         PlayerController playerController = collision.gameObject.GetComponent<PlayerController>();
+        if(playerController == null)
+        {
+            return;
+        }
+
+        if(itemRequiredToStart == null)
+        {
+            _isReadyToStart = true;
+        }
+        else if(playerController.CurrentItem == null)
+        {
+            _isReadyToStart = false;
+            _iconRenderer.color = _translucent;
+        }
+        else if(playerController.CurrentItem.type.Equals(itemRequiredToStart.type))
+        {
+            _isReadyToStart = true;
+            _iconRenderer.color = Color.white;
+        }
+        else
+        {
+            _isReadyToStart = false;
+            _iconRenderer.color = _translucent;
+        }
         //playerController.isNextToStation = true;
         playerController.currentStation = gameObject;
         playersByStation++;
@@ -94,11 +132,13 @@ public class StationController : MonoBehaviour
         
         if (playersByStation == 0)
         {
-            _ui?.SetActive(false);
+            _uiButton?.SetActive(false);
             _playerInRange = false;
         }     
 
         collision.gameObject.GetComponent<PlayerController>().currentStation = null;
+
+        _iconObject?.SetActive(false);
     }
     
     public void Initiate(GameObject player)
@@ -110,8 +150,31 @@ public class StationController : MonoBehaviour
 
         _stationInUse = true;
         _assignedPlayer = player;
-        _ui?.SetActive(false);
+        _uiButton?.SetActive(false);
         Debug.Log("station in use");
+
+        //BELOW USED FOR TESTING OF ITEMS
+        PlayerController currentPlayer = _assignedPlayer.GetComponent<PlayerController>();
+        if(currentPlayer == null)
+        {
+            return;
+        }
+
+        if (itemRequiredToStart == null)
+        {
+            currentPlayer.DropItem();
+            CompleteTask();
+        }
+        if(currentPlayer.CurrentItem == null)
+        {
+            Debug.Log("Player isn't carrying anything");
+            return;
+        }
+        else if (currentPlayer.CurrentItem.type.Equals(itemRequiredToStart.type))
+        {
+            currentPlayer.DropItem();
+            CompleteTask();
+        }
     }
 
     public void Disengage()
@@ -123,10 +186,17 @@ public class StationController : MonoBehaviour
 
         _stationInUse = false;
         _assignedPlayer = null;
-        _ui?.SetActive(true);
+        _uiButton?.SetActive(true);
 
         // Reset art and stuff
         Debug.Log("STATION OUT OF USE");
+    }
+
+    protected virtual void CompleteTask()
+    {
+        Debug.Log("Completing task, giving player " + itemOnCompletion);
+        PlayerController currentPlayer = _assignedPlayer?.GetComponent<PlayerController>();
+        currentPlayer.AssignItem(itemOnCompletion);
     }
 }
 
