@@ -40,11 +40,6 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        //JUST USED TO TEST UI
-        if(Input.GetMouseButtonDown(0))
-        {
-            CompleteLevel();
-        }
         //if all the orders for the level have entered the scene, don't add any more
         if(ordersComplete + pendingOrders.Count >= totalOrdersThisLevel)
         {
@@ -72,8 +67,13 @@ public class GameManager : MonoBehaviour
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        CalculateOrders();
         string sceneName = SceneManager.GetActiveScene().name;
+
+        if(sceneName.Equals(Scenes.Home.ToString()))
+        {
+            Destroy(gameObject);
+        }
+
 
         // Parse the level number from the scene name
         if (int.TryParse(sceneName.Replace("Level_", ""), out int level))
@@ -84,6 +84,7 @@ public class GameManager : MonoBehaviour
         {
             currentLevel = 0;
         }
+        CalculateOrders();
     }
 
     void AddOrder()
