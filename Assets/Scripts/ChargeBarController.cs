@@ -83,17 +83,16 @@ public class ChargeBarController : MonoBehaviour
 
     public void StartChargeBar()
     {
-        percentReloaded = 0;
         _renderer.enabled = true;
     }
 
     public void HideChargeBar()
     {
-        
         _renderer.enabled = false;
-        percentReloaded = 0;
     }
 
-    
-
+    public void ResetChargeBar()
+    {
+        percentReloaded = 0;
+    }
 }

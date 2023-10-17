@@ -40,10 +40,6 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetMouseButtonDown(0))
-        {
-            CompleteLevel();
-        }
         //if all the orders for the level have entered the scene, don't add any more
         if(ordersComplete + pendingOrders.Count >= totalOrdersThisLevel)
         {
