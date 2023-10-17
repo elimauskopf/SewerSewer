@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Playables;
 
-public enum PlayerState { INSTATION, NONE };
+public enum PlayerState { INSTATION, NONE, HIT };
 
 public class PlayerController : MonoBehaviour
 {
@@ -36,6 +36,7 @@ public class PlayerController : MonoBehaviour
     //public bool isNextToStation;
     public GameObject currentStation;
     public bool workingStation;
+    private bool _playerInHit;
 
     // Properties
     public PlayerState playerState { get; private set; }
@@ -58,6 +59,8 @@ public class PlayerController : MonoBehaviour
     float jumpVelocity;
     [SerializeField]
     float _airSpeedModifer;
+    [SerializeField]
+    float hitStunTime;
 
     //added by jonah to test something out
     Vector2 _movement;
@@ -116,9 +119,24 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+       
+
         MovePlayer(_movement);
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        print(collision.gameObject.tag);
+
+        if (collision.gameObject.CompareTag("Alligator"))
+        {
+            if (!_playerInHit)
+            {
+                StartCoroutine(HitByAlligator());
+            }
+            
+        }
+    }
     public void InitiatePlayer(int playerNumber)
     {
         jacketFront.sprite = jacketFrontColors[playerNumber];
@@ -127,11 +145,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnMovement(InputAction.CallbackContext ctx)
     {
-        if (playerState == PlayerState.INSTATION)
-        {
-            //return;
-            //LeaveStation();
-        }
+       
 
         //Made the following change so that the player doesn't slow down over time
         _movement = ctx.ReadValue<Vector2>();
@@ -171,7 +185,9 @@ public class PlayerController : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext ctx)
     {
-        if (ctx.started && _isGrounded)
+        if (ctx.started && _isGrounded 
+            && playerState != PlayerState.HIT
+           )
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpVelocity);
         }
@@ -201,6 +217,11 @@ public class PlayerController : MonoBehaviour
 
     void MovePlayer(Vector2 movementVector)
     {
+
+        if (_playerInHit)
+        {
+            return;
+        }
 
         if (movementVector.x > 0)
         {
@@ -238,7 +259,22 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    
+    IEnumerator HitByAlligator()
+    {
+
+        _playerInHit = true;
+        DropItem();
+        _animator.SetTrigger(Tags.Hit);
+
+        rb.velocity = new Vector2(0, jumpVelocity);
+
+        yield return new WaitForSeconds(hitStunTime);
+
+        
+
+        _playerInHit = false;
+
+    }
 
     public void DropItem()
     {

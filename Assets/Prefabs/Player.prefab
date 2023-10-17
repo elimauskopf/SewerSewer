@@ -225,6 +225,7 @@ MonoBehaviour:
   circleCastRadius: 0.5
   jumpVelocity: 30
   _airSpeedModifer: 0.8
+  hitStunTime: 0.9
 --- !u!95 &9021006536876041272
 Animator:
   serializedVersion: 5

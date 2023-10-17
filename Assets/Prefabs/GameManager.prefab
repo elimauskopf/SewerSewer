@@ -181,6 +181,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1735564055462501698}
   - component: {fileID: 2181517673780714087}
+  - component: {fileID: 953144491312630348}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -217,3 +218,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pendingOrders: 
+--- !u!114 &953144491312630348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7523978908829616315}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4e5729c36bc74e4590aee1690d88012, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  alligator: {fileID: 3893249232766024796, guid: 6e9de86262e88ab409acc21f76e5761d, type: 3}
+  spawnFrequencyMin: 5
+  spawnFrequencyVariance: 5
