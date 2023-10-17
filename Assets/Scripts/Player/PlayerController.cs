@@ -210,7 +210,7 @@ public class PlayerController : MonoBehaviour
     {
         workingStation = false;
         SetPlayerState(PlayerState.NONE);
-        currentStation.GetComponent<StationController>().Disengage();
+        currentStation.GetComponent<StationController>().Disengage(gameObject);
      
         
     }

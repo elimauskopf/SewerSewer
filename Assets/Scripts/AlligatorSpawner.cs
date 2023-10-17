@@ -10,7 +10,7 @@ public class AlligatorSpawner : MonoBehaviour
     private int _minBoundX = -17;
     private int maxBoundX = 18;
     private int _ySpawnPoint = -16;
-    [Range(5, 50)]
+    [Range(3, 50)]
     public int spawnFrequencyMin;
     [SerializeField]
     int spawnFrequencyVariance;

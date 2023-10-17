@@ -172,9 +172,22 @@ public class StationController : MonoBehaviour
             }
             else if(_timer >= timeToComplete)//station is ready
             {
+
+                if (HandlePlayerItem(currentPlayer)) // player has fish and spider is done
+                {
+                    _assignedPlayer = player;
+                    CompleteTask();
+                    _isAbleToCharge = true;
+                    _chargeBarController?.StartChargeBar();
+
+                } else
+                {
+                    _assignedPlayer = player;
+                    CompleteTask();
+                }
                 
-                _assignedPlayer = player;
-                CompleteTask();
+
+              
             }
             return false;
         }
@@ -209,7 +222,7 @@ public class StationController : MonoBehaviour
 
         if (itemRequiredToStart == null)
         {
-            currentPlayer.DropItem();
+            //currentPlayer.DropItem();
             return true;
         }
         else if (currentPlayer.CurrentItem == null)
@@ -226,18 +239,26 @@ public class StationController : MonoBehaviour
 
         return false;
     }
-    public void Disengage()
+    public void Disengage(GameObject player)
     {
         if (!stationInUse)
         {
             return;
         }
 
-        _animator.SetBool(Tags.Moving, false);
-        stationInUse = false;
-        _assignedPlayer = null;
-        _uiButton?.SetActive(true);
-        _chargeBarController?.HideChargeBar();
+        if (_assignedPlayer == player)
+        {
+            _assignedPlayer = null;
+        }
+
+        if (playersByStation == 0)
+        {
+            stationInUse = false;
+         
+            _uiButton?.SetActive(true);
+            _chargeBarController?.HideChargeBar();
+        }
+        
     }
 
     public void WorkStation()
