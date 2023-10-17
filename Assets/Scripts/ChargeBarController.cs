@@ -94,5 +94,6 @@ public class ChargeBarController : MonoBehaviour
     public void ResetChargeBar()
     {
         percentReloaded = 0;
+        HideChargeBar();
     }
 }

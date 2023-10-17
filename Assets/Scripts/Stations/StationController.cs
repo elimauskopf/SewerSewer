@@ -249,16 +249,10 @@ public class StationController : MonoBehaviour
         if (_assignedPlayer == player)
         {
             _assignedPlayer = null;
+            stationInUse = false;
         }
 
-        if (playersByStation == 0)
-        {
-            stationInUse = false;
-         
-            _uiButton?.SetActive(true);
-            _chargeBarController?.HideChargeBar();
-        }
-        
+        AssignUI();
     }
 
     public void WorkStation()
@@ -295,12 +289,19 @@ public class StationController : MonoBehaviour
     {
         _uiButton?.SetActive(true);
         _iconObject?.SetActive(true);
+
         if(stationInUse || _isAbleToCharge)
         {
             _uiRenderer.sprite = _redCircle;
             _iconObject?.SetActive(false);
         }
-        else
+        else if(playersByStation == 0)
+        {
+            _uiButton?.SetActive(false);
+            _iconObject?.SetActive(false);
+            _chargeBarController?.HideChargeBar();
+        }
+        else 
         {
             _uiRenderer.sprite = _blueCircle;
             _iconObject?.SetActive(true);
