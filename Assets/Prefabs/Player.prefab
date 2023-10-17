@@ -212,7 +212,7 @@ MonoBehaviour:
     m_Bits: 64
   circleCastRadius: 0.5
   jumpVelocity: 30
-  _airSpeedModifer: 0.5
+  _airSpeedModifer: 0.8
 --- !u!95 &9021006536876041272
 Animator:
   serializedVersion: 5
