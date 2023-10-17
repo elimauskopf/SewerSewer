@@ -9,6 +9,13 @@ public enum PlayerState { INSTATION, NONE };
 
 public class PlayerController : MonoBehaviour
 {
+    public SpriteRenderer jacketFront;
+    public SpriteRenderer jacketBack;
+
+    [SerializeField]
+    List<Sprite> jacketFrontColors;
+    [SerializeField]
+    List<Sprite> jacketBackColors;
 
     Rigidbody2D rb;
     Animator _animator;

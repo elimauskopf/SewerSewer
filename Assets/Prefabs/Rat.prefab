@@ -793,7 +793,7 @@ GameObject:
   - component: {fileID: 365525647140101023}
   - component: {fileID: 5320462562271633429}
   m_Layer: 0
-  m_Name: RobeBackBlue
+  m_Name: RobeBack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1462,7 +1462,7 @@ GameObject:
   - component: {fileID: 7338388195352068939}
   - component: {fileID: 8347102687799068975}
   m_Layer: 0
-  m_Name: RobeFrontBlue
+  m_Name: RobeFront
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
