@@ -60,7 +60,7 @@ public class GameManager : MonoBehaviour
         if(_orderTimer > _timeUntilNextOrder)
         {
             AddOrder();
-            _timeUntilNextOrder = Random.Range(5f, _secondsPerLevel / totalOrdersThisLevel);
+            _timeUntilNextOrder = UnityEngine.Random.Range(5f, _secondsPerLevel / totalOrdersThisLevel);
             _orderTimer = 0;
         }
     }
@@ -108,8 +108,11 @@ public class GameManager : MonoBehaviour
 
     void CompleteLevel()
     {
-        //will want to add more UI to this and not make it immediate
-        if (EndLevelUI.Instance != null)
+        if(SceneManager.GetActiveScene().name.Equals(Scenes.Level_5.ToString()))
+        {
+            FinalLevelOutro.Instance.OnLevelComplete();
+        }
+        else if (EndLevelUI.Instance != null)
         {
             EndLevelUI.Instance.LevelComplete();
         }

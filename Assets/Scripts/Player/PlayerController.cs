@@ -51,7 +51,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     float _airSpeedModifer;
 
-
+    //added by jonah to test something out
+    Vector2 _movement;
 
 
     private void Awake()
@@ -104,10 +105,10 @@ public class PlayerController : MonoBehaviour
         playerState = newState;
     }
 
-    /*  private void FixedUpdate()
-      {
-          MovePlayer(_playerControls.Player.Movement.ReadValue<Vector2>()
-      }*/
+    private void FixedUpdate()
+    {
+        MovePlayer(_movement);
+    }
 
     public void OnMovement(InputAction.CallbackContext ctx)
     {
@@ -116,10 +117,11 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        MovePlayer(ctx.ReadValue<Vector2>());
-
-
+        //Made the following change so that the player doesn't slow down over time
+        _movement = ctx.ReadValue<Vector2>();
+        //MovePlayer(ctx.ReadValue<Vector2>());
     }
+
 
     public void OnInteract(InputAction.CallbackContext ctx)
     {
@@ -244,10 +246,10 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void OnDrawGizmosSelected()
+    /*void OnDrawGizmosSelected()
     {
         // Draw a yellow sphere at the transform's position
         Gizmos.color = Color.yellow;
         Gizmos.DrawSphere(rayCastTransform.position, circleCastRadius);
-    }
+    }*/
 }
