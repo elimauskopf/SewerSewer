@@ -42,6 +42,7 @@ public class PlayerController : MonoBehaviour
 
     Vector2 _lookRight = new Vector2(-1, 1);
     Vector2 _lookLeft = new Vector2(1, 1);
+    Vector2 _startScale;
 
     public ItemObject CurrentItem { get { return _currentItem; } }
 
@@ -76,6 +77,7 @@ public class PlayerController : MonoBehaviour
         }
 
         rayCastTransform = transform.Find("BottomPlayer");
+        _startScale = transform.localScale;
     }
 
     void Start()
@@ -201,11 +203,11 @@ public class PlayerController : MonoBehaviour
 
         if (movementVector.x > 0)
         {
-            transform.localScale = _lookRight;
+            transform.localScale = _startScale * _lookRight;
         }
         else if (movementVector.x < 0)
         {
-            transform.localScale = _lookLeft;
+            transform.localScale = _startScale * _lookLeft;
         }
 
         Vector2 newVelocity;
