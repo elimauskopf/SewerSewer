@@ -75,7 +75,7 @@ public class StationController : MonoBehaviour
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
         if (!collision.transform.CompareTag(Tags.Player)
-            || stationInUse)
+            )
         {
             return;
         }
@@ -131,6 +131,7 @@ public class StationController : MonoBehaviour
             _uiButton?.SetActive(false);
             _playerInRange = false;
         }
+
         if(collision.gameObject.GetComponent<PlayerController>().currentStation && 
             collision.gameObject.GetComponent<PlayerController>().currentStation.name.Equals(gameObject.name))
         {
@@ -207,6 +208,7 @@ public class StationController : MonoBehaviour
         if (itemRequiredToStart == null)
         {
             currentPlayer.DropItem();
+            return true;
         }
         else if (currentPlayer.CurrentItem == null)
         {
@@ -216,9 +218,11 @@ public class StationController : MonoBehaviour
         else if (currentPlayer.CurrentItem.type.Equals(itemRequiredToStart.type))
         {
             currentPlayer.DropItem();
+            return true;
+            
         }
 
-        return true;
+        return false;
     }
     public void Disengage()
     {
@@ -236,7 +240,7 @@ public class StationController : MonoBehaviour
 
     public void WorkStation()
     {
-        _chargeBarController.AddCharge();
+        _chargeBarController?.AddCharge();
 
         if (_chargeBarController.percentReloaded >=1 )
         {
@@ -260,8 +264,7 @@ public class StationController : MonoBehaviour
         _chargeBarController.ResetChargeBar();
         _isAbleToCharge = false;
         Debug.Log("Completing task, giving player " + itemOnCompletion);
-        PlayerController currentPlayer = _assignedPlayer?.GetComponent<PlayerController>();
-        currentPlayer.AssignItem(itemOnCompletion);
+         _assignedPlayer?.GetComponent<PlayerController>().AssignItem(itemOnCompletion);
     }
 }
 

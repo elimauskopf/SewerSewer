@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]//just used for testing, player will not start with an item
     ItemObject _itemOnStart;
 
-    ItemObject _currentItem;
+    public ItemObject _currentItem;
     Transform _itemsParent;
     List<GameObject> _items = new List<GameObject>();
 
@@ -155,7 +155,13 @@ public class PlayerController : MonoBehaviour
 
     public void OnInteract(InputAction.CallbackContext ctx)
     {
-        if (ctx.started)
+       
+
+    }
+
+    public void OnWork(InputAction.CallbackContext ctx)
+    {
+        if (ctx.started && currentStation)
         {
             if (!workingStation && currentStation)
             {
@@ -165,22 +171,14 @@ public class PlayerController : MonoBehaviour
                 }
                 workingStation = true;
                 SetPlayerState(PlayerState.INSTATION);
-            }
-            else if (workingStation)
+                currentStation.GetComponent<StationController>().WorkStation();
+            } else
             {
-                LeaveStation();
+                currentStation.GetComponent<StationController>().WorkStation();
             }
-        }
-
-    }
-
-    public void OnWork(InputAction.CallbackContext ctx)
-    {
-        if (ctx.started && workingStation)
-        {
-            currentStation.GetComponent<StationController>().WorkStation();
 
         }
+        
     }
 
     public void OnJump(InputAction.CallbackContext ctx)
@@ -210,9 +208,11 @@ public class PlayerController : MonoBehaviour
 
     public void LeaveStation()
     {
-        currentStation.GetComponent<StationController>().Disengage();
         workingStation = false;
         SetPlayerState(PlayerState.NONE);
+        currentStation.GetComponent<StationController>().Disengage();
+     
+        
     }
 
     void MovePlayer(Vector2 movementVector)
