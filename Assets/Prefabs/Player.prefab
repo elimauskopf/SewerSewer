@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &690676182837081485
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2491216599779786237}
+  m_Layer: 7
+  m_Name: BottomPlayer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2491216599779786237
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 690676182837081485}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.24, y: -4.01, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5867571126799124739}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2137518101109597258
 GameObject:
   m_ObjectHideFlags: 0
@@ -14,7 +45,7 @@ GameObject:
   - component: {fileID: 282981191261960576}
   - component: {fileID: 9021006536876041272}
   - component: {fileID: 7249070491700612014}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -35,6 +66,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1626735896533831553}
+  - {fileID: 2491216599779786237}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8152618015091976249
@@ -110,6 +142,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 6674b631-5d6e-4147-a63c-f0b6792ee80d
     m_ActionName: Player/Work[/Keyboard/f]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 282981191261960576}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnJump
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 80a1e85f-44e0-41a3-888c-5bb851d34734
+    m_ActionName: Player/Jump[/Keyboard/w,/DualShock4GamepadHID/leftStick/up]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -158,6 +206,13 @@ MonoBehaviour:
   _itemOnStart: {fileID: 0}
   currentStation: {fileID: 0}
   workingStation: 0
+  _isGrounded: 0
+  groundCheckLayers:
+    serializedVersion: 2
+    m_Bits: 64
+  circleCastRadius: 0.5
+  jumpVelocity: 7
+  _airSpeedModifer: 0.5
 --- !u!95 &9021006536876041272
 Animator:
   serializedVersion: 5
@@ -234,19 +289,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 130951033634244079, guid: 9a0ec3133aac9a34c8f9ff1786991c73, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 628123487818837799, guid: 9a0ec3133aac9a34c8f9ff1786991c73, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 712159836726341964, guid: 9a0ec3133aac9a34c8f9ff1786991c73, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 866256404730140921, guid: 9a0ec3133aac9a34c8f9ff1786991c73, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1100531531466351200, guid: 9a0ec3133aac9a34c8f9ff1786991c73, type: 3}
       propertyPath: m_Name
@@ -254,23 +309,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1100531531466351200, guid: 9a0ec3133aac9a34c8f9ff1786991c73, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1561826023142732763, guid: 9a0ec3133aac9a34c8f9ff1786991c73, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 2459854102293488847, guid: 9a0ec3133aac9a34c8f9ff1786991c73, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 2642189754474650503, guid: 9a0ec3133aac9a34c8f9ff1786991c73, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 2655816867326530934, guid: 9a0ec3133aac9a34c8f9ff1786991c73, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 2968103875001369707, guid: 9a0ec3133aac9a34c8f9ff1786991c73, type: 3}
       propertyPath: m_LocalPosition.x
@@ -314,23 +369,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3277169719918734720, guid: 9a0ec3133aac9a34c8f9ff1786991c73, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 3461378914580739781, guid: 9a0ec3133aac9a34c8f9ff1786991c73, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 3562241307721622462, guid: 9a0ec3133aac9a34c8f9ff1786991c73, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 3926003841220560126, guid: 9a0ec3133aac9a34c8f9ff1786991c73, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 3989027735747009675, guid: 9a0ec3133aac9a34c8f9ff1786991c73, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4686414375123848613, guid: 9a0ec3133aac9a34c8f9ff1786991c73, type: 3}
       propertyPath: m_Name
@@ -338,67 +393,67 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4686414375123848613, guid: 9a0ec3133aac9a34c8f9ff1786991c73, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5744103203099896420, guid: 9a0ec3133aac9a34c8f9ff1786991c73, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7091239724393071989, guid: 9a0ec3133aac9a34c8f9ff1786991c73, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7380917917310674520, guid: 9a0ec3133aac9a34c8f9ff1786991c73, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7415243119509718510, guid: 9a0ec3133aac9a34c8f9ff1786991c73, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7667677856882023491, guid: 9a0ec3133aac9a34c8f9ff1786991c73, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7672598582956014226, guid: 9a0ec3133aac9a34c8f9ff1786991c73, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7737989664894482001, guid: 9a0ec3133aac9a34c8f9ff1786991c73, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7942764923963155998, guid: 9a0ec3133aac9a34c8f9ff1786991c73, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7949485805903249104, guid: 9a0ec3133aac9a34c8f9ff1786991c73, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8011197418905687856, guid: 9a0ec3133aac9a34c8f9ff1786991c73, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8288294950745507876, guid: 9a0ec3133aac9a34c8f9ff1786991c73, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8468426846363651695, guid: 9a0ec3133aac9a34c8f9ff1786991c73, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8508969343226708061, guid: 9a0ec3133aac9a34c8f9ff1786991c73, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8766662581021038050, guid: 9a0ec3133aac9a34c8f9ff1786991c73, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 9041869875096923298, guid: 9a0ec3133aac9a34c8f9ff1786991c73, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -1766,7 +1766,7 @@ GameObject:
   - component: {fileID: 1272913553}
   - component: {fileID: 1272913552}
   - component: {fileID: 1272913551}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BrickFloor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
