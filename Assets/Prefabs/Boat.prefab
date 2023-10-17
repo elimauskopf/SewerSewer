@@ -370,7 +370,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 16.16, y: -7.29, z: 0}
-  m_LocalScale: {x: 0.30917162, y: 0.30917162, z: 0.30917162}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6714600663016585344}
@@ -491,6 +491,7 @@ MonoBehaviour:
   timeToComplete: 8
   itemOnCompletion: {fileID: 0}
   itemRequiredToStart: {fileID: 11400000, guid: 33b4c96309d0fe6448c20a4bada0c9ca, type: 2}
+  stationInUse: 0
 --- !u!1 &8951512166499942236
 GameObject:
   m_ObjectHideFlags: 0

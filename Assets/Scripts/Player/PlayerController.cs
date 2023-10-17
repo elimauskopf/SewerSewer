@@ -129,7 +129,8 @@ public class PlayerController : MonoBehaviour
     {
         if (playerState == PlayerState.INSTATION)
         {
-            return;
+            //return;
+            //LeaveStation();
         }
 
         //Made the following change so that the player doesn't slow down over time

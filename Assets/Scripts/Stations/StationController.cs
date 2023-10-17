@@ -121,8 +121,8 @@ public class StationController : MonoBehaviour
 
     protected virtual void OnTriggerExit2D(Collider2D collision)
     {
-        if (!collision.gameObject.CompareTag(Tags.Player)
-            || stationInUse)
+        if (!collision.gameObject.CompareTag(Tags.Player))
+            //|| stationInUse)
         {
             return;
         }
@@ -133,9 +133,20 @@ public class StationController : MonoBehaviour
         {
             _uiButton?.SetActive(false);
             _playerInRange = false;
-        }     
+        }
+        if(collision.gameObject.GetComponent<PlayerController>().currentStation.name.Equals(gameObject.name))
+        {
+            collision.gameObject.GetComponent<PlayerController>().LeaveStation();
+            
+        }
+        else
+        {
+            collision.gameObject.GetComponent<PlayerController>().currentStation = null;
 
-        collision.gameObject.GetComponent<PlayerController>().currentStation = null;
+        }
+
+        //collision.gameObject.GetComponent<PlayerController>().currentStation = null;
+
 
         _iconObject?.SetActive(false);
     }
@@ -144,6 +155,7 @@ public class StationController : MonoBehaviour
     {
         if (stationInUse)
         {
+            Debug.Log("Station is in use");
             return false;
         }
 
@@ -169,16 +181,22 @@ public class StationController : MonoBehaviour
         }
         else //if station is active (not passive)
         {
-            if (!HandlePlayerItem(currentPlayer))
+            if (!_isAbleToCharge && !HandlePlayerItem(currentPlayer))
             {
                 return false;
             }
 
-            stationInUse = true;
             _assignedPlayer = player;
-            _uiButton?.SetActive(false);
+            stationInUse = true;
             _chargeBarController.StartChargeBar();
-            Debug.Log("station in use");
+
+            if (!_isAbleToCharge)
+            {
+                _isAbleToCharge = true;
+                _uiButton?.SetActive(false);
+                Debug.Log("station in use");
+            }
+
             return true;
         }
     }
@@ -217,7 +235,6 @@ public class StationController : MonoBehaviour
         _assignedPlayer = null;
         _uiButton?.SetActive(true);
         _chargeBarController.HideChargeBar();
-
     }
 
     public void WorkStation()
@@ -237,9 +254,10 @@ public class StationController : MonoBehaviour
         if(isPassive)
         {
             _timer = 0;
-            _isAbleToCharge = false;
             _chargeBarController.HideChargeBar();
         }
+        _chargeBarController.ResetChargeBar();
+        _isAbleToCharge = false;
         Debug.Log("Completing task, giving player " + itemOnCompletion);
         PlayerController currentPlayer = _assignedPlayer?.GetComponent<PlayerController>();
         currentPlayer.AssignItem(itemOnCompletion);
