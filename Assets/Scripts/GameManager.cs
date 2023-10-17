@@ -75,6 +75,7 @@ public class GameManager : MonoBehaviour
         }
 
         ordersComplete = 0;
+        _levelTimer = _secondsPerLevel;
 
         // Parse the level number from the scene name
         if (int.TryParse(sceneName.Replace("Level_", ""), out int level))
