@@ -74,6 +74,7 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
 
+        ordersComplete = 0;
 
         // Parse the level number from the scene name
         if (int.TryParse(sceneName.Replace("Level_", ""), out int level))
@@ -124,7 +125,14 @@ public class GameManager : MonoBehaviour
 
     void CalculateOrders()
     {
-        totalOrdersThisLevel = _lowestOrderNumber + currentLevel;
+        if(SceneManager.GetActiveScene().name.Equals(Scenes.Tutorial.ToString()))
+        {
+            totalOrdersThisLevel = 2;
+        }
+        else
+        {
+            totalOrdersThisLevel = _lowestOrderNumber + currentLevel;
+        }
     }
 
     void CalculateTimer()

@@ -70,7 +70,7 @@ public class ChargeBarController : MonoBehaviour
         //print(percentReloaded);       
     } 
 
-    void UpdateChargeBar()
+    public void UpdateChargeBar()
     {
         if (_currentStation.isPassive)
         {
