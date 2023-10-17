@@ -202,6 +202,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 954c6d1abbe365046b2d338c2474c2a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  jacketFront: {fileID: 5509411669003240133}
+  jacketBack: {fileID: 8535893116964269055}
+  jacketFrontColors:
+  - {fileID: 21300000, guid: cd4d22beaae2af04a9d07c4fb9e4c13d, type: 3}
+  - {fileID: 21300000, guid: ad302b42aaed2bc4a81ca021fafdcc92, type: 3}
+  - {fileID: 21300000, guid: 3adcd7331d31c214f940ddda6522cc3c, type: 3}
+  - {fileID: 21300000, guid: 600f960f2b6c06c42aeda4d2915c4930, type: 3}
+  jacketBackColors:
+  - {fileID: 21300000, guid: 59e592a7ea78e79479f92311e2706bf3, type: 3}
+  - {fileID: 21300000, guid: 23a6ea8019f9ad847a1ea5ae3af1a463, type: 3}
+  - {fileID: 21300000, guid: a27dcb10aa39b6c4d8a17e0b85ca08ee, type: 3}
+  - {fileID: 21300000, guid: 591509e89f1a3cb4db65f821f3ad255c, type: 3}
   _speed: 18
   _itemOnStart: {fileID: 0}
   currentStation: {fileID: 0}
@@ -463,5 +475,15 @@ PrefabInstance:
 --- !u!4 &1626735896533831553 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2968103875001369707, guid: 9a0ec3133aac9a34c8f9ff1786991c73, type: 3}
+  m_PrefabInstance: {fileID: 4585650762011134954}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &5509411669003240133 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 8347102687799068975, guid: 9a0ec3133aac9a34c8f9ff1786991c73, type: 3}
+  m_PrefabInstance: {fileID: 4585650762011134954}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &8535893116964269055 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 5320462562271633429, guid: 9a0ec3133aac9a34c8f9ff1786991c73, type: 3}
   m_PrefabInstance: {fileID: 4585650762011134954}
   m_PrefabAsset: {fileID: 0}
