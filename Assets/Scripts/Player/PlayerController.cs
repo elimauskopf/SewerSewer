@@ -117,6 +117,12 @@ public class PlayerController : MonoBehaviour
         MovePlayer(_movement);
     }
 
+    public void InitiatePlayer(int playerNumber)
+    {
+        jacketFront.sprite = jacketFrontColors[playerNumber];
+        jacketBack.sprite = jacketBackColors[playerNumber];
+    }
+
     public void OnMovement(InputAction.CallbackContext ctx)
     {
         if (playerState == PlayerState.INSTATION)

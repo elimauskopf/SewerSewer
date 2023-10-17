@@ -30,7 +30,7 @@ public class PlayerManager : MonoBehaviour
         GameObject player = playerInput.gameObject;
 
         player.name = _playerNames[_playerNameIndex];
-
+        player.GetComponent<PlayerController>()?.InitiatePlayer(_playerNameIndex);
         playerInput.gameObject.transform.position = spawnPoints[_playerNameIndex];
         _playerNameIndex++;
     }
