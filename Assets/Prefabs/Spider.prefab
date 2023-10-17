@@ -141,7 +141,7 @@ SortingGroup:
   m_Enabled: 1
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_SortAtRoot: 0
 --- !u!95 &6330785283003658907
 Animator:
@@ -225,6 +225,7 @@ MonoBehaviour:
   timeToComplete: 5
   itemOnCompletion: {fileID: 11400000, guid: 79e7933235f30ba4483c1f2b16f44989, type: 2}
   itemRequiredToStart: {fileID: 11400000, guid: 8892ac90d8fdb70479f13bdc03b7dec7, type: 2}
+  stationInUse: 0
 --- !u!1 &1163004167029872504
 GameObject:
   m_ObjectHideFlags: 0
