@@ -119,14 +119,20 @@ public class StationController : MonoBehaviour
             return;
         }
 
-        playersByStation--;
+
+        if (playersByStation != 0)
+        {
+            playersByStation--;
+        }
+     
         
         if (playersByStation == 0)
         {
             _uiButton?.SetActive(false);
             _playerInRange = false;
         }
-        if(collision.gameObject.GetComponent<PlayerController>().currentStation.name.Equals(gameObject.name))
+        if(collision.gameObject.GetComponent<PlayerController>().currentStation && 
+            collision.gameObject.GetComponent<PlayerController>().currentStation.name.Equals(gameObject.name))
         {
             collision.gameObject.GetComponent<PlayerController>().LeaveStation();
             
