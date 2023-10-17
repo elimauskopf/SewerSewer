@@ -69,10 +69,7 @@ public class StationController : MonoBehaviour
         if (_timer < timeToComplete && isPassive && _isAbleToCharge)
         {
             _timer += Time.deltaTime;
-
         }
-        //if player presses action button
-        //call InteractWithStation()
     }
 
     protected virtual void OnTriggerEnter2D(Collider2D collision)
@@ -86,7 +83,6 @@ public class StationController : MonoBehaviour
         _uiButton?.SetActive(true);
         _iconObject?.SetActive(true);
         _playerInRange = true;
-        //Debug.Log(collision.gameObject);
 
         PlayerController playerController = collision.gameObject.GetComponent<PlayerController>();
         if(playerController == null)
@@ -110,19 +106,15 @@ public class StationController : MonoBehaviour
         {
             _iconRenderer.color = _translucent;
         }
-        //playerController.isNextToStation = true;
+
         playerController.currentStation = gameObject;
         playersByStation++;
-        //OnPlayerNearStation?.Invoke(_assignedPlayer);
 
-        //connectedPlayer = collision.gameObject
-        // player in bounds = true
     }
 
     protected virtual void OnTriggerExit2D(Collider2D collision)
     {
         if (!collision.gameObject.CompareTag(Tags.Player))
-            //|| stationInUse)
         {
             return;
         }
@@ -145,9 +137,6 @@ public class StationController : MonoBehaviour
 
         }
 
-        //collision.gameObject.GetComponent<PlayerController>().currentStation = null;
-
-
         _iconObject?.SetActive(false);
     }
     
@@ -168,7 +157,7 @@ public class StationController : MonoBehaviour
                 if(HandlePlayerItem(currentPlayer))
                 {
                     _isAbleToCharge=true;
-                    _chargeBarController.StartChargeBar();
+                    _chargeBarController?.StartChargeBar();
                 }
             }
             else if(_timer >= timeToComplete)//station is ready
@@ -188,7 +177,7 @@ public class StationController : MonoBehaviour
 
             _assignedPlayer = player;
             stationInUse = true;
-            _chargeBarController.StartChargeBar();
+            _chargeBarController?.StartChargeBar();
 
             if (!_isAbleToCharge)
             {

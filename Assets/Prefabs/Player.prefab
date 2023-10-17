@@ -206,16 +206,16 @@ MonoBehaviour:
   jacketBack: {fileID: 8535893116964269055}
   jacketFrontColors:
   - {fileID: 21300000, guid: cd4d22beaae2af04a9d07c4fb9e4c13d, type: 3}
-  - {fileID: 21300000, guid: ad302b42aaed2bc4a81ca021fafdcc92, type: 3}
   - {fileID: 21300000, guid: 3adcd7331d31c214f940ddda6522cc3c, type: 3}
+  - {fileID: 21300000, guid: 23a6ea8019f9ad847a1ea5ae3af1a463, type: 3}
   - {fileID: 21300000, guid: 600f960f2b6c06c42aeda4d2915c4930, type: 3}
   jacketBackColors:
   - {fileID: 21300000, guid: 59e592a7ea78e79479f92311e2706bf3, type: 3}
-  - {fileID: 21300000, guid: 23a6ea8019f9ad847a1ea5ae3af1a463, type: 3}
   - {fileID: 21300000, guid: a27dcb10aa39b6c4d8a17e0b85ca08ee, type: 3}
+  - {fileID: 21300000, guid: 23a6ea8019f9ad847a1ea5ae3af1a463, type: 3}
   - {fileID: 21300000, guid: 591509e89f1a3cb4db65f821f3ad255c, type: 3}
   _speed: 18
-  _itemOnStart: {fileID: 0}
+  _itemOnStart: {fileID: 11400000, guid: 33b4c96309d0fe6448c20a4bada0c9ca, type: 2}
   currentStation: {fileID: 0}
   workingStation: 0
   _isGrounded: 0

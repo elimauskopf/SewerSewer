@@ -2,9 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OrderInLine : MonoBehaviour
+public class Customer : MonoBehaviour
 {
+    [SerializeField] List<Sprite> shoeColors;
+
     Animator _animator;
+    SpriteRenderer _leftShoe, _rightShoe;
 
     Vector3 oldPosition;
     Vector3 newPosition;
@@ -14,6 +17,12 @@ public class OrderInLine : MonoBehaviour
     private void Awake()
     {
         _animator = GetComponent<Animator>();
+        _leftShoe = transform.GetChild(0).GetComponent<SpriteRenderer>();
+        _rightShoe = transform.GetChild(1).GetComponent<SpriteRenderer>();
+
+        int color = Random.Range(0, shoeColors.Count - 1);
+        _leftShoe.sprite = shoeColors[color];
+        _rightShoe.sprite = shoeColors[color];
     }
 
     public void MoveTowards(Vector3 position)
