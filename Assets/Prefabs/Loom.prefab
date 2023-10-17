@@ -273,6 +273,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8e46f6d97934f841badc26a31ef9e0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _blueCircle: {fileID: 21300000, guid: 297540844d0ff804eb8436f54bd77b86, type: 3}
+  _redCircle: {fileID: 21300000, guid: ba1f6124bf00b2940bea63c4a8188c5c, type: 3}
   isPassive: 0
   timeToComplete: 5
   itemOnCompletion: {fileID: 11400000, guid: 04384029793563f4c9cf41adb5d738a4, type: 2}

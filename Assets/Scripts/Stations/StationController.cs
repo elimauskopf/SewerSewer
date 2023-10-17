@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class StationController : MonoBehaviour
 {
+    [SerializeField]
+    protected Sprite _blueCircle, _redCircle;
     protected Animator _animator;
     protected GameObject _uiButton;
+    protected SpriteRenderer _uiRenderer;
     protected GameObject _chargeBarObject;
     protected GameObject _iconObject;
     protected SpriteRenderer _iconRenderer;
@@ -49,6 +52,7 @@ public class StationController : MonoBehaviour
     {
         _animator = GetComponent<Animator>();
         _uiButton = transform.Find(Tags.UI)?.gameObject;
+        _uiRenderer = _uiButton?.GetComponent<SpriteRenderer>();
 
         _chargeBarObject = transform.Find(Tags.ChargeBar)?.gameObject;
         _chargeBarController = _chargeBarObject?.GetComponent<ChargeBarController>();
@@ -80,8 +84,7 @@ public class StationController : MonoBehaviour
             return;
         }
 
-        _uiButton?.SetActive(true);
-        _iconObject?.SetActive(true);
+        AssignUI();
         _playerInRange = true;
 
         PlayerController playerController = collision.gameObject.GetComponent<PlayerController>();
@@ -128,8 +131,8 @@ public class StationController : MonoBehaviour
         
         if (playersByStation == 0)
         {
-            _uiButton?.SetActive(false);
             _playerInRange = false;
+            DisableUI();
         }
 
         if(collision.gameObject.GetComponent<PlayerController>().currentStation && 
@@ -190,10 +193,9 @@ public class StationController : MonoBehaviour
             if (!_isAbleToCharge)
             {
                 _isAbleToCharge = true;
-                _uiButton?.SetActive(false);
                 Debug.Log("station in use");
             }
-
+            AssignUI();
             return true;
         }
     }
@@ -242,11 +244,10 @@ public class StationController : MonoBehaviour
     {
         _chargeBarController?.AddCharge();
 
-        if (_chargeBarController.percentReloaded >=1 )
+        if (_chargeBarController && _chargeBarController.percentReloaded >=1 )
         {
             // Player finished station
             CompleteTask();
-            _assignedPlayer.GetComponent<PlayerController>().LeaveStation();
         }
     }
 
@@ -265,6 +266,36 @@ public class StationController : MonoBehaviour
         _isAbleToCharge = false;
         Debug.Log("Completing task, giving player " + itemOnCompletion);
          _assignedPlayer?.GetComponent<PlayerController>().AssignItem(itemOnCompletion);
+        _assignedPlayer.GetComponent<PlayerController>().LeaveStation();
+        AssignUI();
+    }
+
+    protected virtual void AssignUI()
+    {
+        _uiButton?.SetActive(true);
+        _iconObject?.SetActive(true);
+        if(stationInUse || _isAbleToCharge)
+        {
+            _uiRenderer.sprite = _redCircle;
+            _iconObject?.SetActive(false);
+        }
+        else
+        {
+            _uiRenderer.sprite = _blueCircle;
+            _iconObject?.SetActive(true);
+        }
+    }
+    protected virtual void DisableUI()
+    {
+        if (stationInUse || _isAbleToCharge)
+        {
+            //dont disable uiButton
+        }
+        else
+        {
+            _uiButton?.SetActive(false);
+        }
+        _iconObject?.SetActive(false);
     }
 }
 
