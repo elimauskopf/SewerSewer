@@ -182,6 +182,7 @@ GameObject:
   - component: {fileID: 961835603908705249}
   - component: {fileID: 8745005146406290398}
   - component: {fileID: 4187492632510353613}
+  - component: {fileID: 3535671516124112043}
   m_Layer: 0
   m_Name: Loom
   m_TagString: Untagged
@@ -334,6 +335,27 @@ SortingGroup:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_SortAtRoot: 0
+--- !u!95 &3535671516124112043
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7520295353744414722}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &7655530293102989696
 GameObject:
   m_ObjectHideFlags: 0

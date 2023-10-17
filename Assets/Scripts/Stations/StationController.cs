@@ -178,6 +178,7 @@ public class StationController : MonoBehaviour
             _assignedPlayer = player;
             stationInUse = true;
             _chargeBarController?.StartChargeBar();
+            _animator.SetBool(Tags.Moving, true);
 
             if (!_isAbleToCharge)
             {
@@ -220,10 +221,11 @@ public class StationController : MonoBehaviour
             return;
         }
 
+        _animator.SetBool(Tags.Moving, false);
         stationInUse = false;
         _assignedPlayer = null;
         _uiButton?.SetActive(true);
-        _chargeBarController.HideChargeBar();
+        _chargeBarController?.HideChargeBar();
     }
 
     public void WorkStation()
@@ -244,6 +246,10 @@ public class StationController : MonoBehaviour
         {
             _timer = 0;
             _chargeBarController.HideChargeBar();
+        }
+        else
+        {
+            _animator.SetBool(Tags.Moving, false);
         }
         _chargeBarController.ResetChargeBar();
         _isAbleToCharge = false;

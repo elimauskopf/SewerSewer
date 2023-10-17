@@ -97,6 +97,7 @@ GameObject:
   - component: {fileID: 1178436637818047157}
   - component: {fileID: 5193579315648173137}
   - component: {fileID: 3113774962971347173}
+  - component: {fileID: 3575169882440256867}
   m_Layer: 0
   m_Name: SewingMachine
   m_TagString: Untagged
@@ -236,6 +237,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 12.63, y: 15.133964}
   m_EdgeRadius: 0
+--- !u!95 &3575169882440256867
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 772234794882134009}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: fd61f76cfd2838e43bda543b2a7dbdde, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &4512611366018298753
 GameObject:
   m_ObjectHideFlags: 0
