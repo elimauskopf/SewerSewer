@@ -23,4 +23,12 @@ public class FinalLevelOutro : MonoBehaviour
     {
         _timelineDirector.Play();
     }
+    public void DeletePlayers()
+    {
+        GameObject[] players = GameObject.FindGameObjectsWithTag(Tags.Player);
+        for(int i = 0; i < players.Length; i++)
+        {
+            Destroy(players[i]);
+        }
+    }
 }
