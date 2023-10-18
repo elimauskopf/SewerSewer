@@ -6,16 +6,24 @@ using UnityEngine.SceneManagement;
 public class MusicController : MonoBehaviour
 {
     public static MusicController Instance { get; private set; }
+
+    public AudioClip _theme, _outro;
+    AudioSource _audio;
     private void Awake()
     {
         if (Instance != null && Instance != this)
         {
-            Destroy(this.gameObject);
+            Destroy(gameObject);
             return;
         }
-
-        DontDestroyOnLoad(this);
-        SceneManager.sceneLoaded += OnSceneLoaded;
+        else
+        {
+            DontDestroyOnLoad(this);
+            SceneManager.sceneLoaded += OnSceneLoaded;
+        }
+        _audio = GetComponent<AudioSource>();
+        _audio.clip = _theme;
+        _audio.Play();
     }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -24,6 +32,11 @@ public class MusicController : MonoBehaviour
         {
             Destroy(gameObject);
             return;
+        }
+        else if(scene.name.Equals(Scenes.Outro.ToString()))
+        {
+            _audio.clip = _outro;
+            _audio.Play();
         }
     }
 }

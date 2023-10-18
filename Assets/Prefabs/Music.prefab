@@ -141,3 +141,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dca5aadef5e5ce442bf85bd05e10db2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _theme: {fileID: 8300000, guid: 70d048ea9219e444eb071d36c3df9bf3, type: 3}
+  _outro: {fileID: 8300000, guid: 3d4c79a757f88fe44867e18c36f4b3ca, type: 3}

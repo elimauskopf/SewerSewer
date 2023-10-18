@@ -32,6 +32,11 @@ public class SceneNavigator : MonoBehaviour
         SceneManager.LoadScene(Scenes.Home.ToString());
     }
 
+    public void LoadTutorial()
+    {
+        SceneManager.LoadScene(Scenes.Tutorial.ToString());
+    }
+
     IEnumerator WaitToStart()
     {
         float timer = 0;

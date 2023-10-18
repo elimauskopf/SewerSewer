@@ -66,8 +66,6 @@ public class ChargeBarController : MonoBehaviour
         {
             percentReloaded += _barChargeIncrement;
         }
-
-        //print(percentReloaded);       
     } 
 
     public void UpdateChargeBar()

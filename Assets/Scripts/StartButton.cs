@@ -14,4 +14,9 @@ public class StartButton : MonoBehaviour
         blackFade?.SetTrigger(Tags.Moving);
         gameObject.SetActive(false);
     }
+
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
 }

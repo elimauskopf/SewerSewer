@@ -30,7 +30,10 @@ public class LineManager : MonoBehaviour
         //instantiate the shoe at the last position in line (off screen)
         customer.Add((Instantiate(shoe, positionsInLine[positionsInLine.Count - 1].position, Quaternion.identity)).GetComponent<Customer>());
         int positionInLine = customer.Count - 1;
-        customer[positionInLine].MoveTowards(positionsInLine[positionInLine].position);
+        if(positionInLine < positionsInLine.Count)
+        {
+            customer[positionInLine].MoveTowards(positionsInLine[positionInLine].position);
+        }
     }
 
     public void CompleteOrder()

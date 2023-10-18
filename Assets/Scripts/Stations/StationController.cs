@@ -185,9 +185,6 @@ public class StationController : MonoBehaviour
                     _assignedPlayer = player;
                     CompleteTask();
                 }
-                
-
-              
             }
             return false;
         }
@@ -279,8 +276,7 @@ public class StationController : MonoBehaviour
         }
         _chargeBarController.ResetChargeBar();
         _isAbleToCharge = false;
-        Debug.Log("Completing task, giving player " + itemOnCompletion);
-         _assignedPlayer?.GetComponent<PlayerController>().AssignItem(itemOnCompletion);
+        _assignedPlayer?.GetComponent<PlayerController>().AssignItem(itemOnCompletion);
         _assignedPlayer.GetComponent<PlayerController>().LeaveStation();
         AssignUI();
     }

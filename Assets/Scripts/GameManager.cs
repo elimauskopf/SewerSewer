@@ -10,13 +10,18 @@ public class GameManager : MonoBehaviour
 
     TMP_Text _timerText;
 
+    [SerializeField] List<AudioClip> _orderCompleteClips;
+    [SerializeField] AudioClip _levelWonClip, _levelLostClip;
+    AudioSource _orderCompleteAudio;
+    AudioSource _levelEndAudio;
+
     public List<bool> pendingOrders;
     int ordersComplete;
     int currentLevel;
     int totalOrdersThisLevel;
 
     //the amount of orders in the easiest level, used as the order number floor
-    int _lowestOrderNumber = 5;
+    int _lowestOrderNumber = 8;
     float _secondsPerLevel = (3*60f);
     float _levelTimer;
     float _orderTimer;
@@ -32,6 +37,8 @@ public class GameManager : MonoBehaviour
 
         Instance = this;
 
+        _orderCompleteAudio = transform.Find(Tags.OrderCompleteAudio)?.GetComponent<AudioSource>();
+        _levelEndAudio = transform.Find(Tags.LevelEndAudio)?.GetComponent<AudioSource>();
         _levelTimer = _secondsPerLevel;
         _timerText = transform.Find(Tags.Timer)?.GetComponent<TMP_Text>();
         SceneManager.sceneLoaded += OnSceneLoaded;
@@ -39,20 +46,23 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        //if all the orders for the level have entered the scene, don't add any more
-        if(ordersComplete + pendingOrders.Count >= totalOrdersThisLevel)
+        if (!SceneManager.GetActiveScene().name.Equals("Tutorial"))
         {
-            return;
-        }
-
-        if(!SceneManager.GetActiveScene().name.Equals("Tutorial"))
-        {
-            _levelTimer -= Time.deltaTime;
-            CalculateTimer();
+            if (_levelTimer > 0)
+            {
+                _levelTimer -= Time.deltaTime;
+                CalculateTimer();
+            }
         }
         else
         {
             CalculateTimer();
+        }
+
+        //if all the orders for the level have entered the scene, don't add any more
+        if (ordersComplete + pendingOrders.Count >= totalOrdersThisLevel)
+        {
+            return;
         }
 
         _orderTimer += Time.deltaTime;
@@ -97,11 +107,20 @@ public class GameManager : MonoBehaviour
 
     public void CompleteOrder()
     {
+        if (_levelTimer <= 0)
+        {
+            return;
+        }
+
+        int orderAudio = Random.Range(0, _orderCompleteClips.Count - 1);
+        _orderCompleteAudio.clip = _orderCompleteClips[orderAudio];
+        _orderCompleteAudio.Play();
+
         ordersComplete++;
         pendingOrders.Remove(true);
         LineManager.Instance.CompleteOrder();
 
-        if(ordersComplete == totalOrdersThisLevel)
+        if (ordersComplete == totalOrdersThisLevel)
         {
             CompleteLevel();
         }
@@ -116,6 +135,8 @@ public class GameManager : MonoBehaviour
         else if (EndLevelUI.Instance != null)
         {
             EndLevelUI.Instance.LevelComplete();
+            _levelEndAudio.clip = _levelWonClip;
+            _levelEndAudio.Play();
         }
         else
         {
@@ -137,9 +158,20 @@ public class GameManager : MonoBehaviour
 
     void CalculateTimer()
     {
+        if(_levelTimer <= 0)
+        {
+            LoseLevel();
+        }
         int minutes = Mathf.FloorToInt(_levelTimer / 60);
         int seconds = Mathf.FloorToInt(_levelTimer % 60);
 
         _timerText.text = "Time left: " + string.Format("{0:00}:{1:00}", minutes, seconds);
+    }
+
+    void LoseLevel()
+    {
+        _levelEndAudio.clip = _levelLostClip;
+        _levelEndAudio.Play();
+        EndLevelUI.Instance.OnLevelLost();
     }
 }
