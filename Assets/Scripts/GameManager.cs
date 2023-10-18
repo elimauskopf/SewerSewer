@@ -31,7 +31,6 @@ public class GameManager : MonoBehaviour
         }
 
         Instance = this;
-        DontDestroyOnLoad(gameObject);
 
         _levelTimer = _secondsPerLevel;
         _timerText = transform.Find(Tags.Timer)?.GetComponent<TMP_Text>();
