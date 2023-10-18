@@ -707,7 +707,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3362332089391624937, guid: d87657e5a04aa00478099de4b5acf59e, type: 3}
       propertyPath: _barChargeIncrement
-      value: 0.05
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 6053861736803474291, guid: d87657e5a04aa00478099de4b5acf59e, type: 3}
       propertyPath: m_Name

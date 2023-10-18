@@ -59,7 +59,7 @@ public class GameManager : MonoBehaviour
         if(_orderTimer > _timeUntilNextOrder)
         {
             AddOrder();
-            _timeUntilNextOrder = UnityEngine.Random.Range(5f, _secondsPerLevel / totalOrdersThisLevel);
+            _timeUntilNextOrder = UnityEngine.Random.Range(3f, 8f);
             _orderTimer = 0;
         }
     }
@@ -131,7 +131,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            totalOrdersThisLevel = _lowestOrderNumber + currentLevel;
+            totalOrdersThisLevel = _lowestOrderNumber + (currentLevel*2);
         }
     }
 

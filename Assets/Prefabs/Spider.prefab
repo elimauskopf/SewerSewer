@@ -221,8 +221,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6f37d96566d8fe4cbead28935c129e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _blueCircle: {fileID: 0}
+  _redCircle: {fileID: 0}
   isPassive: 1
-  timeToComplete: 5
+  timeToComplete: 4
   itemOnCompletion: {fileID: 11400000, guid: 79e7933235f30ba4483c1f2b16f44989, type: 2}
   itemRequiredToStart: {fileID: 11400000, guid: 8892ac90d8fdb70479f13bdc03b7dec7, type: 2}
   stationInUse: 0
