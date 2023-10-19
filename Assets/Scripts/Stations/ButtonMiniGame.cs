@@ -14,7 +14,7 @@ public class ButtonMiniGame : MonoBehaviour
     SpriteRenderer _innerCircleRenderer;
 
     float _t;
-    float _startVal = 1;
+    float _startVal = 0;
     float _endVal = 7;
     float _lerpVal;
     [SerializeField]
@@ -76,7 +76,7 @@ public class ButtonMiniGame : MonoBehaviour
         
         _innerCircle.transform.localScale = new Vector3(1, 1, 1);
         _t = 0;
-        _startVal = 0;
+        _lerpVal = 0;
         _innerCircleRenderer.color = _originalColor;
     }
 
