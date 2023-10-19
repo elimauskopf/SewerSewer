@@ -25,6 +25,10 @@ public class StationController : MonoBehaviour
     //does the station recharge on its own or require player participation to charge
     public bool isPassive;
 
+    // Does station use circle minigame and local variables for scrips
+    public bool isMinigame;
+    private ButtonMiniGame buttonMiniGame;
+
     //how long does it take the station to charge up
     public float timeToComplete;
 
@@ -66,6 +70,11 @@ public class StationController : MonoBehaviour
 
         _uiButton?.SetActive(false);
         _iconObject?.SetActive(false);
+
+        if (isMinigame)
+        {
+            buttonMiniGame = transform.Find("ButtonGame").GetComponent<ButtonMiniGame>();
+        }
     }
 
     protected virtual void Update()
@@ -205,6 +214,13 @@ public class StationController : MonoBehaviour
                 _isAbleToCharge = true;
                 Debug.Log("station in use");
             }
+
+            if (isMinigame)
+            {
+                buttonMiniGame.Show();
+                buttonMiniGame.engaged = true;          
+            }
+
             AssignUI();
             return true;
         }
@@ -247,6 +263,11 @@ public class StationController : MonoBehaviour
         {
             _assignedPlayer = null;
             stationInUse = false;
+
+            if (isMinigame)
+            {
+                buttonMiniGame.EndInteraction();
+            }
         }
 
         AssignUI();
@@ -254,7 +275,17 @@ public class StationController : MonoBehaviour
 
     public void WorkStation()
     {
-        _chargeBarController?.AddCharge();
+        if (!isMinigame)
+        {
+            _chargeBarController?.AddCharge();
+        } else
+        {
+            if (buttonMiniGame.PlayerPressedButton())
+            {
+                _chargeBarController?.AddCharge();
+            }
+        }
+        
 
         if (_chargeBarController && _chargeBarController.percentReloaded >=1 )
         {
@@ -274,6 +305,11 @@ public class StationController : MonoBehaviour
         {
             _animator.SetBool(Tags.Moving, false);
         }
+        
+        if (isMinigame)
+        {
+            buttonMiniGame.EndInteraction();
+        }
         _chargeBarController.ResetChargeBar();
         _isAbleToCharge = false;
         _assignedPlayer?.GetComponent<PlayerController>().AssignItem(itemOnCompletion);
@@ -290,12 +326,15 @@ public class StationController : MonoBehaviour
         {
             _uiRenderer.sprite = _redCircle;
             _iconObject?.SetActive(false);
+           
         }
         else if(playersByStation == 0)
         {
             _uiButton?.SetActive(false);
             _iconObject?.SetActive(false);
             _chargeBarController?.HideChargeBar();
+
+           
         }
         else 
         {
