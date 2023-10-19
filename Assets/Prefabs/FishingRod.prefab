@@ -713,7 +713,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7063458423087476985, guid: afdc89830797b6347b63de983a678b01, type: 3}
       propertyPath: perfectTimingamount
-      value: 6.25
+      value: 5.75
       objectReference: {fileID: 0}
     - target: {fileID: 8510593617091818863, guid: afdc89830797b6347b63de983a678b01, type: 3}
       propertyPath: m_IsActive

@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   engaged: 0
-  perfectTimingamount: 5.75
+  perfectTimingamount: 5.55
 --- !u!1 &1966842291559368757
 GameObject:
   m_ObjectHideFlags: 0
