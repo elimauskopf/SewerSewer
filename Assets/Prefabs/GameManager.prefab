@@ -310,6 +310,7 @@ GameObject:
   - component: {fileID: 1735564055462501698}
   - component: {fileID: 2181517673780714087}
   - component: {fileID: 953144491312630348}
+  - component: {fileID: 7474681078178671620}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -375,7 +376,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   alligator: {fileID: 3893249232766024796, guid: 6e9de86262e88ab409acc21f76e5761d, type: 3}
   spawnFrequencyMin: 5
-  spawnFrequencyVariance: 5
+  spawnFrequencyVariance: 3
+--- !u!114 &7474681078178671620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7523978908829616315}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f880603463c54ea429670226eca7c09b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bat: {fileID: 526326626874357083, guid: e51be544be34a054ca3075aae25a0ef9, type: 3}
+  spawnFrequencyMin: 4
+  spawnFrequencyVariance: 1
 --- !u!1 &8879693291183709219
 GameObject:
   m_ObjectHideFlags: 0

@@ -131,6 +131,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 953144491312630348, guid: e63c7ba0bbc4aa84aaf695a2a0b27ab3, type: 3}
+      propertyPath: spawnFrequencyMin
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 953144491312630348, guid: e63c7ba0bbc4aa84aaf695a2a0b27ab3, type: 3}
+      propertyPath: spawnFrequencyVariance
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1735564055462501698, guid: e63c7ba0bbc4aa84aaf695a2a0b27ab3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -170,6 +178,10 @@ PrefabInstance:
     - target: {fileID: 1735564055462501698, guid: e63c7ba0bbc4aa84aaf695a2a0b27ab3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7474681078178671620, guid: e63c7ba0bbc4aa84aaf695a2a0b27ab3, type: 3}
+      propertyPath: spawnFrequencyVariance
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7523978908829616315, guid: e63c7ba0bbc4aa84aaf695a2a0b27ab3, type: 3}
       propertyPath: m_Name
@@ -2966,6 +2978,7 @@ MonoBehaviour:
   _blueCircle: {fileID: 21300000, guid: 297540844d0ff804eb8436f54bd77b86, type: 3}
   _redCircle: {fileID: 21300000, guid: ba1f6124bf00b2940bea63c4a8188c5c, type: 3}
   isPassive: 1
+  isMinigame: 0
   timeToComplete: 0
   itemOnCompletion: {fileID: 0}
   itemRequiredToStart: {fileID: 11400000, guid: 33b4c96309d0fe6448c20a4bada0c9ca, type: 2}
