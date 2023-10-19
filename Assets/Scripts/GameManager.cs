@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
     int totalOrdersThisLevel;
 
     //the amount of orders in the easiest level, used as the order number floor
-    int _lowestOrderNumber = 8;
+    int _lowestOrderNumber = 5;
     float _secondsPerLevel = (3*60f);
     float _levelTimer;
     float _orderTimer;
@@ -152,8 +152,8 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            //totalOrdersThisLevel = _lowestOrderNumber + (currentLevel*2);
-            totalOrdersThisLevel = 1;
+            totalOrdersThisLevel = _lowestOrderNumber + (currentLevel*2);
+            ;
         }
     }
 
