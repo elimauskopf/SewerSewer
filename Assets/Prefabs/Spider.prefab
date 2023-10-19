@@ -224,7 +224,8 @@ MonoBehaviour:
   _blueCircle: {fileID: 0}
   _redCircle: {fileID: 0}
   isPassive: 1
-  timeToComplete: 4
+  isMinigame: 0
+  timeToComplete: 3
   itemOnCompletion: {fileID: 11400000, guid: 79e7933235f30ba4483c1f2b16f44989, type: 2}
   itemRequiredToStart: {fileID: 11400000, guid: 8892ac90d8fdb70479f13bdc03b7dec7, type: 2}
   stationInUse: 0

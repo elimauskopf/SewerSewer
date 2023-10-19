@@ -38,5 +38,10 @@ public class MusicController : MonoBehaviour
             _audio.clip = _outro;
             _audio.Play();
         }
+        else if(!_audio.clip.Equals(_theme))
+        {
+            _audio.clip = _theme;
+            _audio.Play();
+        }
     }
 }
