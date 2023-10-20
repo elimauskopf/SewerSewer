@@ -153,6 +153,7 @@ public class GameManager : MonoBehaviour
         else
         {
             totalOrdersThisLevel = _lowestOrderNumber + (currentLevel*2);
+            //totalOrdersThisLevel = 1;
             
         }
     }

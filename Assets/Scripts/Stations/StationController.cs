@@ -148,26 +148,32 @@ public class StationController : MonoBehaviour
             collision.gameObject.GetComponent<PlayerController>().currentStation.name.Equals(gameObject.name))
         {
             collision.gameObject.GetComponent<PlayerController>().LeaveStation();
-            
-        }
-        else
-        {
-            collision.gameObject.GetComponent<PlayerController>().currentStation = null;
+        
+
 
         }
+      
+        collision.gameObject.GetComponent<PlayerController>().currentStation = null;
+
+        
 
         _iconObject?.SetActive(false);
     }
     
     public virtual bool Initiate(GameObject player)
     {
-        if (stationInUse)
+        if (stationInUse )
         {
             Debug.Log("Station is in use");
             return false;
         }
 
+        
         PlayerController currentPlayer = player.GetComponent<PlayerController>();
+        print(currentPlayer.currentStation);
+
+        if (!currentPlayer.currentStation) return false;
+
 
         if (isPassive)
         {
@@ -254,6 +260,8 @@ public class StationController : MonoBehaviour
     }
     public void Disengage(GameObject player)
     {
+
+       ;
         if (!stationInUse)
         {
             return;
@@ -261,6 +269,7 @@ public class StationController : MonoBehaviour
 
         if (_assignedPlayer == player)
         {
+            print("leave");
             _assignedPlayer = null;
             stationInUse = false;
 
