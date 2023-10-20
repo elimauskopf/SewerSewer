@@ -51,9 +51,19 @@ public class AlligatorSpawner : MonoBehaviour
         float xSpawnPoint = Random.Range(_minBoundX, maxBoundX);
         GameObject obj = Instantiate(alligator, new Vector3(xSpawnPoint, _ySpawnPoint, 0), alligator.transform.rotation);
 
+        StartCoroutine(PlaySound(obj));
         yield return new WaitForSeconds(2.17f);
 
         Destroy(obj);
+    }
+    
+    IEnumerator PlaySound(GameObject o)
+    {
+        yield return new WaitForSeconds(1.45f);
+
+        o.GetComponent<AudioSource>().Play();
+
+
     }
 
     

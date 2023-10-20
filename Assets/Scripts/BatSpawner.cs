@@ -50,7 +50,7 @@ public class BatSpawner : MonoBehaviour
         GameObject obj3 = Instantiate(bat, new Vector3(1, _ySpawnPoint + + 1f, 0), bat.transform.rotation);
         GameObject obj4 = Instantiate(bat, new Vector3(2f, _ySpawnPoint, 0), bat.transform.rotation);
 
-
+        StartCoroutine(PlaySound(obj));
 
 
         yield return new WaitForSeconds(4);
@@ -59,5 +59,14 @@ public class BatSpawner : MonoBehaviour
         Destroy(obj2);
         Destroy(obj3);
         Destroy(obj4);
+    }
+
+    IEnumerator PlaySound(GameObject o)
+    {
+        yield return new WaitForSeconds(1f);
+
+        o.GetComponent<AudioSource>().Play();
+
+
     }
 }
