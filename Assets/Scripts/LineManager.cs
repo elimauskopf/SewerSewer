@@ -45,6 +45,10 @@ public class LineManager : MonoBehaviour
 
         for(int i = 1; i < customer.Count; i++)
         {
+            if(i >= positionsInLine.Count)
+            {
+                continue;
+            }
             customer[i].MoveTowards(positionsInLine[i - 1].position);
         }
         Customer completedOrder = customer[0];
