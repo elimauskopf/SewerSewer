@@ -10,6 +10,7 @@ public class Waterfall : MonoBehaviour
     public GameObject[] items;
     private float leftBound;
     private float rightBound;
+    private GameObject junk;
 
     float repeatRate;
     [SerializeField]
@@ -38,10 +39,16 @@ public class Waterfall : MonoBehaviour
 
     void SpawnItem()
     {
+        // Randomize spawn location
         float xSpawnLocation = Random.Range(leftBound, rightBound);
         Vector2 spawnLocation = new Vector3(xSpawnLocation, transform.position.y);
-        int itemIndex = Random.Range(0, items.Length);
 
-        GameObject item = Instantiate(items[itemIndex], spawnLocation, transform.rotation);
+        // Randomize color
+        Array colors = Enum.GetValues(typeof(ColorTypes));
+        ColorTypes colorType = (ColorTypes)colors.GetValue(Random.Range(0, colors.Length));
+
+        // Spawn item
+        GameObject item = Instantiate(junk, spawnLocation, transform.rotation);
+        junk.GetComponent<Junk>().colorType = colorType;
     }
 }
