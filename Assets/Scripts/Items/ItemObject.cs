@@ -39,27 +39,28 @@ public class ItemObject : MonoBehaviour
 
     void AssignSprite()
     {
-        switch (_type)
+        _renderer.sprite = ChooseSprite(_type, _color);
+    }
+
+    public Sprite ChooseSprite(ItemTypes? item, ColorTypes? color)
+    {
+        switch (item)
         {
             case ItemTypes.None:
-                return;
-            case ItemTypes.Fish:
-                _renderer.sprite = fish;
-                break;
+                return null;
+            case ItemTypes.Fish:            
+                return fish; ;
             case ItemTypes.Silk:
-                _renderer.sprite = silk[(int)_color];
-                break;
-            case ItemTypes.Fabric:
-                _renderer.sprite = fabric[(int)_color];
-                break;
+                return silk[(int)color];
+            case ItemTypes.Fabric:             
+                return fabric[(int)color];
             case ItemTypes.Dress:
-                _renderer.sprite = dress[(int)_color];
-                break;
+                return dress[(int)color];
             case ItemTypes.Ribbon:
-                _renderer.sprite = ribbon[(int)_color];
-                break;
+                return dress[(int)color];     
             default:
-                break;
+                return null;
+            
         }
     }
 }

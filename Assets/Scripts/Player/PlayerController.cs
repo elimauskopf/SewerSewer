@@ -26,12 +26,14 @@ public class PlayerController : MonoBehaviour
     float _speed;
 
     [SerializeField]//just used for testing, player will not start with an item
-    ItemObject _itemOnStart;
+    ItemTypes _itemOnStart;
 
-    public ItemObject _currentItem;
+    public ItemTypes? _currentItem;
+    public ColorTypes? _currentColor;
     Transform _itemsParent;
     List<GameObject> _items = new List<GameObject>();
 
+    public GameObject itemPrefab;
 
     //public bool isNextToStation;
     public GameObject currentStation;
@@ -45,7 +47,7 @@ public class PlayerController : MonoBehaviour
     Vector2 _lookLeft = new Vector2(1, 1);
     Vector2 _startScale;
 
-    public ItemObject CurrentItem { get { return _currentItem; } }
+    //public ItemObject CurrentItem { get { return _currentItem; } }
 
     // Movement vars
     [SerializeField]
@@ -86,7 +88,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         SetPlayerState(PlayerState.NONE);
-        AssignItem(_itemOnStart);
+        AssignItem(_itemOnStart, null);
 
     }
 
@@ -277,22 +279,22 @@ public class PlayerController : MonoBehaviour
     public void DropItem()
     {
         _currentItem = null;
-        AssignItem(null);
+        AssignItem(null, null);
     }
 
-    public void AssignItem(ItemObject newItem)
+    public void AssignItem(ItemTypes? newItem, ColorTypes? newColor)
     {
         _currentItem = newItem;
         foreach (GameObject item in _items)
         {
-            if (newItem == null || !newItem.ItemType.ToString().Equals(item.name))
+            if (newItem == null || !newItem.ToString().Equals(item.name))
             {
                 item.SetActive(false);
             }
             else
             {
                 item.SetActive(true);
-                item.GetComponent<SpriteRenderer>().sprite = newItem.GetComponent<SpriteRenderer>().sprite;
+                item.GetComponent<SpriteRenderer>().sprite = itemPrefab.GetComponent<ItemObject>().ChooseSprite(newItem, newColor);
             }
         }
     }
