@@ -43,7 +43,7 @@ public class StationController : MonoBehaviour
     public Sprite itemRequiredIcon;
 
     //does the station have an item inside it currently
-    ItemObject _currentItem;
+    ItemTypes? _currentItem;
 
     protected bool _playerInRange;
     protected float _timer;
@@ -112,11 +112,11 @@ public class StationController : MonoBehaviour
         {
             //lmao
         }
-        else if(playerController.CurrentItem == null)
+        else if(playerController._currentItem == null)
         {
             _iconRenderer.color = _translucent;
         }
-        else if(playerController.CurrentItem.ItemType.Equals(itemRequiredToStart))
+        else if(playerController._currentItem.Equals(itemRequiredToStart))
         {
             _iconRenderer.color = Color.white;
         }
@@ -246,14 +246,14 @@ public class StationController : MonoBehaviour
             //currentPlayer.DropItem();
             return true;
         }
-        else if (currentPlayer.CurrentItem == null)
+        else if (currentPlayer._currentItem == null)
         {
             Debug.Log("Player isn't carrying anything");
             return false;
         }
-        else if (currentPlayer.CurrentItem.ItemType.Equals(itemRequiredToStart))
+        else if (currentPlayer._currentItem.Equals(itemRequiredToStart))
         {
-            _currentItem = currentPlayer.CurrentItem;
+            _currentItem = currentPlayer._currentItem;
             currentPlayer.DropItem();
             return true;
         }
