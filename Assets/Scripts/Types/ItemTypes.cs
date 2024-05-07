@@ -1,4 +1,4 @@
 public enum ItemTypes
 {
-    None, Silk, Fish, Fabric, Dress
+    None, Fish, Silk, Fabric, Dress, Ribbon
 }

@@ -285,21 +285,15 @@ public class PlayerController : MonoBehaviour
         _currentItem = newItem;
         foreach (GameObject item in _items)
         {
-            if (newItem == null || !newItem.type.ToString().Equals(item.name))
+            if (newItem == null || !newItem.ItemType.ToString().Equals(item.name))
             {
                 item.SetActive(false);
             }
             else
             {
                 item.SetActive(true);
+                item.GetComponent<SpriteRenderer>().sprite = newItem.GetComponent<SpriteRenderer>().sprite;
             }
         }
     }
-
-    /*void OnDrawGizmosSelected()
-    {
-        // Draw a yellow sphere at the transform's position
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawSphere(rayCastTransform.position, circleCastRadius);
-    }*/
 }

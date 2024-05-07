@@ -34,10 +34,16 @@ public class StationController : MonoBehaviour
 
     //what does the station give the player when the task is complete (example: spiders give silk)
     //(data type might change from GameObject to something custom)
-    public ItemObject itemOnCompletion;
+    public ItemTypes? itemOnCompletion;
 
     //what does the station require from the player to activate (example: loom requires spider silk)
-    public ItemObject itemRequiredToStart;
+    public ItemTypes? itemRequiredToStart;
+
+    //what icon should we show the player based on what item the station requires
+    public Sprite itemRequiredIcon;
+
+    //does the station have an item inside it currently
+    ItemObject _currentItem;
 
     protected bool _playerInRange;
     protected float _timer;
@@ -65,7 +71,7 @@ public class StationController : MonoBehaviour
         _iconRenderer = _iconObject?.GetComponent<SpriteRenderer>();
         if(itemRequiredToStart != null && _iconRenderer)
         {
-            _iconRenderer.sprite = itemRequiredToStart.icon;
+            _iconRenderer.sprite = itemRequiredIcon;
         }
 
         _uiButton?.SetActive(false);
@@ -110,7 +116,7 @@ public class StationController : MonoBehaviour
         {
             _iconRenderer.color = _translucent;
         }
-        else if(playerController.CurrentItem.type.Equals(itemRequiredToStart.type))
+        else if(playerController.CurrentItem.ItemType.Equals(itemRequiredToStart))
         {
             _iconRenderer.color = Color.white;
         }
@@ -148,14 +154,9 @@ public class StationController : MonoBehaviour
             collision.gameObject.GetComponent<PlayerController>().currentStation.name.Equals(gameObject.name))
         {
             collision.gameObject.GetComponent<PlayerController>().LeaveStation();
-        
-
-
         }
       
         collision.gameObject.GetComponent<PlayerController>().currentStation = null;
-
-        
 
         _iconObject?.SetActive(false);
     }
@@ -232,6 +233,7 @@ public class StationController : MonoBehaviour
         }
     }
 
+    //check to see if the player has the required item to use the station
     protected bool HandlePlayerItem(PlayerController currentPlayer)
     {
         if (currentPlayer == null)
@@ -249,19 +251,17 @@ public class StationController : MonoBehaviour
             Debug.Log("Player isn't carrying anything");
             return false;
         }
-        else if (currentPlayer.CurrentItem.type.Equals(itemRequiredToStart.type))
+        else if (currentPlayer.CurrentItem.ItemType.Equals(itemRequiredToStart))
         {
+            _currentItem = currentPlayer.CurrentItem;
             currentPlayer.DropItem();
             return true;
-            
         }
 
         return false;
     }
     public void Disengage(GameObject player)
     {
-
-       ;
         if (!stationInUse)
         {
             return;
@@ -321,7 +321,7 @@ public class StationController : MonoBehaviour
         }
         _chargeBarController.ResetChargeBar();
         _isAbleToCharge = false;
-        _assignedPlayer?.GetComponent<PlayerController>().AssignItem(itemOnCompletion);
+        //_assignedPlayer?.GetComponent<PlayerController>().AssignItem(itemOnCompletion);
         _assignedPlayer.GetComponent<PlayerController>().LeaveStation();
         AssignUI();
     }
