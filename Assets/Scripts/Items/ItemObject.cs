@@ -11,7 +11,7 @@ public class ItemObject : MonoBehaviour
     ColorTypes _color;
 
     public ItemTypes ItemType { get { return _type; } }
-    public ColorTypes ColorType { get { return _color; } }
+    public ColorTypes? ColorType { get { return _color; } }
 
     //sprite type for each type
     //List of sprites color order follow list of ColorTypes --> 0:White, 1:Red, 2:Green, 3:Yellow

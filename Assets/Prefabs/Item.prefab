@@ -97,8 +97,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56fdaadf9f40edf409abc342ba1d1da8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fish: {fileID: 0}
-  silk: []
-  fabric: []
-  dress: []
-  ribbon: []
+  fish: {fileID: 21300000, guid: 6acb0ba036407564aa37d2b40f6f54cb, type: 3}
+  silk:
+  - {fileID: 21300000, guid: dea9769cdc1ca02428182f0dddde9eb1, type: 3}
+  - {fileID: 21300000, guid: 9778cc2695a344c4ebb777b514b50261, type: 3}
+  - {fileID: 21300000, guid: ab8feb0a55b52614d9ff210b38abea9a, type: 3}
+  - {fileID: 21300000, guid: 6f519b5acd7eca545ba2c95257108836, type: 3}
+  fabric:
+  - {fileID: 21300000, guid: 27b67b96342787845ab56e7c197ec3af, type: 3}
+  - {fileID: 21300000, guid: 0122183a79a71544f999d42900546ae6, type: 3}
+  - {fileID: 21300000, guid: 2eb46e825ef08fb42896eddb56ea3928, type: 3}
+  - {fileID: 21300000, guid: 8ac00fe3a8b193b49b330b2d4b73858b, type: 3}
+  dress:
+  - {fileID: 21300000, guid: 24ff78621eadd0844b43f16cb366dfcf, type: 3}
+  - {fileID: 21300000, guid: b2b738368582cb94086bad4bb517e3a6, type: 3}
+  - {fileID: 21300000, guid: f6596102f6de22040a16fa9f70483bf9, type: 3}
+  - {fileID: 21300000, guid: 2da479bf9d5f78541853144f4a735fc9, type: 3}
+  ribbon:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
