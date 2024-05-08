@@ -362,7 +362,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 591509e89f1a3cb4db65f821f3ad255c, type: 3}
   _speed: 18
   _itemOnStart: 0
-  itemPrefab: {fileID: 0}
+  currentItem: 0
+  itemPrefab: {fileID: 9110276591898946382, guid: 30409f53ef82fcc4d90d434d79140781, type: 3}
   currentStation: {fileID: 0}
   workingStation: 0
   _isGrounded: 0
