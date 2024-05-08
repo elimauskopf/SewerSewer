@@ -72,6 +72,9 @@ public class PlayerController : MonoBehaviour
     float groundedRememberTime;
     float timeSinceGrounded;
 
+    // Net vars
+    bool isHoldingNet;
+
     //added by jonah to test something out
     Vector2 _movement;
 
@@ -170,6 +173,23 @@ public class PlayerController : MonoBehaviour
     {
        
 
+    }
+
+    public void OnNet(InputAction.CallbackContext ctx)
+    {
+        if (ctx.started)
+        {
+            print("here");
+            if (isHoldingNet)
+            {
+                _animator.SetFloat("PlayerHoldingNet", 0);
+                isHoldingNet = false;
+            } else
+            {
+                _animator.SetFloat("PlayerHoldingNet", 1);
+                isHoldingNet = true;
+            }
+        }
     }
 
     public void OnWork(InputAction.CallbackContext ctx)
