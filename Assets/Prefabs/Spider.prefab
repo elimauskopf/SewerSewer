@@ -226,8 +226,9 @@ MonoBehaviour:
   isPassive: 1
   isMinigame: 0
   timeToComplete: 3
-  itemOnCompletion: {fileID: 11400000, guid: 79e7933235f30ba4483c1f2b16f44989, type: 2}
-  itemRequiredToStart: {fileID: 11400000, guid: 8892ac90d8fdb70479f13bdc03b7dec7, type: 2}
+  itemOnCompletion: 2
+  itemsRequiredToStart: 01000000
+  itemRequiredIcon: {fileID: 0}
   stationInUse: 0
 --- !u!1 &1163004167029872504
 GameObject:

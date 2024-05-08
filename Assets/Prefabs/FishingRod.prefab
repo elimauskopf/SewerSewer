@@ -481,8 +481,9 @@ MonoBehaviour:
   isPassive: 0
   isMinigame: 1
   timeToComplete: 8
-  itemOnCompletion: {fileID: 11400000, guid: 8892ac90d8fdb70479f13bdc03b7dec7, type: 2}
-  itemRequiredToStart: {fileID: 0}
+  itemOnCompletion: 1
+  itemsRequiredToStart: 
+  itemRequiredIcon: {fileID: 0}
   stationInUse: 0
 --- !u!61 &1673952203412969291
 BoxCollider2D:

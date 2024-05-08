@@ -19,7 +19,7 @@ public class Vat : StationController
             currentPlayer.DropItem();
             return true;
         }
-        else if (currentPlayer.currentItem == null)//player isn't carrying anything
+        else if (currentPlayer.currentItem.Equals(ItemTypes.None))//player isn't carrying anything
         {
             Debug.Log("Player isn't carrying anything");
             return false;
@@ -39,8 +39,18 @@ public class Vat : StationController
         return false;
     }
 
+    protected override void CompleteTask()
+    {
+        //_chargeBarController.ResetChargeBar();
+        //_isAbleToCharge = false;
+        _assignedPlayer?.GetComponent<PlayerController>().AssignItem(_currentItemType, _currentColor);
+        _assignedPlayer?.GetComponent<PlayerController>().LeaveStation();
+        AssignUI();
+    }
+
     void SetColor(ColorTypes? newColor)
     {
         _currentColor = newColor;
+        _animator.SetTrigger(newColor.ToString());
     }
 }

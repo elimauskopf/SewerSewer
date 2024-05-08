@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]//just used for testing, player will not start with an item
     ItemTypes _itemOnStart;
 
-    public ItemTypes? currentItem;
+    public ItemTypes currentItem;
     public ColorTypes? currentColor;
     Transform _itemsParent;
     List<GameObject> _items = new List<GameObject>();
@@ -323,18 +323,18 @@ public class PlayerController : MonoBehaviour
 
     public void DropItem()
     {
-        currentItem = null;
+        currentItem = ItemTypes.None;
         currentColor = null;
         AssignItem(currentItem, currentColor);
     }
 
-    public void AssignItem(ItemTypes? newItem, ColorTypes? newColor)
+    public void AssignItem(ItemTypes newItem, ColorTypes? newColor)
     {
         currentItem = newItem;
         currentColor = newColor;
         foreach (GameObject item in _items)
         {
-            if (newItem == null || !newItem.ToString().Equals(item.name))
+            if (newItem.Equals(ItemTypes.None) || !newItem.ToString().Equals(item.name))
             {
                 item.SetActive(false);
             }

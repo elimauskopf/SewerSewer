@@ -276,9 +276,11 @@ MonoBehaviour:
   _blueCircle: {fileID: 21300000, guid: 297540844d0ff804eb8436f54bd77b86, type: 3}
   _redCircle: {fileID: 21300000, guid: ba1f6124bf00b2940bea63c4a8188c5c, type: 3}
   isPassive: 0
+  isMinigame: 0
   timeToComplete: 5
-  itemOnCompletion: {fileID: 11400000, guid: 04384029793563f4c9cf41adb5d738a4, type: 2}
-  itemRequiredToStart: {fileID: 11400000, guid: 79e7933235f30ba4483c1f2b16f44989, type: 2}
+  itemOnCompletion: 3
+  itemsRequiredToStart: 02000000
+  itemRequiredIcon: {fileID: 0}
   stationInUse: 0
 --- !u!61 &8745005146406290398
 BoxCollider2D:
