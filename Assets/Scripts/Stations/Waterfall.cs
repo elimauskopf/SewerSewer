@@ -8,11 +8,12 @@ public class Waterfall : MonoBehaviour
 {
 
     public GameObject[] items;
+    public Sprite[] dyeSprites;
     private float leftBound;
     private float rightBound;
-    private GameObject junk;
+    public GameObject junk;
 
-    float repeatRate;
+    //float repeatRate;
     [SerializeField]
     float repeatRateRangeMin;
     [SerializeField]
@@ -21,6 +22,7 @@ public class Waterfall : MonoBehaviour
 
     private void Awake()
     {
+        //junk = transform.Find("Junk").gameObject;
         leftBound = transform.Find("LeftBound").transform.position.x;
         rightBound = transform.Find("RightBound").transform.position.x;
     }
@@ -28,7 +30,7 @@ public class Waterfall : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        StartCoroutine(SpawnCoroutine());
     }
 
     // Update is called once per frame
@@ -48,7 +50,36 @@ public class Waterfall : MonoBehaviour
         ColorTypes colorType = (ColorTypes)colors.GetValue(Random.Range(0, colors.Length));
 
         // Spawn item
-        GameObject item = Instantiate(junk, spawnLocation, transform.rotation);
-        junk.GetComponent<Junk>().colorType = colorType;
+        GameObject newJunk = Instantiate(junk, spawnLocation, transform.rotation);
+        newJunk.GetComponent<Junk>().colorType = colorType;
+
+        // Add sprite
+        switch (colorType)
+        {
+            case ColorTypes.White:
+                newJunk.GetComponent<SpriteRenderer>().sprite = dyeSprites[0];
+                break;
+            case ColorTypes.Red:
+                newJunk.GetComponent<SpriteRenderer>().sprite = dyeSprites[2];
+                break;
+            case ColorTypes.Green:
+                newJunk.GetComponent<SpriteRenderer>().sprite = dyeSprites[1];
+                break;
+            case ColorTypes.Yellow:
+                newJunk.GetComponent<SpriteRenderer>().sprite = dyeSprites[3];
+                break;
+        }
+
+        
     }
+
+    IEnumerator SpawnCoroutine()
+    {
+        SpawnItem();
+
+        yield return new WaitForSeconds(Random.Range(repeatRateRangeMin, repeatRateRangeMax));
+
+        StartCoroutine(SpawnCoroutine());
+    }
+
 }

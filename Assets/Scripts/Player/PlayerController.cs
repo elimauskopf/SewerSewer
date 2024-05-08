@@ -64,6 +64,17 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     float hitStunTime;
 
+    // Jump vars
+    [SerializeField]
+    float jumpPressedRememberTime;
+    float timeSinceJumpPressed;
+    [SerializeField]
+    float groundedRememberTime;
+    float timeSinceGrounded;
+
+    // Net vars
+    bool isHoldingNet;
+
     //added by jonah to test something out
     Vector2 _movement;
 
@@ -106,12 +117,15 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        IsGroundedCheck();
+        
 
         if (rb.velocity.magnitude <= 0.05)
         {
             _animator.SetBool(Tags.Moving, false);
         }
+
+        timeSinceJumpPressed -= Time.deltaTime;
+        timeSinceGrounded -= Time.deltaTime;
     }
 
     public void SetPlayerState(PlayerState newState)
@@ -121,9 +135,11 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-       
 
+        IsGroundedCheck();
         MovePlayer(_movement);
+        Jump();
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -159,6 +175,23 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    public void OnNet(InputAction.CallbackContext ctx)
+    {
+        if (ctx.started)
+        {
+            print("here");
+            if (isHoldingNet)
+            {
+                _animator.SetFloat("PlayerHoldingNet", 0);
+                isHoldingNet = false;
+            } else
+            {
+                _animator.SetFloat("PlayerHoldingNet", 1);
+                isHoldingNet = true;
+            }
+        }
+    }
+
     public void OnWork(InputAction.CallbackContext ctx)
     {
         if (ctx.started && currentStation)
@@ -183,11 +216,22 @@ public class PlayerController : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext ctx)
     {
-        if (ctx.started && _isGrounded 
-            && playerState != PlayerState.HIT
+        if (ctx.started  
            )
         {
+            timeSinceJumpPressed = jumpPressedRememberTime;                     
+        }
+    }
+
+    void Jump()
+    {
+        if (timeSinceGrounded > 0
+            && playerState != PlayerState.HIT 
+            && timeSinceJumpPressed > 0)
+        {
             rb.velocity = new Vector2(rb.velocity.x, jumpVelocity);
+            timeSinceJumpPressed = 0;
+            timeSinceGrounded = 0;
         }
     }
 
@@ -199,6 +243,7 @@ public class PlayerController : MonoBehaviour
         if (groundCheckRay.collider && groundCheckRay.collider.gameObject.layer == 6)
         {
             _isGrounded = true;
+            timeSinceGrounded = groundedRememberTime;
         }
         else
         {
