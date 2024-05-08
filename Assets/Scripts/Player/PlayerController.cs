@@ -30,6 +30,10 @@ public class PlayerController : MonoBehaviour
 
     public ItemTypes currentItem;
     public ColorTypes? currentColor;
+
+    bool dressHasRibbon;
+    ColorTypes? colorOfRibbonOnDress;
+
     Transform _itemsParent;
     List<GameObject> _items = new List<GameObject>();
 
@@ -74,6 +78,7 @@ public class PlayerController : MonoBehaviour
 
     // Net vars
     bool isHoldingNet;
+    Junk _currentJunk;
 
     //added by jonah to test something out
     Vector2 _movement;
@@ -144,13 +149,28 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        Debug.Log("Collider on " + gameObject);
         if (collision.gameObject.CompareTag("Alligator"))
         {
             if (!_playerInHit)
             {
                 StartCoroutine(HitByAlligator());
             }
-            
+        }
+
+        if (collision.gameObject.layer.Equals(Tags.Net))
+        {
+            Debug.Log("Catching junk");
+            Junk junk = collision.GetComponent<Junk>();
+            CatchJunk(junk);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer.Equals(Tags.Net))
+        {
+            _currentJunk = null;
         }
     }
     public void InitiatePlayer(int playerNumber)
@@ -175,6 +195,7 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    //called when player presses net button
     public void OnNet(InputAction.CallbackContext ctx)
     {
         if (ctx.started)
@@ -182,14 +203,31 @@ public class PlayerController : MonoBehaviour
             print("here");
             if (isHoldingNet)
             {
-                _animator.SetFloat("PlayerHoldingNet", 0);
-                isHoldingNet = false;
+                SheathNet();   
             } else
             {
-                _animator.SetFloat("PlayerHoldingNet", 1);
-                isHoldingNet = true;
+                TakeOutNet();
             }
         }
+    }
+
+    void SheathNet()
+    {
+        _animator.SetFloat("PlayerHoldingNet", 0);
+        isHoldingNet = false;
+        if(_currentJunk != null)
+        {
+            Debug.Log("Player grabbing dye");
+            AssignItem(ItemTypes.Dye, _currentJunk.colorType);
+            Destroy(_currentJunk.gameObject);
+            _currentJunk = null;
+        }
+    }
+    void TakeOutNet()
+    {
+        _currentJunk = null;
+        _animator.SetFloat("PlayerHoldingNet", 1);
+        isHoldingNet = true;
     }
 
     public void OnWork(InputAction.CallbackContext ctx)
@@ -332,6 +370,8 @@ public class PlayerController : MonoBehaviour
     {
         currentItem = newItem;
         currentColor = newColor;
+        dressHasRibbon = false;
+
         foreach (GameObject item in _items)
         {
             if (newItem.Equals(ItemTypes.None) || !newItem.ToString().Equals(item.name))
@@ -344,5 +384,17 @@ public class PlayerController : MonoBehaviour
                 item.GetComponent<SpriteRenderer>().sprite = itemPrefab.GetComponent<ItemObject>().ChooseSprite(newItem, newColor);
             }
         }
+    }
+
+    public void AssignFinalDress(ColorTypes colorOfDress, bool hasRibbon, ColorTypes colorOfRibbon)
+    {
+        currentColor = colorOfDress;
+        dressHasRibbon = hasRibbon;
+        colorOfRibbonOnDress = colorOfRibbon;
+    }
+
+    void CatchJunk(Junk junk)
+    {
+        _currentJunk = junk;
     }
 }

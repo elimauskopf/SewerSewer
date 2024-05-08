@@ -21,6 +21,7 @@ public class ItemObject : MonoBehaviour
     public List<Sprite> fabric = new List<Sprite>();
     public List<Sprite> dress = new List<Sprite>();
     public List<Sprite> ribbon = new List<Sprite>();
+    public List<Sprite> dye = new List<Sprite>();
 
     private void Awake()
     {
@@ -57,7 +58,9 @@ public class ItemObject : MonoBehaviour
             case ItemTypes.Dress:
                 return dress[(int)color];
             case ItemTypes.Ribbon:
-                return dress[(int)color];     
+                return dress[(int)color];
+            case ItemTypes.Dye:
+                return dye[(int)color];
             default:
                 return null;
             

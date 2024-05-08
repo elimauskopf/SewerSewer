@@ -47,7 +47,7 @@ public class Waterfall : MonoBehaviour
 
         // Randomize color
         Array colors = Enum.GetValues(typeof(ColorTypes));
-        ColorTypes colorType = (ColorTypes)colors.GetValue(Random.Range(0, colors.Length));
+        ColorTypes colorType = (ColorTypes)colors.GetValue(Random.Range(1, colors.Length));
 
         // Spawn item
         GameObject newJunk = Instantiate(junk, spawnLocation, transform.rotation);
@@ -56,17 +56,15 @@ public class Waterfall : MonoBehaviour
         // Add sprite
         switch (colorType)
         {
-            case ColorTypes.White:
-                newJunk.GetComponent<SpriteRenderer>().sprite = dyeSprites[0];
-                break;
+                
             case ColorTypes.Red:
-                newJunk.GetComponent<SpriteRenderer>().sprite = dyeSprites[2];
+                newJunk.GetComponent<SpriteRenderer>().sprite = dyeSprites[0];
                 break;
             case ColorTypes.Green:
                 newJunk.GetComponent<SpriteRenderer>().sprite = dyeSprites[1];
                 break;
             case ColorTypes.Yellow:
-                newJunk.GetComponent<SpriteRenderer>().sprite = dyeSprites[3];
+                newJunk.GetComponent<SpriteRenderer>().sprite = dyeSprites[2];
                 break;
         }
 

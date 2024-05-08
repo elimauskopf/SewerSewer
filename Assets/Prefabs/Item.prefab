@@ -118,3 +118,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  dye:
+  - {fileID: 0}
+  - {fileID: 21300000, guid: 3a5d32c90583b0b40b6f4774f1d2cb83, type: 3}
+  - {fileID: 21300000, guid: 77c05c030ba851d4789c691946de63b7, type: 3}
+  - {fileID: 21300000, guid: be88a4c666388224099385fd99a6c303, type: 3}

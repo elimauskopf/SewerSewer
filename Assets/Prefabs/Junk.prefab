@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 7625635367023191659}
   - component: {fileID: 19788859715005474}
   - component: {fileID: 424170612975483845}
-  - component: {fileID: 69220420759890231}
-  m_Layer: 0
+  - component: {fileID: 6658917937540156899}
+  m_Layer: 8
   m_Name: Junk
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 12, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -75,8 +75,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 0122183a79a71544f999d42900546ae6, type: 3}
+  m_SortingOrder: -1
+  m_Sprite: {fileID: 21300000, guid: be88a4c666388224099385fd99a6c303, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -128,8 +128,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemType: 6
   colorType: 0
---- !u!68 &69220420759890231
-EdgeCollider2D:
+--- !u!70 &6658917937540156899
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -157,18 +157,9 @@ EdgeCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0
-  m_Points:
-  - {x: 0.3252567, y: -1.3570814}
-  - {x: -1.2777607, y: 0.9580307}
-  - {x: -0.8125621, y: 1.3684435}
-  - {x: 1.226503, y: -1.0714693}
-  - {x: 0.33588696, y: -1.3222866}
-  m_AdjacentStartPoint: {x: 0, y: 0}
-  m_AdjacentEndPoint: {x: 0, y: 0}
-  m_UseAdjacentStartPoint: 0
-  m_UseAdjacentEndPoint: 0
+  m_Offset: {x: -0.093189746, y: -0.99013996}
+  m_Size: {x: 2.0358639, y: 5.436144}
+  m_Direction: 0

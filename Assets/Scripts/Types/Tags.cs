@@ -8,6 +8,7 @@ internal static class Tags
 
 
     //layers
+    public const int Net = 8;
 
 
     //misc names

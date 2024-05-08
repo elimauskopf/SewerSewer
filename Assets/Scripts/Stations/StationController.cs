@@ -333,6 +333,7 @@ public class StationController : MonoBehaviour
         }
         _chargeBarController.ResetChargeBar();
         _isAbleToCharge = false;
+        _currentItemType = ItemTypes.None;
         _assignedPlayer?.GetComponent<PlayerController>().AssignItem(itemOnCompletion, _currentColor);
         _assignedPlayer?.GetComponent<PlayerController>().LeaveStation();
         AssignUI();
