@@ -523,9 +523,11 @@ MonoBehaviour:
   _blueCircle: {fileID: 21300000, guid: 297540844d0ff804eb8436f54bd77b86, type: 3}
   _redCircle: {fileID: 21300000, guid: ba1f6124bf00b2940bea63c4a8188c5c, type: 3}
   isPassive: 1
+  isMinigame: 0
   timeToComplete: 0
-  itemOnCompletion: {fileID: 0}
-  itemRequiredToStart: {fileID: 11400000, guid: 33b4c96309d0fe6448c20a4bada0c9ca, type: 2}
+  itemOnCompletion: 0
+  itemsRequiredToStart: 04000000
+  itemRequiredIcon: {fileID: 0}
   stationInUse: 0
 --- !u!95 &2326014236686820512
 Animator:

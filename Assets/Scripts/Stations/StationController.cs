@@ -34,16 +34,16 @@ public class StationController : MonoBehaviour
 
     //what does the station give the player when the task is complete (example: spiders give silk)
     //(data type might change from GameObject to something custom)
-    public ItemTypes? itemOnCompletion;
+    public ItemTypes itemOnCompletion;
 
     //what does the station require from the player to activate (example: loom requires spider silk)
-    public List<ItemTypes?> itemsRequiredToStart = new List<ItemTypes?>();
+    public List<ItemTypes> itemsRequiredToStart = new List<ItemTypes>();
 
     //what icon should we show the player based on what item the station requires
     public Sprite itemRequiredIcon;
 
     //does the station have an item inside it currently
-    protected ItemTypes? _currentItemType;
+    protected ItemTypes _currentItemType;
     protected ColorTypes? _currentColor;
 
     protected bool _playerInRange;
@@ -115,7 +115,7 @@ public class StationController : MonoBehaviour
             {
                 //lmao
             }
-            else if (playerController.currentItem == null)//if the player doesn't have anything and the station requires something
+            else if (playerController.currentItem.Equals(ItemTypes.None))//if the player doesn't have anything and the station requires something
             {
                 _iconRenderer.color = _translucent;
             }
@@ -167,6 +167,7 @@ public class StationController : MonoBehaviour
         _iconObject?.SetActive(false);
     }
     
+    //used when player interacts with station
     public virtual bool Initiate(GameObject player)
     {
         if (stationInUse )
@@ -252,7 +253,7 @@ public class StationController : MonoBehaviour
         {
             return true;
         }        
-        else if (currentPlayer.currentItem == null)//if the player doesn't have anything 
+        else if (currentPlayer.currentItem.Equals(ItemTypes.None))//if the player doesn't have anything 
         {
             Debug.Log("Player isn't carrying anything");
             return false;
