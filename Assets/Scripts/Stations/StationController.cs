@@ -37,13 +37,14 @@ public class StationController : MonoBehaviour
     public ItemTypes? itemOnCompletion;
 
     //what does the station require from the player to activate (example: loom requires spider silk)
-    public ItemTypes? itemRequiredToStart;
+    public List<ItemTypes?> itemsRequiredToStart = new List<ItemTypes?>();
 
     //what icon should we show the player based on what item the station requires
     public Sprite itemRequiredIcon;
 
     //does the station have an item inside it currently
-    ItemTypes? _currentItem;
+    protected ItemTypes? _currentItemType;
+    protected ColorTypes? _currentColor;
 
     protected bool _playerInRange;
     protected float _timer;
@@ -69,7 +70,7 @@ public class StationController : MonoBehaviour
 
         _iconObject = transform.Find(Tags.Icon)?.gameObject;
         _iconRenderer = _iconObject?.GetComponent<SpriteRenderer>();
-        if(itemRequiredToStart != null && _iconRenderer)
+        if(itemsRequiredToStart.Count > 0 && _iconRenderer)
         {
             _iconRenderer.sprite = itemRequiredIcon;
         }
@@ -108,22 +109,27 @@ public class StationController : MonoBehaviour
             return;
         }
 
-        if(itemRequiredToStart == null)
+        foreach (ItemTypes? item in itemsRequiredToStart)
         {
-            //lmao
+            if (item == null) //item not assigned (probably a mistake on our end)
+            {
+                //lmao
+            }
+            else if (playerController.currentItem == null)//if the player doesn't have anything and the station requires something
+            {
+                _iconRenderer.color = _translucent;
+            }
+            else if (playerController.currentItem.Equals(item))//if the player has what is required
+            {
+                _iconRenderer.color = Color.white;
+                break;
+            }
+            else//if the player has the wrong item
+            {
+                _iconRenderer.color = _translucent;
+            }
         }
-        else if(playerController._currentItem == null)
-        {
-            _iconRenderer.color = _translucent;
-        }
-        else if(playerController._currentItem.Equals(itemRequiredToStart))
-        {
-            _iconRenderer.color = Color.white;
-        }
-        else
-        {
-            _iconRenderer.color = _translucent;
-        }
+        
 
         playerController.currentStation = gameObject;
         playersByStation++;
@@ -234,28 +240,33 @@ public class StationController : MonoBehaviour
     }
 
     //check to see if the player has the required item to use the station
-    protected bool HandlePlayerItem(PlayerController currentPlayer)
+    protected virtual bool HandlePlayerItem(PlayerController currentPlayer)
     {
         if (currentPlayer == null)
         {
             return false;
         }
 
-        if (itemRequiredToStart == null)
+        //if the station doesn't require anything, 
+        if (itemsRequiredToStart.Count == 0)
         {
-            //currentPlayer.DropItem();
             return true;
-        }
-        else if (currentPlayer._currentItem == null)
+        }        
+        else if (currentPlayer.currentItem == null)//if the player doesn't have anything 
         {
             Debug.Log("Player isn't carrying anything");
             return false;
         }
-        else if (currentPlayer._currentItem.Equals(itemRequiredToStart))
-        {
-            _currentItem = currentPlayer._currentItem;
-            currentPlayer.DropItem();
-            return true;
+
+        foreach (ItemTypes item in itemsRequiredToStart)
+        {            
+            if (currentPlayer.currentItem.Equals(item))//if the player has a required item
+            {
+                _currentItemType = currentPlayer.currentItem;
+                _currentColor = currentPlayer.currentColor;
+                currentPlayer.DropItem();
+                return true;
+            }
         }
 
         return false;
@@ -321,8 +332,8 @@ public class StationController : MonoBehaviour
         }
         _chargeBarController.ResetChargeBar();
         _isAbleToCharge = false;
-        //_assignedPlayer?.GetComponent<PlayerController>().AssignItem(itemOnCompletion);
-        _assignedPlayer.GetComponent<PlayerController>().LeaveStation();
+        _assignedPlayer?.GetComponent<PlayerController>().AssignItem(itemOnCompletion, _currentColor);
+        _assignedPlayer?.GetComponent<PlayerController>().LeaveStation();
         AssignUI();
     }
 
