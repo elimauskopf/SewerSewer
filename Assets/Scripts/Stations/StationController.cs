@@ -25,9 +25,11 @@ public class StationController : MonoBehaviour
     //does the station recharge on its own or require player participation to charge
     public bool isPassive;
 
-    // Does station use circle minigame and local variables for scrips
-    public bool isMinigame;
+    // Does station use circle minigame and local variables for scripts
+    public bool isFishingGame;
+    public bool isTimingGame;
     private ButtonMiniGame buttonMiniGame;
+    private TimerMinigame timerMiniGame;
 
     //how long does it take the station to charge up
     public float timeToComplete;
@@ -78,9 +80,12 @@ public class StationController : MonoBehaviour
         _uiButton?.SetActive(false);
         _iconObject?.SetActive(false);
 
-        if (isMinigame)
+        if (isFishingGame)
         {
             buttonMiniGame = transform.Find("ButtonGame").GetComponent<ButtonMiniGame>();
+        } else if (isTimingGame)
+        {
+            timerMiniGame = transform.Find("TimerGame").GetComponent<TimerMinigame>();
         }
     }
 
@@ -229,10 +234,14 @@ public class StationController : MonoBehaviour
                 Debug.Log("station in use");
             }
 
-            if (isMinigame)
+            if (isFishingGame)
             {
                 buttonMiniGame.Show();
                 buttonMiniGame.engaged = true;          
+            } else if (isTimingGame)
+            {
+                timerMiniGame.Show();
+                timerMiniGame.engaged = true;
             }
 
             AssignUI();
@@ -285,7 +294,10 @@ public class StationController : MonoBehaviour
             _assignedPlayer = null;
             stationInUse = false;
 
-            if (isMinigame)
+            if (isFishingGame)
+            {
+                buttonMiniGame.EndInteraction();
+            } else if (isTimingGame)
             {
                 buttonMiniGame.EndInteraction();
             }
@@ -296,15 +308,21 @@ public class StationController : MonoBehaviour
 
     public void WorkStation()
     {
-        if (!isMinigame)
+        if (!isFishingGame && !isTimingGame)
         {
             _chargeBarController?.AddCharge();
-        } else
+        } else if (isFishingGame)
         {
             if (buttonMiniGame.PlayerPressedButton())
             {
                 _chargeBarController?.AddCharge();
             }
+        } else if (isTimingGame)
+        {
+            if (timerMiniGame.WasButtonPressedOnTime())
+            {
+                _chargeBarController?.AddCharge();
+            } 
         }
         
 
@@ -327,9 +345,12 @@ public class StationController : MonoBehaviour
             _animator.SetBool(Tags.Moving, false);
         }
         
-        if (isMinigame)
+        if (isFishingGame)
         {
             buttonMiniGame.EndInteraction();
+        } else if (isTimingGame)
+        {
+            timerMiniGame.EndInteraction();
         }
         _chargeBarController.ResetChargeBar();
         _isAbleToCharge = false;

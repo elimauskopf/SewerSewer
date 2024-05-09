@@ -22,6 +22,13 @@ public class ItemObject : MonoBehaviour
     public List<Sprite> dress = new List<Sprite>();
     public List<Sprite> ribbon = new List<Sprite>();
     public List<Sprite> dye = new List<Sprite>();
+   
+
+    public ItemObject(ItemTypes itemType, ColorTypes colorType)
+    {
+        _type = itemType;
+        _color = colorType;
+    }
 
     private void Awake()
     {

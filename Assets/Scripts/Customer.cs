@@ -5,12 +5,17 @@ using UnityEngine;
 public class Customer : MonoBehaviour
 {
     [SerializeField] List<Sprite> shoeColors;
+    [SerializeField] List<Sprite> dressColors;
 
     Animator _animator;
     SpriteRenderer _leftShoe, _rightShoe;
 
     Vector3 oldPosition;
     Vector3 newPosition;
+
+    // Order vars
+    public Order order;
+    private SpriteRenderer dress;
 
     float timer;
 
@@ -23,6 +28,8 @@ public class Customer : MonoBehaviour
         int color = Random.Range(0, shoeColors.Count - 1);
         _leftShoe.sprite = shoeColors[color];
         _rightShoe.sprite = shoeColors[color];
+
+        dress = transform.Find("Order/Dress").GetComponent<SpriteRenderer>();
     }
 
     public void MoveTowards(Vector3 position)
@@ -46,6 +53,29 @@ public class Customer : MonoBehaviour
         _animator.SetBool(Tags.Moving, false);
     }
 
+    public void PopulateOrder(Order newOrder)
+    {
+        order = newOrder;
+
+        print(order.dress.ColorType);
+
+        switch(order.dress.ColorType)
+        {
+            case ColorTypes.White:
+                dress.sprite = dressColors[0];
+                break;
+            case ColorTypes.Red:
+                dress.sprite = dressColors[1];
+                break;
+            case ColorTypes.Green:
+                dress.sprite = dressColors[2];
+                break;
+            case ColorTypes.Yellow:
+                dress.sprite = dressColors[3];
+                break;
+        }
+        
+    }
     public void CompleteOrder()
     {
         Destroy(gameObject);
