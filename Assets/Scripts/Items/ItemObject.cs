@@ -10,6 +10,8 @@ public class ItemObject : MonoBehaviour
     ItemTypes _type;
     ColorTypes _color;
 
+    Dictionary<ItemTypes, ColorTypes> _subContents = new Dictionary<ItemTypes, ColorTypes>();
+
     public ItemTypes ItemType { get { return _type; } }
     public ColorTypes? ColorType { get { return _color; } }
 
@@ -65,7 +67,7 @@ public class ItemObject : MonoBehaviour
             case ItemTypes.Dress:
                 return dress[(int)color];
             case ItemTypes.Ribbon:
-                return dress[(int)color];
+                return ribbon[(int)color];
             case ItemTypes.Dye:
                 return dye[(int)color];
             default:

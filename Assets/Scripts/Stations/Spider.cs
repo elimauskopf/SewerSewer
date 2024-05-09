@@ -20,4 +20,25 @@ public class Spider : StationController
         base.OnTriggerExit2D(collision);
         _animator.SetBool(Tags.InRange, false);
     }
+
+    protected override void CompleteTask()
+    {
+        _currentColor = ColorTypes.White;
+        if (isPassive)
+        {
+            _timer = 0;
+            _chargeBarController.HideChargeBar();
+        }
+        else
+        {
+            _animator.SetBool(Tags.Moving, false);
+        }
+
+        _chargeBarController.ResetChargeBar();
+        _isAbleToCharge = false;
+        _currentItemType = ItemTypes.None;
+        _assignedPlayer?.GetComponent<PlayerController>().AssignItem(itemOnCompletion, _currentColor);
+        _assignedPlayer?.GetComponent<PlayerController>().LeaveStation();
+        AssignUI();
+    }
 }

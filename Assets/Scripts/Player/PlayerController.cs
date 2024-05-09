@@ -31,9 +31,6 @@ public class PlayerController : MonoBehaviour
     public ItemTypes currentItem;
     public ColorTypes? currentColor;
 
-    bool dressHasRibbon;
-    ColorTypes? colorOfRibbonOnDress;
-
     Transform _itemsParent;
     List<GameObject> _items = new List<GameObject>();
 
@@ -370,7 +367,6 @@ public class PlayerController : MonoBehaviour
     {
         currentItem = newItem;
         currentColor = newColor;
-        dressHasRibbon = false;
 
         foreach (GameObject item in _items)
         {
@@ -386,11 +382,9 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void AssignFinalDress(ColorTypes colorOfDress, bool hasRibbon, ColorTypes colorOfRibbon)
+    public void AssignFinalDress(ColorTypes colorOfDress)
     {
         currentColor = colorOfDress;
-        dressHasRibbon = hasRibbon;
-        colorOfRibbonOnDress = colorOfRibbon;
     }
 
     void CatchJunk(Junk junk)

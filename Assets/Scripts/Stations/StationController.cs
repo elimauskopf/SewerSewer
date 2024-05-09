@@ -306,7 +306,7 @@ public class StationController : MonoBehaviour
         AssignUI();
     }
 
-    public void WorkStation()
+    public virtual void WorkStation()
     {
         if (!isFishingGame && !isTimingGame)
         {

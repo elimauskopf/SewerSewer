@@ -114,10 +114,10 @@ MonoBehaviour:
   - {fileID: 21300000, guid: f6596102f6de22040a16fa9f70483bf9, type: 3}
   - {fileID: 21300000, guid: 2da479bf9d5f78541853144f4a735fc9, type: 3}
   ribbon:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 21300000, guid: 6128840bba50d8d41a0ade9c4d853e56, type: 3}
+  - {fileID: 21300000, guid: 3637fba7e9c6fdc4caf09e03c3957985, type: 3}
+  - {fileID: 21300000, guid: 3c136f7d8db6f254da7dafffeeb5a188, type: 3}
+  - {fileID: 21300000, guid: 3c1be76686e5a2645a21f92c926ff692, type: 3}
   dye:
   - {fileID: 0}
   - {fileID: 21300000, guid: 3a5d32c90583b0b40b6f4774f1d2cb83, type: 3}

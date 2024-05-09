@@ -43,9 +43,10 @@ public class Vat : StationController
     {
         //_chargeBarController.ResetChargeBar();
         //_isAbleToCharge = false;
-        _currentItemType = ItemTypes.None;
         _assignedPlayer?.GetComponent<PlayerController>().AssignItem(_currentItemType, _currentColor);
         _assignedPlayer?.GetComponent<PlayerController>().LeaveStation();
+        _currentItemType = ItemTypes.None;
+        SetColor(ColorTypes.White);
         AssignUI();
     }
 
