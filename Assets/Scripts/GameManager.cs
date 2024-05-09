@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using System;
+using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
 {
@@ -15,6 +17,10 @@ public class GameManager : MonoBehaviour
     AudioSource _orderCompleteAudio;
     AudioSource _levelEndAudio;
 
+    public bool isRegionOne;
+    public bool isRegionTwo;
+    public bool isRegionThree;
+
     public List<bool> pendingOrders;
     int ordersComplete;
     int currentLevel;
@@ -26,6 +32,9 @@ public class GameManager : MonoBehaviour
     float _levelTimer;
     float _orderTimer;
     float _timeUntilNextOrder;
+
+    // Order generation
+    private string[] colors = { "White", "Red", "Green", "Yellow" };
 
     private void Awake()
     {
@@ -101,10 +110,43 @@ public class GameManager : MonoBehaviour
     void AddOrder()
     {
         pendingOrders.Add(true);
-        LineManager.Instance.AddOrder();
+        LineManager.Instance.AddOrder(GenerateOrder());
         //also need to add shoe animation walking across the scene and waiting
     }
+    
+    Order GenerateOrder()
+    {
+       
 
+        if (isRegionOne || isRegionTwo)
+        {
+            return new Order(GenerateItem(ItemTypes.Dress),null);
+        } else if  (isRegionThree)
+        {
+            return new Order(GenerateItem(ItemTypes.Dress), GenerateItem(ItemTypes.Ribbon));
+        }
+
+        return null;
+    }
+
+    ItemObject GenerateItem(ItemTypes itemType)
+    {
+        ColorTypes colorType;
+
+        if (isRegionOne)
+        {
+            colorType = ColorTypes.White;
+        } else 
+        {
+            // Randomize color
+            Array colors = Enum.GetValues(typeof(ColorTypes));
+            colorType = (ColorTypes)colors.GetValue(Random.Range(1, colors.Length));
+
+        } 
+       
+
+        return new ItemObject(itemType, colorType);
+    }
     public void CompleteOrder()
     {
         if (_levelTimer <= 0)

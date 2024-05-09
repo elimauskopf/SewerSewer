@@ -179,6 +179,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2181517673780714087, guid: e63c7ba0bbc4aa84aaf695a2a0b27ab3, type: 3}
+      propertyPath: isRegionOne
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7474681078178671620, guid: e63c7ba0bbc4aa84aaf695a2a0b27ab3, type: 3}
       propertyPath: spawnFrequencyMin
       value: 9
@@ -3096,10 +3100,12 @@ MonoBehaviour:
   _blueCircle: {fileID: 21300000, guid: 297540844d0ff804eb8436f54bd77b86, type: 3}
   _redCircle: {fileID: 21300000, guid: ba1f6124bf00b2940bea63c4a8188c5c, type: 3}
   isPassive: 1
-  isMinigame: 0
+  isFishingGame: 0
+  isTimingGame: 0
   timeToComplete: 0
-  itemOnCompletion: {fileID: 0}
-  itemRequiredToStart: {fileID: 11400000, guid: 33b4c96309d0fe6448c20a4bada0c9ca, type: 2}
+  itemOnCompletion: 0
+  itemsRequiredToStart: 
+  itemRequiredIcon: {fileID: 0}
   stationInUse: 0
 --- !u!1 &6601449691303313917
 GameObject:
