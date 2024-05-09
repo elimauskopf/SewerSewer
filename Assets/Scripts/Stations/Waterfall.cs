@@ -11,6 +11,7 @@ public class Waterfall : MonoBehaviour
     public Sprite[] dyeSprites;
     private float leftBound;
     private float rightBound;
+    private float spawnYPos;
     public GameObject junk;
 
     //float repeatRate;
@@ -25,6 +26,7 @@ public class Waterfall : MonoBehaviour
         //junk = transform.Find("Junk").gameObject;
         leftBound = transform.Find("LeftBound").transform.position.x;
         rightBound = transform.Find("RightBound").transform.position.x;
+        spawnYPos = transform.Find("LeftBound").transform.position.y;
     }
 
     // Start is called before the first frame update
@@ -33,17 +35,11 @@ public class Waterfall : MonoBehaviour
         StartCoroutine(SpawnCoroutine());
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     void SpawnItem()
     {
         // Randomize spawn location
         float xSpawnLocation = Random.Range(leftBound, rightBound);
-        Vector2 spawnLocation = new Vector3(xSpawnLocation, transform.position.y);
+        Vector2 spawnLocation = new Vector3(xSpawnLocation, spawnYPos);
 
         // Randomize color
         Array colors = Enum.GetValues(typeof(ColorTypes));
