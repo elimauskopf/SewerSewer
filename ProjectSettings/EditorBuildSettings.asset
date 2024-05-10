@@ -18,19 +18,19 @@ EditorBuildSettings:
     path: Assets/Scenes/Tutorial.unity
     guid: d51dc28a37bccca439e3092e644a745d
   - enabled: 1
-    path: Assets/Scenes/Levels/RegionOne/Level_1.unity
+    path: Assets/Scenes/Levels/RegionOne/Level_1_1.unity
     guid: 560dc63e4e29e5b4795d3cee7d85a6e2
   - enabled: 1
-    path: Assets/Scenes/Levels/RegionOne/Level_2.unity
+    path: Assets/Scenes/Levels/RegionOne/Level_1_2.unity
     guid: 5705e14b1f60a35428ad7ce85810b141
   - enabled: 1
-    path: Assets/Scenes/Levels/RegionOne/Level_3.unity
+    path: Assets/Scenes/Levels/RegionOne/Level_1_3.unity
     guid: 2a7bc8dc64a160b40a06a4cb2a67eb02
   - enabled: 1
-    path: Assets/Scenes/Levels/RegionOne/Level_4.unity
+    path: Assets/Scenes/Levels/RegionOne/Level_1_4.unity
     guid: 830efe4a63d305145a2e5b0b66f6830b
   - enabled: 1
-    path: Assets/Scenes/Levels/RegionOne/Level_5.unity
+    path: Assets/Scenes/Levels/RegionOne/Level_1_5.unity
     guid: deb249ab7b528784eb801818d7267047
   - enabled: 1
     path: Assets/Scenes/Outro.unity
@@ -41,4 +41,34 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Tutorial2.unity
     guid: 4ee95cc3e32074143b69c33917620698
+  - enabled: 1
+    path: Assets/Scenes/Levels/RegionTwo/Level_2_1.unity
+    guid: 4c955352dbc0d19469689632b8a34d11
+  - enabled: 1
+    path: Assets/Scenes/Levels/RegionTwo/Level_2_2.unity
+    guid: f811941370eb41d4d97df7a46b82ae54
+  - enabled: 1
+    path: Assets/Scenes/Levels/RegionTwo/Level_2_3.unity
+    guid: f62e217fac411bb46a79fe1717505f8a
+  - enabled: 1
+    path: Assets/Scenes/Levels/RegionTwo/Level_2_4.unity
+    guid: fdd3dc34b9a44c84cbb0ed7c0f414fb9
+  - enabled: 1
+    path: Assets/Scenes/Levels/RegionTwo/Level_2_5.unity
+    guid: e48c15d31ff5d9440be997b125033eba
+  - enabled: 1
+    path: Assets/Scenes/Levels/RegionThree/Level_3_1.unity
+    guid: d5b850d5a4213df4db84c0cc3b532de4
+  - enabled: 1
+    path: Assets/Scenes/Levels/RegionThree/Level_3_2.unity
+    guid: f8123011dbc17414490052d8432e9338
+  - enabled: 1
+    path: Assets/Scenes/Levels/RegionThree/Level_3_3.unity
+    guid: fb7e4d17127f15e43ba438c86faa49ff
+  - enabled: 1
+    path: Assets/Scenes/Levels/RegionThree/Level_3_4.unity
+    guid: 40861e228d8c8c94cbf421561c1a9853
+  - enabled: 1
+    path: Assets/Scenes/Levels/RegionThree/Level_3_5.unity
+    guid: 5866af14c62eba24088e6bb685f9c6c3
   m_configObjects: {}

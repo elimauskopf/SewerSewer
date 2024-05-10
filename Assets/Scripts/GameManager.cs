@@ -170,7 +170,7 @@ public class GameManager : MonoBehaviour
 
     void CompleteLevel()
     {
-        if(SceneManager.GetActiveScene().name.Equals(Scenes.Level_5.ToString()))
+        if(SceneManager.GetActiveScene().name.Equals(Scenes.Level_3_5.ToString()))
         {
             FinalLevelOutro.Instance.OnLevelComplete();
         }
