@@ -23,7 +23,7 @@ public class Customer : MonoBehaviour
 
     private void Awake()
     {
-        //order = new Order(new ItemObject(ItemTypes.Dress, ColorTypes.White));
+        order = new Order(new ItemObject(ItemTypes.Dress, ColorTypes.White));
 
         _animator = GetComponent<Animator>();
         _leftShoe = transform.GetChild(0).GetComponent<SpriteRenderer>();
@@ -49,7 +49,7 @@ public class Customer : MonoBehaviour
     {
         timer = 0;
         _animator.SetBool(Tags.Moving, true);
-        while(transform.position != newPosition)
+        while (transform.position != newPosition)
         {
             timer += Time.deltaTime;
             transform.position = Vector3.Lerp(oldPosition, newPosition, timer / LineManager.Instance.timeForOrderToMoveForward);
@@ -64,7 +64,7 @@ public class Customer : MonoBehaviour
 
         //print(order.dress.ColorType);
 
-        switch(order.dress.ColorType)
+        switch (order.dress.ColorType)
         {
             case ColorTypes.White:
                 dress.sprite = dressColors[0];
@@ -80,25 +80,24 @@ public class Customer : MonoBehaviour
                 break;
         }
 
-        if (order.ribbon)
+
+        switch (order.ribbon.ColorType)
         {
-            switch (order.ribbon.ColorType)
-            {
-                case ColorTypes.White:
-                    ribbon.sprite = ribbonColors[0];
-                    break;
-                case ColorTypes.Red:
-                    ribbon.sprite = ribbonColors[1];
-                    break;
-                case ColorTypes.Green:
-                    ribbon.sprite = ribbonColors[2];
-                    break;
-                case ColorTypes.Yellow:
-                    ribbon.sprite = ribbonColors[3];
-                    break;
-            }
+            case ColorTypes.White:
+                ribbon.sprite = ribbonColors[0];
+                break;
+            case ColorTypes.Red:
+                ribbon.sprite = ribbonColors[1];
+                break;
+            case ColorTypes.Green:
+                ribbon.sprite = ribbonColors[2];
+                break;
+            case ColorTypes.Yellow:
+                ribbon.sprite = ribbonColors[3];
+                break;
         }
-        
+
+
     }
     public void CompleteOrder()
     {

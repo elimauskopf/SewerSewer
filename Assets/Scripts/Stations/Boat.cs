@@ -5,11 +5,13 @@ using UnityEngine;
 public class Boat : StationController
 {
     private LineManager lineManager;
+    private GameManager gameManager
 
     protected override void Awake()
     {
         base.Awake();
         lineManager = GameObject.Find("Roof").transform.GetChild(0).GetComponent<LineManager>();
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
     protected override void CompleteTask()
     {
@@ -35,13 +37,30 @@ public class Boat : StationController
         }
     }
 
-    /*private bool CheckOrder(PlayerController playerController) 
+    private bool CheckOrder(PlayerController playerController)
     {
         for (int i = 1; i < lineManager.customer.Count; i++)
         {
-            if ()
+            // Is the dress the same color
+            if (lineManager.customer[i].order.dress.ColorType == playerController.currentOrder.dress.ColorType)
+            {
+                // Does it require a ribbon
+                if (gameManager.isRegionThree && lineManager.customer[i].order.ribbon.ItemType != ItemTypes.None)
+                {
+                    // Is the ribbon the same color
+                    if (playerController.currentOrder.ribbon.ColorType  == lineManager.customer[i].order.ribbon.ColorType)
+                    {
+                        return true;
+                    }
+                } else
+                {
+                    return true;
+                }
+            }
         }
-    }*/
+
+        return false;
+    }
 
     public override bool Initiate(GameObject player)
     {
@@ -52,7 +71,7 @@ public class Boat : StationController
         }
 
         PlayerController currentPlayer = player.GetComponent<PlayerController>();
-        if (HandlePlayerItem(currentPlayer))
+        if (HandlePlayerItem(currentPlayer) && CheckOrder(currentPlayer))
         {
             StartDelivery();
             return true;

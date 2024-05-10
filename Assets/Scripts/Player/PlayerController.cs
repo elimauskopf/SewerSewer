@@ -107,7 +107,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         SetPlayerState(PlayerState.NONE);
-        AssignItem(_itemOnStart, null);
+        AssignItem(_itemOnStart, ColorTypes.White);
 
     }
 
