@@ -12,4 +12,16 @@ public class Order
         dress = newDress;
         ribbon = newRibbon;
     }
+
+    public Order(ItemObject newDress)
+    {
+        dress = new ItemObject(ItemTypes.Dress, ColorTypes.White);
+        ribbon = null;
+    }
+
+    public Order()
+    {
+        dress = new ItemObject(ItemTypes.Dress, ColorTypes.White);
+        ribbon = new ItemObject(ItemTypes.Ribbon, ColorTypes.White);
+    }
 }

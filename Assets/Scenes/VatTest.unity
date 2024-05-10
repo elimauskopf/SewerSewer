@@ -180,32 +180,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e28ca5c3beaa9e74cb1c68086929f70b, type: 3}
---- !u!1 &115721957 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5984440485398711201, guid: eba771e16cc07954e84889083e664132, type: 3}
-  m_PrefabInstance: {fileID: 1257765642}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &115721963
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 115721957}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4f42d722c55c4c4db93561696b2de82, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isPassive: 0
-  timeToComplete: 8
-  itemOnCompletion: 1
-  itemsRequiredToStart: 
-  itemRequiredIcon: {fileID: 0}
-  stationInUse: 0
-  _blueCircle: {fileID: 21300000, guid: cc455383e23685f41b7e94f6f8b47ffe, type: 3}
-  _redCircle: {fileID: 21300000, guid: c7332bb20103db74fbedf74cd311f37e, type: 3}
-  isFishingGame: 0
 --- !u!1001 &138713577
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -383,6 +357,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8444544975533001403, guid: b581a4302d1e1ee4286d231be30d59af, type: 3}
+      propertyPath: _barChargeIncrement
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -442,6 +420,10 @@ PrefabInstance:
     - target: {fileID: 649408721854004873, guid: b1889428083936d449756da06d06b435, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2658492183006304955, guid: b1889428083936d449756da06d06b435, type: 3}
+      propertyPath: _barChargeIncrement
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7520295353744414722, guid: b1889428083936d449756da06d06b435, type: 3}
       propertyPath: m_Name
@@ -785,6 +767,10 @@ PrefabInstance:
     - target: {fileID: 772234794882134009, guid: ef84c04b8956bcd41ad0c01cee0f2d56, type: 3}
       propertyPath: m_Name
       value: SewingMachine
+      objectReference: {fileID: 0}
+    - target: {fileID: 986447008421400611, guid: ef84c04b8956bcd41ad0c01cee0f2d56, type: 3}
+      propertyPath: _barChargeIncrement
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2648663399593937535, guid: ef84c04b8956bcd41ad0c01cee0f2d56, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1154,6 +1140,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 565600251610270491, guid: eba771e16cc07954e84889083e664132, type: 3}
+      propertyPath: _barChargeIncrement
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4158027988308330079, guid: eba771e16cc07954e84889083e664132, type: 3}
       propertyPath: m_LocalPosition.x
       value: -17.33
@@ -1198,14 +1188,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FishingRod
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 2789810502616542633, guid: eba771e16cc07954e84889083e664132, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5984440485398711201, guid: eba771e16cc07954e84889083e664132, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 115721963}
     - targetCorrespondingSourceObject: {fileID: 1012472667150985091, guid: eba771e16cc07954e84889083e664132, type: 3}
       insertIndex: -1
       addedObject: {fileID: 0}

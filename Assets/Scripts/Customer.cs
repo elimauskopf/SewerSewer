@@ -6,6 +6,7 @@ public class Customer : MonoBehaviour
 {
     [SerializeField] List<Sprite> shoeColors;
     [SerializeField] List<Sprite> dressColors;
+    [SerializeField] List<Sprite> ribbonColors;
 
     Animator _animator;
     SpriteRenderer _leftShoe, _rightShoe;
@@ -16,11 +17,14 @@ public class Customer : MonoBehaviour
     // Order vars
     public Order order;
     private SpriteRenderer dress;
+    private SpriteRenderer ribbon;
 
     float timer;
 
     private void Awake()
     {
+        //order = new Order(new ItemObject(ItemTypes.Dress, ColorTypes.White));
+
         _animator = GetComponent<Animator>();
         _leftShoe = transform.GetChild(0).GetComponent<SpriteRenderer>();
         _rightShoe = transform.GetChild(1).GetComponent<SpriteRenderer>();
@@ -30,6 +34,7 @@ public class Customer : MonoBehaviour
         _rightShoe.sprite = shoeColors[color];
 
         dress = transform.Find("Order/Dress").GetComponent<SpriteRenderer>();
+        ribbon = transform.Find("Order/Ribbon").GetComponent<SpriteRenderer>();
     }
 
     public void MoveTowards(Vector3 position)
@@ -57,7 +62,7 @@ public class Customer : MonoBehaviour
     {
         order = newOrder;
 
-        print(order.dress.ColorType);
+        //print(order.dress.ColorType);
 
         switch(order.dress.ColorType)
         {
@@ -73,6 +78,25 @@ public class Customer : MonoBehaviour
             case ColorTypes.Yellow:
                 dress.sprite = dressColors[3];
                 break;
+        }
+
+        if (order.ribbon)
+        {
+            switch (order.ribbon.ColorType)
+            {
+                case ColorTypes.White:
+                    ribbon.sprite = ribbonColors[0];
+                    break;
+                case ColorTypes.Red:
+                    ribbon.sprite = ribbonColors[1];
+                    break;
+                case ColorTypes.Green:
+                    ribbon.sprite = ribbonColors[2];
+                    break;
+                case ColorTypes.Yellow:
+                    ribbon.sprite = ribbonColors[3];
+                    break;
+            }
         }
         
     }

@@ -10,7 +10,7 @@ public class LineManager : MonoBehaviour
     public float timeForOrderToMoveForward;
 
     List<Transform> positionsInLine = new List<Transform>();
-    List<Customer> customer = new List<Customer>();
+    public List<Customer> customer = new List<Customer>();
 
     private void Awake()
     {

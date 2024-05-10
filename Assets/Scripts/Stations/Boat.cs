@@ -4,7 +4,13 @@ using UnityEngine;
 
 public class Boat : StationController
 {
+    private LineManager lineManager;
 
+    protected override void Awake()
+    {
+        base.Awake();
+        lineManager = GameObject.Find("Roof").transform.GetChild(0).GetComponent<LineManager>();
+    }
     protected override void CompleteTask()
     {
         Debug.Log("Completing task");
@@ -28,6 +34,14 @@ public class Boat : StationController
             _iconObject?.SetActive(true);
         }
     }
+
+    /*private bool CheckOrder(PlayerController playerController) 
+    {
+        for (int i = 1; i < lineManager.customer.Count; i++)
+        {
+            if ()
+        }
+    }*/
 
     public override bool Initiate(GameObject player)
     {

@@ -305,6 +305,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 862a7db4-f0fb-4ae3-bc2a-9ddda65f0b1d
     m_ActionName: Player/Net[/Keyboard/f]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 282981191261960576}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnTake
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: b2e43cff-f809-4891-a85e-d6e2b250b125
+    m_ActionName: Player/Take[/Keyboard/e]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -364,6 +380,7 @@ MonoBehaviour:
   _speed: 18
   _itemOnStart: 0
   currentItem: 0
+  currentRibbon: {fileID: 0}
   itemPrefab: {fileID: 9110276591898946382, guid: 30409f53ef82fcc4d90d434d79140781, type: 3}
   currentStation: {fileID: 0}
   workingStation: 0
