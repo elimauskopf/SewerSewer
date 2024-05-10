@@ -5,12 +5,12 @@ using UnityEngine;
 public class Boat : StationController
 {
     private LineManager lineManager;
-    private GameManager gameManager
+    private GameManager gameManager;
 
     protected override void Awake()
     {
         base.Awake();
-        lineManager = GameObject.Find("Roof").transform.GetChild(0).GetComponent<LineManager>();
+        lineManager = GameObject.Find("LineManager").GetComponent<LineManager>();
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
     protected override void CompleteTask()

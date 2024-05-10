@@ -120,7 +120,7 @@ public class GameManager : MonoBehaviour
 
         if (isRegionOne || isRegionTwo)
         {
-            return new Order(GenerateItem(ItemTypes.Dress),null);
+            return new Order(GenerateItem(ItemTypes.Dress),new ItemObject(ItemTypes.None, ColorTypes.None));
         } else if  (isRegionThree)
         {
             return new Order(GenerateItem(ItemTypes.Dress), GenerateItem(ItemTypes.Ribbon));

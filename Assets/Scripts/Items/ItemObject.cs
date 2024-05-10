@@ -54,6 +54,11 @@ public class ItemObject : MonoBehaviour
 
     public Sprite ChooseSprite(ItemTypes? item, ColorTypes? color)
     {
+        if(color.Equals(ColorTypes.None))
+        {
+            return null;
+        }
+
         switch (item)
         {
             case ItemTypes.None:

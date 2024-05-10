@@ -80,6 +80,11 @@ public class Customer : MonoBehaviour
                 break;
         }
 
+        if (!GameManager.Instance.isRegionThree)
+        {
+            ribbon.enabled = false;
+            return;
+        }
 
         switch (order.ribbon.ColorType)
         {
