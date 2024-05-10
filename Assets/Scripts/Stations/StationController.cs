@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class StationController : MonoBehaviour
 {
-    [SerializeField]
-    protected Sprite _blueCircle, _redCircle;
+
     protected Animator _animator;
     protected GameObject _uiButton;
     protected SpriteRenderer _uiRenderer;
@@ -25,11 +24,8 @@ public class StationController : MonoBehaviour
     //does the station recharge on its own or require player participation to charge
     public bool isPassive;
 
-    // Does station use circle minigame and local variables for scripts
-    public bool isFishingGame;
-    public bool isTimingGame;
-    private ButtonMiniGame buttonMiniGame;
-    private TimerMinigame timerMiniGame;
+
+
 
     //how long does it take the station to charge up
     public float timeToComplete;
@@ -72,7 +68,7 @@ public class StationController : MonoBehaviour
 
         _iconObject = transform.Find(Tags.Icon)?.gameObject;
         _iconRenderer = _iconObject?.GetComponent<SpriteRenderer>();
-        if(itemsRequiredToStart.Count > 0 && _iconRenderer)
+        if (itemsRequiredToStart.Count > 0 && _iconRenderer)
         {
             _iconRenderer.sprite = itemRequiredIcon;
         }
@@ -80,13 +76,7 @@ public class StationController : MonoBehaviour
         _uiButton?.SetActive(false);
         _iconObject?.SetActive(false);
 
-        if (isFishingGame)
-        {
-            buttonMiniGame = transform.Find("ButtonGame").GetComponent<ButtonMiniGame>();
-        } else if (isTimingGame)
-        {
-            timerMiniGame = transform.Find("TimerGame").GetComponent<TimerMinigame>();
-        }
+
     }
 
     protected virtual void Update()
@@ -109,7 +99,7 @@ public class StationController : MonoBehaviour
         _playerInRange = true;
 
         PlayerController playerController = collision.gameObject.GetComponent<PlayerController>();
-        if(playerController == null)
+        if (playerController == null)
         {
             return;
         }
@@ -134,7 +124,7 @@ public class StationController : MonoBehaviour
                 _iconRenderer.color = _translucent;
             }
         }
-        
+
 
         playerController.currentStation = gameObject;
         playersByStation++;
@@ -153,35 +143,35 @@ public class StationController : MonoBehaviour
         {
             playersByStation--;
         }
-     
-        
+
+
         if (playersByStation == 0)
         {
             _playerInRange = false;
             DisableUI();
         }
 
-        if(collision.gameObject.GetComponent<PlayerController>().currentStation && 
+        if (collision.gameObject.GetComponent<PlayerController>().currentStation &&
             collision.gameObject.GetComponent<PlayerController>().currentStation.name.Equals(gameObject.name))
         {
             collision.gameObject.GetComponent<PlayerController>().LeaveStation();
         }
-      
+
         collision.gameObject.GetComponent<PlayerController>().currentStation = null;
 
         _iconObject?.SetActive(false);
     }
-    
+
     //used when player interacts with station
     public virtual bool Initiate(GameObject player)
     {
-        if (stationInUse )
+        if (stationInUse)
         {
             Debug.Log("Station is in use");
             return false;
         }
 
-        
+
         PlayerController currentPlayer = player.GetComponent<PlayerController>();
         print(currentPlayer.currentStation);
 
@@ -190,15 +180,15 @@ public class StationController : MonoBehaviour
 
         if (isPassive)
         {
-            if(_timer == 0)//station is not active, waiting for input
+            if (_timer == 0)//station is not active, waiting for input
             {
-                if(HandlePlayerItem(currentPlayer))
+                if (HandlePlayerItem(currentPlayer))
                 {
-                    _isAbleToCharge=true;
+                    _isAbleToCharge = true;
                     _chargeBarController?.StartChargeBar();
                 }
             }
-            else if(_timer >= timeToComplete)//station is ready
+            else if (_timer >= timeToComplete)//station is ready
             {
 
                 if (HandlePlayerItem(currentPlayer)) // player has fish and spider is done
@@ -208,7 +198,8 @@ public class StationController : MonoBehaviour
                     _isAbleToCharge = true;
                     _chargeBarController?.StartChargeBar();
 
-                } else
+                }
+                else
                 {
                     _assignedPlayer = player;
                     CompleteTask();
@@ -234,15 +225,7 @@ public class StationController : MonoBehaviour
                 Debug.Log("station in use");
             }
 
-            if (isFishingGame)
-            {
-                buttonMiniGame.Show();
-                buttonMiniGame.engaged = true;          
-            } else if (isTimingGame)
-            {
-                timerMiniGame.Show();
-                timerMiniGame.engaged = true;
-            }
+
 
             AssignUI();
             return true;
@@ -261,7 +244,7 @@ public class StationController : MonoBehaviour
         if (itemsRequiredToStart.Count == 0)
         {
             return true;
-        }        
+        }
         else if (currentPlayer.currentItem.Equals(ItemTypes.None))//if the player doesn't have anything 
         {
             Debug.Log("Player isn't carrying anything");
@@ -269,7 +252,7 @@ public class StationController : MonoBehaviour
         }
 
         foreach (ItemTypes item in itemsRequiredToStart)
-        {            
+        {
             if (currentPlayer.currentItem.Equals(item))//if the player has a required item
             {
                 _currentItemType = currentPlayer.currentItem;
@@ -281,7 +264,7 @@ public class StationController : MonoBehaviour
 
         return false;
     }
-    public void Disengage(GameObject player)
+    public virtual void Disengage(GameObject player)
     {
         if (!stationInUse)
         {
@@ -294,13 +277,7 @@ public class StationController : MonoBehaviour
             _assignedPlayer = null;
             stationInUse = false;
 
-            if (isFishingGame)
-            {
-                buttonMiniGame.EndInteraction();
-            } else if (isTimingGame)
-            {
-                buttonMiniGame.EndInteraction();
-            }
+
         }
 
         AssignUI();
@@ -308,25 +285,11 @@ public class StationController : MonoBehaviour
 
     public virtual void WorkStation()
     {
-        if (!isFishingGame && !isTimingGame)
-        {
-            _chargeBarController?.AddCharge();
-        } else if (isFishingGame)
-        {
-            if (buttonMiniGame.PlayerPressedButton())
-            {
-                _chargeBarController?.AddCharge();
-            }
-        } else if (isTimingGame)
-        {
-            if (timerMiniGame.WasButtonPressedOnTime())
-            {
-                _chargeBarController?.AddCharge();
-            } 
-        }
-        
 
-        if (_chargeBarController && _chargeBarController.percentReloaded >=1 )
+        _chargeBarController?.AddCharge();
+
+
+        if (_chargeBarController && _chargeBarController.percentReloaded >= 1)
         {
             // Player finished station
             CompleteTask();
@@ -335,7 +298,7 @@ public class StationController : MonoBehaviour
 
     protected virtual void CompleteTask()
     {
-        if(isPassive)
+        if (isPassive)
         {
             _timer = 0;
             _chargeBarController.HideChargeBar();
@@ -344,14 +307,8 @@ public class StationController : MonoBehaviour
         {
             _animator.SetBool(Tags.Moving, false);
         }
-        
-        if (isFishingGame)
-        {
-            buttonMiniGame.EndInteraction();
-        } else if (isTimingGame)
-        {
-            timerMiniGame.EndInteraction();
-        }
+
+
         _chargeBarController.ResetChargeBar();
         _isAbleToCharge = false;
         _currentItemType = ItemTypes.None;
@@ -365,23 +322,23 @@ public class StationController : MonoBehaviour
         _uiButton?.SetActive(true);
         _iconObject?.SetActive(true);
 
-        if(stationInUse || _isAbleToCharge)
+        if (stationInUse || _isAbleToCharge)
         {
-            _uiRenderer.sprite = _redCircle;
+            //_uiRenderer.sprite = _redCircle;
             _iconObject?.SetActive(false);
-           
+
         }
-        else if(playersByStation == 0)
+        else if (playersByStation == 0)
         {
             _uiButton?.SetActive(false);
             _iconObject?.SetActive(false);
             _chargeBarController?.HideChargeBar();
 
-           
+
         }
-        else 
+        else
         {
-            _uiRenderer.sprite = _blueCircle;
+            //_uiRenderer.sprite = _blueCircle;
             _iconObject?.SetActive(true);
         }
     }
@@ -399,24 +356,24 @@ public class StationController : MonoBehaviour
     }
 }
 
-    /**
-     * oNinteract(input action ctx)
-      * - if player in bounds and ctx.started
-      *     - initate station(connectedPlayer)
-    void InteractWithStation()
-    {
-        //if station isPassive
-            //check to see if isReady = true
-            //if ready, give the play the item on complete, set isReady to false, and start the recharge timer
-            //if not ready, show message saying item is not ready
-        //if station is active
-            //check to see if the player has the thing they need to activate the station (example: silk required to start loom)
-                //if they have what they need
-                    //start action timer coroutine
-                    //do whatever player has to do to complete task (hold X, pres X a bunch, move joystick in given direction, etc)
-                    //once task completed, give player item on complete
-                //if they don't have what they need
-                    //show message saying they are missing the item they need
-    }
+/**
+ * oNinteract(input action ctx)
+  * - if player in bounds and ctx.started
+  *     - initate station(connectedPlayer)
+void InteractWithStation()
+{
+    //if station isPassive
+        //check to see if isReady = true
+        //if ready, give the play the item on complete, set isReady to false, and start the recharge timer
+        //if not ready, show message saying item is not ready
+    //if station is active
+        //check to see if the player has the thing they need to activate the station (example: silk required to start loom)
+            //if they have what they need
+                //start action timer coroutine
+                //do whatever player has to do to complete task (hold X, pres X a bunch, move joystick in given direction, etc)
+                //once task completed, give player item on complete
+            //if they don't have what they need
+                //show message saying they are missing the item they need
 }
-    */
+}
+*/

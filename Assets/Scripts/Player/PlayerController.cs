@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditorInternal.Profiling.Memory.Experimental;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Playables;
+using static UnityEditor.Progress;
 
 public enum PlayerState { INSTATION, NONE, HIT };
 
@@ -30,6 +32,9 @@ public class PlayerController : MonoBehaviour
 
     public ItemTypes currentItem;
     public ColorTypes? currentColor;
+
+    public ItemObject currentRibbon = null;
+    public Order currentOrder;
 
     Transform _itemsParent;
     List<GameObject> _items = new List<GameObject>();
@@ -85,6 +90,7 @@ public class PlayerController : MonoBehaviour
     {
 
         // _playerControls = new PlayerControls();
+        currentOrder = new Order();
 
         rb = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
@@ -101,7 +107,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         SetPlayerState(PlayerState.NONE);
-        AssignItem(_itemOnStart, null);
+        AssignItem(_itemOnStart, ColorTypes.White);
 
     }
 
@@ -249,6 +255,17 @@ public class PlayerController : MonoBehaviour
         
     }
 
+    public void OnTake(InputAction.CallbackContext ctx)
+    {
+        if (ctx.started && currentStation && currentStation.name == Tags.Mannequin)
+        {
+         
+                currentStation.GetComponent<Mannequin>().PlayerPickupContents(this);
+            
+
+        }
+    }
+
     public void OnJump(InputAction.CallbackContext ctx)
     {
         if (ctx.started  
@@ -380,6 +397,11 @@ public class PlayerController : MonoBehaviour
                 item.GetComponent<SpriteRenderer>().sprite = itemPrefab.GetComponent<ItemObject>().ChooseSprite(newItem, newColor);
             }
         }
+    }
+    public void AssignRibbon()
+    {
+        _items[5].SetActive(true);
+        _items[5].GetComponent<SpriteRenderer>().sprite = itemPrefab.GetComponent<ItemObject>().ChooseSprite(currentRibbon.ItemType, currentRibbon.ColorType);
     }
 
     public void AssignFinalDress(ColorTypes colorOfDress)

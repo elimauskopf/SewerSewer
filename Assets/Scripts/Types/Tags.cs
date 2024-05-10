@@ -19,6 +19,7 @@ internal static class Tags
     public const string Icon = "Icon";
     public const string OrderCompleteAudio = "OrderCompleteAudio";
     public const string LevelEndAudio = "LevelEndAudio";
+    public const string Mannequin = "Mannequin";
 
     //animation tags
     public const string InRange = "InRange";

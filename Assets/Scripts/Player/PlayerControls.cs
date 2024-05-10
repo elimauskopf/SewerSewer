@@ -71,6 +71,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Take"",
+                    ""type"": ""Button"",
+                    ""id"": ""b2e43cff-f809-4891-a85e-d6e2b250b125"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -238,6 +247,28 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""Net"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b1536eb6-95e8-41be-8c5e-c730cc1392f9"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller"",
+                    ""action"": ""Take"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""196606a0-6dd0-4537-9ea2-e4bef0f33953"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Take"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -274,6 +305,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Player_Work = m_Player.FindAction("Work", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_Net = m_Player.FindAction("Net", throwIfNotFound: true);
+        m_Player_Take = m_Player.FindAction("Take", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -340,6 +372,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Work;
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_Net;
+    private readonly InputAction m_Player_Take;
     public struct PlayerActions
     {
         private @PlayerControls m_Wrapper;
@@ -349,6 +382,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @Work => m_Wrapper.m_Player_Work;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputAction @Net => m_Wrapper.m_Player_Net;
+        public InputAction @Take => m_Wrapper.m_Player_Take;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -373,6 +407,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Net.started += instance.OnNet;
             @Net.performed += instance.OnNet;
             @Net.canceled += instance.OnNet;
+            @Take.started += instance.OnTake;
+            @Take.performed += instance.OnTake;
+            @Take.canceled += instance.OnTake;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -392,6 +429,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Net.started -= instance.OnNet;
             @Net.performed -= instance.OnNet;
             @Net.canceled -= instance.OnNet;
+            @Take.started -= instance.OnTake;
+            @Take.performed -= instance.OnTake;
+            @Take.canceled -= instance.OnTake;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -434,5 +474,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnWork(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnNet(InputAction.CallbackContext context);
+        void OnTake(InputAction.CallbackContext context);
     }
 }

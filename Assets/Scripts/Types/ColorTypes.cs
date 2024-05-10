@@ -1,4 +1,4 @@
 public enum ColorTypes
 {
-    White, Red, Green, Yellow
+    White, Red, Green, Yellow, None
 }

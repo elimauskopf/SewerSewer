@@ -8,7 +8,7 @@ public class ItemObject : MonoBehaviour
     SpriteRenderer _renderer;
 
     ItemTypes _type;
-    ColorTypes _color;
+    ColorTypes? _color;
 
     Dictionary<ItemTypes, ColorTypes> _subContents = new Dictionary<ItemTypes, ColorTypes>();
 
@@ -26,7 +26,7 @@ public class ItemObject : MonoBehaviour
     public List<Sprite> dye = new List<Sprite>();
    
 
-    public ItemObject(ItemTypes itemType, ColorTypes colorType)
+    public ItemObject(ItemTypes itemType, ColorTypes? colorType)
     {
         _type = itemType;
         _color = colorType;

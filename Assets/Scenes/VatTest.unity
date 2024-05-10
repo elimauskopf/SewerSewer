@@ -232,6 +232,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2181517673780714087, guid: e63c7ba0bbc4aa84aaf695a2a0b27ab3, type: 3}
+      propertyPath: isRegionThree
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7474681078178671620, guid: e63c7ba0bbc4aa84aaf695a2a0b27ab3, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -357,6 +361,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8444544975533001403, guid: b581a4302d1e1ee4286d231be30d59af, type: 3}
+      propertyPath: _barChargeIncrement
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -365,7 +373,7 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: b581a4302d1e1ee4286d231be30d59af, type: 3}
---- !u!1001 &666835745
+--- !u!1001 &302365152
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -375,11 +383,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 102746057351714730, guid: b1889428083936d449756da06d06b435, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -10.6
+      value: -9.675383
       objectReference: {fileID: 0}
     - target: {fileID: 102746057351714730, guid: b1889428083936d449756da06d06b435, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -9.15
+      value: -8.95
       objectReference: {fileID: 0}
     - target: {fileID: 102746057351714730, guid: b1889428083936d449756da06d06b435, type: 3}
       propertyPath: m_LocalPosition.z
@@ -417,9 +425,17 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2658492183006304955, guid: b1889428083936d449756da06d06b435, type: 3}
+      propertyPath: _barChargeIncrement
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7520295353744414722, guid: b1889428083936d449756da06d06b435, type: 3}
       propertyPath: m_Name
       value: Loom
+      objectReference: {fileID: 0}
+    - target: {fileID: 8808598460784931413, guid: b1889428083936d449756da06d06b435, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -759,6 +775,10 @@ PrefabInstance:
     - target: {fileID: 772234794882134009, guid: ef84c04b8956bcd41ad0c01cee0f2d56, type: 3}
       propertyPath: m_Name
       value: SewingMachine
+      objectReference: {fileID: 0}
+    - target: {fileID: 986447008421400611, guid: ef84c04b8956bcd41ad0c01cee0f2d56, type: 3}
+      propertyPath: _barChargeIncrement
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2648663399593937535, guid: ef84c04b8956bcd41ad0c01cee0f2d56, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1128,6 +1148,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 565600251610270491, guid: eba771e16cc07954e84889083e664132, type: 3}
+      propertyPath: _barChargeIncrement
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4158027988308330079, guid: eba771e16cc07954e84889083e664132, type: 3}
       propertyPath: m_LocalPosition.x
       value: -17.33
@@ -2101,7 +2125,6 @@ SceneRoots:
   - {fileID: 186625420}
   - {fileID: 1884945537}
   - {fileID: 1257765642}
-  - {fileID: 666835745}
   - {fileID: 1040827372}
   - {fileID: 226943567}
   - {fileID: 1185225566}
@@ -2117,3 +2140,4 @@ SceneRoots:
   - {fileID: 1141186389}
   - {fileID: 763489643}
   - {fileID: 7136211647030049842}
+  - {fileID: 302365152}
