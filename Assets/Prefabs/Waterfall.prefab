@@ -59,7 +59,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 77c05c030ba851d4789c691946de63b7, type: 3}
   - {fileID: 21300000, guid: be88a4c666388224099385fd99a6c303, type: 3}
   junk: {fileID: 162511183840339776, guid: f624768433e663041ae533e15ec64da3, type: 3}
-  repeatRateRangeMin: 2
+  repeatRateRangeMin: 1
   repeatRateRangeMax: 3
 --- !u!212 &4910554604915438970
 SpriteRenderer:
