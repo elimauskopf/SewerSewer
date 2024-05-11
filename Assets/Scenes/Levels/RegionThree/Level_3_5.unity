@@ -734,7 +734,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 953144491312630348, guid: e63c7ba0bbc4aa84aaf695a2a0b27ab3, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 953144491312630348, guid: e63c7ba0bbc4aa84aaf695a2a0b27ab3, type: 3}
+      propertyPath: spawnFrequencyMin
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 1217319082811986695, guid: e63c7ba0bbc4aa84aaf695a2a0b27ab3, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -792,9 +796,21 @@ PrefabInstance:
       propertyPath: isRegionThree
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2181517673780714087, guid: e63c7ba0bbc4aa84aaf695a2a0b27ab3, type: 3}
+      propertyPath: totalOrdersThisLevel
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 7474681078178671620, guid: e63c7ba0bbc4aa84aaf695a2a0b27ab3, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7474681078178671620, guid: e63c7ba0bbc4aa84aaf695a2a0b27ab3, type: 3}
+      propertyPath: spawnFrequencyMin
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7474681078178671620, guid: e63c7ba0bbc4aa84aaf695a2a0b27ab3, type: 3}
+      propertyPath: spawnFrequencyVariance
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7523978908829616315, guid: e63c7ba0bbc4aa84aaf695a2a0b27ab3, type: 3}
       propertyPath: m_Name

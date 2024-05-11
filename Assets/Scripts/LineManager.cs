@@ -29,6 +29,7 @@ public class LineManager : MonoBehaviour
     {
 
         Customer newCustomer = Instantiate(shoe, positionsInLine[positionsInLine.Count - 1].position, Quaternion.identity).GetComponent<Customer>();
+        print("LM: " + newOrder.dress.ColorType);
         newCustomer.PopulateOrder(newOrder);
         //instantiate the shoe at the last position in line (off screen)
         customer.Add(newCustomer);

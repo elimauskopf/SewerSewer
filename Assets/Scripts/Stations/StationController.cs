@@ -308,6 +308,11 @@ public class StationController : MonoBehaviour
             _animator.SetBool(Tags.Moving, false);
         }
 
+        // If dress add to order
+        if (itemOnCompletion.Equals(ItemTypes.Dress))
+        {
+            _assignedPlayer.GetComponent<PlayerController>().currentOrder = new Order(new ItemObject(ItemTypes.Dress, _currentColor), new ItemObject(ItemTypes.None, ColorTypes.None));
+        }
 
         _chargeBarController.ResetChargeBar();
         _isAbleToCharge = false;

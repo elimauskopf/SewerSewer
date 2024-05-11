@@ -39,7 +39,11 @@ public class Boat : StationController
 
     private bool CheckOrder(PlayerController playerController)
     {
-        for (int i = 1; i < lineManager.customer.Count; i++)
+        print(playerController.currentOrder.dress.ColorType);
+        print(lineManager.customer.Count);
+        print(lineManager.customer[0].order.dress.ColorType);
+
+        for (int i = 0; i < lineManager.customer.Count; i++)
         {
             // Is the dress the same color
             if (lineManager.customer[i].order.dress.ColorType == playerController.currentOrder.dress.ColorType)

@@ -24,11 +24,12 @@ public class GameManager : MonoBehaviour
     public List<bool> pendingOrders;
     int ordersComplete;
     int currentLevel;
+    [SerializeField]
     int totalOrdersThisLevel;
 
     //the amount of orders in the easiest level, used as the order number floor
     int _lowestOrderNumber = 1;
-    float _secondsPerLevel = (3*60f);
+    float _secondsPerLevel = (3 * 60f);
     float _levelTimer;
     float _orderTimer;
     float _timeUntilNextOrder;
@@ -75,7 +76,7 @@ public class GameManager : MonoBehaviour
         }
 
         _orderTimer += Time.deltaTime;
-        if(_orderTimer > _timeUntilNextOrder)
+        if (_orderTimer > _timeUntilNextOrder)
         {
             AddOrder();
             _timeUntilNextOrder = UnityEngine.Random.Range(3f, 8f);
@@ -87,7 +88,7 @@ public class GameManager : MonoBehaviour
     {
         string sceneName = SceneManager.GetActiveScene().name;
 
-        if(sceneName.Equals(Scenes.Home.ToString()))
+        if (sceneName.Equals(Scenes.Home.ToString()))
         {
             Destroy(gameObject);
         }
@@ -113,15 +114,16 @@ public class GameManager : MonoBehaviour
         LineManager.Instance.AddOrder(GenerateOrder());
         //also need to add shoe animation walking across the scene and waiting
     }
-    
+
     Order GenerateOrder()
     {
-       
+
 
         if (isRegionOne || isRegionTwo)
         {
-            return new Order(GenerateItem(ItemTypes.Dress),new ItemObject(ItemTypes.None, ColorTypes.None));
-        } else if  (isRegionThree)
+            return new Order(GenerateItem(ItemTypes.Dress), new ItemObject(ItemTypes.None, ColorTypes.None));
+        }
+        else if (isRegionThree)
         {
             return new Order(GenerateItem(ItemTypes.Dress), GenerateItem(ItemTypes.Ribbon));
         }
@@ -136,16 +138,36 @@ public class GameManager : MonoBehaviour
         if (isRegionOne)
         {
             colorType = ColorTypes.White;
-        } else 
+        }
+        else
         {
-            // Randomize color
-            Array colors = Enum.GetValues(typeof(ColorTypes));
-            colorType = (ColorTypes)colors.GetValue(Random.Range(1, colors.Length));
 
-        } 
-       
+            colorType = RandomColor();
+        }
+
 
         return new ItemObject(itemType, colorType);
+    }
+
+    public ColorTypes RandomColor()
+    {
+ 
+
+        switch (Random.Range(0, 4))
+        {
+            case 0:
+                return ColorTypes.White;
+            case 1:
+                return ColorTypes.Green;
+            case 2:
+                return ColorTypes.Red;
+            case 3:
+                return ColorTypes.Yellow;
+            default:
+                return ColorTypes.White;
+
+        }
+
     }
     public void CompleteOrder()
     {
@@ -170,7 +192,7 @@ public class GameManager : MonoBehaviour
 
     void CompleteLevel()
     {
-        if(SceneManager.GetActiveScene().name.Equals(Scenes.Level_3_5.ToString()))
+        if (SceneManager.GetActiveScene().name.Equals(Scenes.Level_3_5.ToString()))
         {
             FinalLevelOutro.Instance.OnLevelComplete();
         }
@@ -188,21 +210,21 @@ public class GameManager : MonoBehaviour
 
     void CalculateOrders()
     {
-        if(SceneManager.GetActiveScene().name.Equals(Scenes.Tutorial.ToString()))
+        if (SceneManager.GetActiveScene().name.Equals(Scenes.Tutorial.ToString()))
         {
             totalOrdersThisLevel = 2;
         }
         else
         {
-            totalOrdersThisLevel = _lowestOrderNumber + (currentLevel*2);
+            //totalOrdersThisLevel = _lowestOrderNumber + (currentLevel * 2);
             //totalOrdersThisLevel = 1;
-            
+
         }
     }
 
     void CalculateTimer()
     {
-        if(_levelTimer <= 0)
+        if (_levelTimer <= 0)
         {
             LoseLevel();
         }
