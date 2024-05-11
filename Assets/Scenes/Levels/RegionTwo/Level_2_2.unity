@@ -137,7 +137,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 953144491312630348, guid: e63c7ba0bbc4aa84aaf695a2a0b27ab3, type: 3}
       propertyPath: spawnFrequencyMin
-      value: 7
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 953144491312630348, guid: e63c7ba0bbc4aa84aaf695a2a0b27ab3, type: 3}
       propertyPath: spawnFrequencyVariance
@@ -209,7 +209,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7474681078178671620, guid: e63c7ba0bbc4aa84aaf695a2a0b27ab3, type: 3}
       propertyPath: spawnFrequencyMin
-      value: 10
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 7474681078178671620, guid: e63c7ba0bbc4aa84aaf695a2a0b27ab3, type: 3}
       propertyPath: spawnFrequencyVariance

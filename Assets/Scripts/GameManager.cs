@@ -169,7 +169,7 @@ public class GameManager : MonoBehaviour
         }
 
     }
-    public void CompleteOrder()
+    public void CompleteOrder(int customerIndex)
     {
         if (_levelTimer <= 0)
         {
@@ -182,7 +182,7 @@ public class GameManager : MonoBehaviour
 
         ordersComplete++;
         pendingOrders.Remove(true);
-        LineManager.Instance.CompleteOrder();
+        LineManager.Instance.CompleteOrder(customerIndex);
 
         if (ordersComplete == totalOrdersThisLevel)
         {

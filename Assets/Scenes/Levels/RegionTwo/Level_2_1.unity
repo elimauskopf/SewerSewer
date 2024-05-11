@@ -200,6 +200,14 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 953144491312630348, guid: e63c7ba0bbc4aa84aaf695a2a0b27ab3, type: 3}
+      propertyPath: spawnFrequencyMin
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 953144491312630348, guid: e63c7ba0bbc4aa84aaf695a2a0b27ab3, type: 3}
+      propertyPath: spawnFrequencyVariance
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1217319082811986695, guid: e63c7ba0bbc4aa84aaf695a2a0b27ab3, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -17.76
@@ -263,6 +271,14 @@ PrefabInstance:
     - target: {fileID: 7474681078178671620, guid: e63c7ba0bbc4aa84aaf695a2a0b27ab3, type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7474681078178671620, guid: e63c7ba0bbc4aa84aaf695a2a0b27ab3, type: 3}
+      propertyPath: spawnFrequencyMin
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 7474681078178671620, guid: e63c7ba0bbc4aa84aaf695a2a0b27ab3, type: 3}
+      propertyPath: spawnFrequencyVariance
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7523978908829616315, guid: e63c7ba0bbc4aa84aaf695a2a0b27ab3, type: 3}
       propertyPath: m_Name

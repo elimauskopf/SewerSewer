@@ -6,7 +6,7 @@ public class Boat : StationController
 {
     private LineManager lineManager;
     private GameManager gameManager;
-
+    private int customerIndex;
     protected override void Awake()
     {
         base.Awake();
@@ -16,7 +16,7 @@ public class Boat : StationController
     protected override void CompleteTask()
     {
         Debug.Log("Completing task");
-        GameManager.Instance?.CompleteOrder();
+        GameManager.Instance?.CompleteOrder(customerIndex);
     }
 
     void StartDelivery()
@@ -54,10 +54,12 @@ public class Boat : StationController
                     // Is the ribbon the same color
                     if (playerController.currentOrder.ribbon.ColorType  == lineManager.customer[i].order.ribbon.ColorType)
                     {
+                        customerIndex = i;
                         return true;
                     }
                 } else
                 {
+                    customerIndex = i;
                     return true;
                 }
             }
