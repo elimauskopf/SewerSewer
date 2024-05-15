@@ -210,7 +210,7 @@ public class GameManager : MonoBehaviour
 
     void CalculateOrders()
     {
-        if (SceneManager.GetActiveScene().name.Equals(Scenes.Tutorial.ToString()))
+        if (SceneManager.GetActiveScene().name.Contains("Tutorial"))
         {
             totalOrdersThisLevel = 2;
         }

@@ -2551,51 +2551,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &697380233
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 697380235}
-  - component: {fileID: 697380234}
-  m_Layer: 0
-  m_Name: SceneNavigator
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &697380234
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 697380233}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 85e3af6262fdad244b037979bcb3ff3c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sceneToLoad: 7
---- !u!4 &697380235
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 697380233}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 10.681014, y: -6.050727, z: -0.9898866}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1653033474}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &735208305
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5920,7 +5875,6 @@ Transform:
   - {fileID: 1093310654}
   - {fileID: 1873565333}
   - {fileID: 196926390}
-  - {fileID: 697380235}
   - {fileID: 341594713}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7446,11 +7400,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a68b1783a23dc674aafb1be8a54d43e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _blueCircle: {fileID: 21300000, guid: 297540844d0ff804eb8436f54bd77b86, type: 3}
-  _redCircle: {fileID: 21300000, guid: ba1f6124bf00b2940bea63c4a8188c5c, type: 3}
   isPassive: 1
-  isFishingGame: 0
-  isTimingGame: 0
   timeToComplete: 0
   itemOnCompletion: 0
   itemsRequiredToStart: 04000000
@@ -7576,6 +7526,7 @@ MonoBehaviour:
   _speed: 18
   _itemOnStart: 0
   currentItem: 0
+  currentRibbon: {fileID: 0}
   itemPrefab: {fileID: 9110276591898946382, guid: 30409f53ef82fcc4d90d434d79140781, type: 3}
   currentStation: {fileID: 0}
   workingStation: 0
@@ -8646,11 +8597,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51eef0bfc5d79f54d8ecea743d7efa3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _blueCircle: {fileID: 0}
-  _redCircle: {fileID: 0}
   isPassive: 0
-  isFishingGame: 0
-  isTimingGame: 0
   timeToComplete: 0
   itemOnCompletion: 0
   itemsRequiredToStart: 
@@ -9016,11 +8963,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8e46f6d97934f841badc26a31ef9e0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _blueCircle: {fileID: 21300000, guid: 297540844d0ff804eb8436f54bd77b86, type: 3}
-  _redCircle: {fileID: 21300000, guid: ba1f6124bf00b2940bea63c4a8188c5c, type: 3}
   isPassive: 0
-  isFishingGame: 0
-  isTimingGame: 0
   timeToComplete: 5
   itemOnCompletion: 5
   itemsRequiredToStart: 03000000

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Boat : StationController
 {
@@ -75,11 +76,18 @@ public class Boat : StationController
             Debug.Log("Station is in use");
             return false;
         }
-
+        
         PlayerController currentPlayer = player.GetComponent<PlayerController>();
+        if ( SceneManager.GetActiveScene().name.Contains("Tutorial") && HandlePlayerItem(currentPlayer))
+        {
+            StartDelivery();
+            return true;
+        }
+        
         if (HandlePlayerItem(currentPlayer) && CheckOrder(currentPlayer))
         {
             StartDelivery();
+            print("here");
             return true;
         }
         else
