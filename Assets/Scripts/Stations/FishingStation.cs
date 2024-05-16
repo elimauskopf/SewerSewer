@@ -1,4 +1,4 @@
-using System.Collections;
+     using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -34,14 +34,6 @@ public class FishingStation : StationController
 
         buttonMiniGame = transform.Find("ButtonGame").GetComponent<ButtonMiniGame>();
 
-    }
-
-    protected virtual void Update()
-    {
-        if (_timer < timeToComplete && isPassive && _isAbleToCharge)
-        {
-            _timer += Time.deltaTime;
-        }
     }
 
 
@@ -158,7 +150,7 @@ public class FishingStation : StationController
         }
     }
 
-    protected override void CompleteTask()
+    public override void CompleteTask()
     {
 
         buttonMiniGame.EndInteraction();

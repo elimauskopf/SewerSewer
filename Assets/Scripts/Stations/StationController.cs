@@ -296,7 +296,7 @@ public class StationController : MonoBehaviour
         }
     }
 
-    protected virtual void CompleteTask()
+    public virtual void CompleteTask()
     {
         if (isPassive)
         {

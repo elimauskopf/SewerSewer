@@ -14,7 +14,7 @@ public class Boat : StationController
         lineManager = GameObject.Find("LineManager").GetComponent<LineManager>();
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
-    protected override void CompleteTask()
+    public override void CompleteTask()
     {
         Debug.Log("Completing task");
         GameManager.Instance?.CompleteOrder(customerIndex);

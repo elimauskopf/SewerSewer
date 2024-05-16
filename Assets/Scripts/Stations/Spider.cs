@@ -21,7 +21,7 @@ public class Spider : StationController
         _animator.SetBool(Tags.InRange, false);
     }
 
-    protected override void CompleteTask()
+    public override void CompleteTask()
     {
         _currentColor = ColorTypes.White;
         if (isPassive)

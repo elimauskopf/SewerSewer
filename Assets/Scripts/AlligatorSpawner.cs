@@ -32,7 +32,7 @@ public class AlligatorSpawner : MonoBehaviour
 
         if (_timer > _nextSpawnTime)
         {
-            print(_nextSpawnTime);
+            //print(_nextSpawnTime);
             StartCoroutine(SpawnAlligator());
             _timer = 0;
             DecideNextSpawnTime();

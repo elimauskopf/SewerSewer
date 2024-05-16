@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
 {
     public SpriteRenderer jacketFront;
     public SpriteRenderer jacketBack;
+    private ButtonMiniGame fishingGame;
 
     [SerializeField]
     List<Sprite> jacketFrontColors;
@@ -101,6 +102,8 @@ public class PlayerController : MonoBehaviour
 
         rayCastTransform = transform.Find("BottomPlayer");
         _startScale = transform.localScale;
+
+        fishingGame = GameObject.Find("FishingRod").transform.Find("ButtonGame").GetComponent<ButtonMiniGame>();
     }
 
     void Start()
@@ -213,6 +216,14 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void OnFish(InputAction.CallbackContext ctx)
+    {
+        if (fishingGame.engaged)
+        {
+            fishingGame.stickValue = ctx.ReadValue<Vector2>();
+        }
+    }
+
     void SheathNet()
     {
         _animator.SetFloat("PlayerHoldingNet", 0);
@@ -242,6 +253,8 @@ public class PlayerController : MonoBehaviour
                 {
                     return;
                 }
+
+
                 workingStation = true;
                 SetPlayerState(PlayerState.INSTATION);
                 currentStation.GetComponent<StationController>().WorkStation();
