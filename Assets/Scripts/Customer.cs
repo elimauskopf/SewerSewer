@@ -16,8 +16,11 @@ public class Customer : MonoBehaviour
 
     // Order vars
     public Order order;
-    private SpriteRenderer dress;
-    private SpriteRenderer ribbon;
+    private SpriteRenderer dressComponent;
+    private SpriteRenderer ribbonComponent;
+    private SpriteRenderer finalDress;
+    private SpriteRenderer finalRibbon;
+    private
 
     float timer;
 
@@ -33,8 +36,10 @@ public class Customer : MonoBehaviour
         _leftShoe.sprite = shoeColors[color];
         _rightShoe.sprite = shoeColors[color];
 
-        dress = transform.Find("Order/Dress").GetComponent<SpriteRenderer>();
-        ribbon = transform.Find("Order/Ribbon").GetComponent<SpriteRenderer>();
+        dressComponent = transform.Find("Order/Dress").GetComponent<SpriteRenderer>();
+        ribbonComponent = transform.Find("Order/Ribbon").GetComponent<SpriteRenderer>();
+        finalDress = transform.Find("Order/MainDress").GetComponent<SpriteRenderer>();
+        finalRibbon = transform.Find("Order/MainRibbon").GetComponent<SpriteRenderer>();
     }
 
     public void MoveTowards(Vector3 position)
@@ -62,46 +67,48 @@ public class Customer : MonoBehaviour
     {
         order = newOrder;
 
-        //print(order.dress.ColorType);
-
         switch (order.dress.ColorType)
         {
             case ColorTypes.White:
-                dress.sprite = dressColors[0];
+                finalDress.sprite = dressColors[0];
                 break;
             case ColorTypes.Red:
-                dress.sprite = dressColors[1];
+                finalDress.sprite = dressColors[1];
                 break;
             case ColorTypes.Green:
-                dress.sprite = dressColors[2];
+                finalDress.sprite = dressColors[2];
                 break;
             case ColorTypes.Yellow:
-                dress.sprite = dressColors[3];
+                finalDress.sprite = dressColors[3];
                 break;
         }
 
         if (!GameManager.Instance.isRegionThree)
         {
-            ribbon.enabled = false;
+            ribbonComponent.enabled = false;
+            finalRibbon.enabled = false;
+            dressComponent.enabled = false;
             return;
         }
 
         switch (order.ribbon.ColorType)
         {
             case ColorTypes.White:
-                ribbon.sprite = ribbonColors[0];
+                finalRibbon.sprite = ribbonColors[0];
                 break;
             case ColorTypes.Red:
-                ribbon.sprite = ribbonColors[1];
+                finalRibbon.sprite = ribbonColors[1];
                 break;
             case ColorTypes.Green:
-                ribbon.sprite = ribbonColors[2];
+                finalRibbon.sprite = ribbonColors[2];
                 break;
             case ColorTypes.Yellow:
-                ribbon.sprite = ribbonColors[3];
+                finalRibbon.sprite = ribbonColors[3];
                 break;
         }
 
+        dressComponent.sprite = finalDress.sprite;
+        ribbonComponent.sprite = finalRibbon.sprite;
 
     }
     public void CompleteOrder()
