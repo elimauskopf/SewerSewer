@@ -884,6 +884,10 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7597587712998483718, guid: bcb8c8ac69f196f4795452fd8cbcaadb, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.522995
+      objectReference: {fileID: 0}
     - target: {fileID: 8986788243203969964, guid: bcb8c8ac69f196f4795452fd8cbcaadb, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.26171875

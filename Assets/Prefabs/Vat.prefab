@@ -462,7 +462,7 @@ MonoBehaviour:
   isPassive: 1
   timeToComplete: 2
   itemOnCompletion: 0
-  itemsRequiredToStart: 020000000300000004000000
+  itemsRequiredToStart: 02000000030000000400000005000000
   itemRequiredIcon: {fileID: 0}
   stationInUse: 0
 --- !u!1 &8571187661732819290
