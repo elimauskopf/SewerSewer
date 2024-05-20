@@ -109,7 +109,7 @@ public class Vat : StationController
 
     }
 
-    protected override void CompleteTask()
+    public override void CompleteTask()
     {
         
 

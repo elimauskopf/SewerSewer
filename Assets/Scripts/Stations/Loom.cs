@@ -142,7 +142,7 @@ public class Loom : StationController
         }
     }
 
-    protected override void CompleteTask()
+    public override void CompleteTask()
     {
         if (isPassive)
         {

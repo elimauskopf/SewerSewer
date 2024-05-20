@@ -14,7 +14,7 @@ public class Boat : StationController
         lineManager = GameObject.Find("LineManager").GetComponent<LineManager>();
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
-    protected override void CompleteTask()
+    public override void CompleteTask()
     {
         Debug.Log("Completing task");
         GameManager.Instance?.CompleteOrder(customerIndex);
@@ -40,12 +40,13 @@ public class Boat : StationController
 
     private bool CheckOrder(PlayerController playerController)
     {
-        print(playerController.currentOrder.dress.ColorType);
-        print(lineManager.customer.Count);
-        print(lineManager.customer[0].order.dress.ColorType);
+        print("PLAYER ORDER, Dress: " + playerController.currentOrder.dress.ColorType + " Ribbon: " + playerController.currentOrder.ribbon.ColorType);
+        //print(lineManager.customer.Count);
+        
 
         for (int i = 0; i < lineManager.customer.Count; i++)
         {
+            print("CURRENT ORDER,  Dress: " + lineManager.customer[i].order.dress.ColorType + " Ribbon: " + lineManager.customer[i].order.ribbon.ColorType);
             // Is the dress the same color
             if (lineManager.customer[i].order.dress.ColorType == playerController.currentOrder.dress.ColorType)
             {

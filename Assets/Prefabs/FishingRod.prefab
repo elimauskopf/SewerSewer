@@ -712,6 +712,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6754289709381634249, guid: afdc89830797b6347b63de983a678b01, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7063458423087476985, guid: afdc89830797b6347b63de983a678b01, type: 3}
+      propertyPath: fishingStation
+      value: 
+      objectReference: {fileID: 7145202712887604483}
     - target: {fileID: 7063458423087476985, guid: afdc89830797b6347b63de983a678b01, type: 3}
       propertyPath: perfectTimingamount
       value: 5.75

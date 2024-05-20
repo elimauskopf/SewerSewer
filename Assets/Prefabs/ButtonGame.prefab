@@ -47,7 +47,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   engaged: 0
+  isFishing: 0
+  stickValue: {x: 0, y: 0}
+  spinAngleDiff: 3
+  spinCheckBuffer: 0.1
   perfectTimingamount: 5.55
+  circleGrowAmount: 1
 --- !u!1 &1966842291559368757
 GameObject:
   m_ObjectHideFlags: 0

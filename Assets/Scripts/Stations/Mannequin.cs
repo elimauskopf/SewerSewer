@@ -109,7 +109,7 @@ public class Mannequin : StationController
         }
     }
 
-    protected override void CompleteTask()
+    public override void CompleteTask()
     {
         _chargeBarController.ResetChargeBar();
         _isAbleToCharge = false;
