@@ -127,6 +127,7 @@ public class Loom : StationController
 
     public override void WorkStation()
     {
+        if (!timerMiniGame.engaged) return;
 
         if (timerMiniGame.WasButtonPressedOnTime())
         {

@@ -410,6 +410,8 @@ MonoBehaviour:
   hitStunTime: 0.9
   jumpPressedRememberTime: 0.15
   groundedRememberTime: 0.125
+  jumpYThreshold: 0.975
+  jumpXThreshold: 0.05
 --- !u!95 &9021006536876041272
 Animator:
   serializedVersion: 5

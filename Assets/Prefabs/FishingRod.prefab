@@ -453,7 +453,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -8.04, y: -5.26, z: 0}
-  m_LocalScale: {x: 0.4, y: 0.4, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6580146128336303714}
@@ -720,6 +720,10 @@ PrefabInstance:
       propertyPath: fishingStation
       value: 
       objectReference: {fileID: 7145202712887604483}
+    - target: {fileID: 7063458423087476985, guid: afdc89830797b6347b63de983a678b01, type: 3}
+      propertyPath: circleGrowAmount
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7063458423087476985, guid: afdc89830797b6347b63de983a678b01, type: 3}
       propertyPath: perfectTimingamount
       value: 5.75

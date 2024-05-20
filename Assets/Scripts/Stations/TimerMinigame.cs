@@ -5,8 +5,14 @@ using UnityEngine;using UnityEngine.UI;
 public class TimerMinigame : MonoBehaviour
 {
 
-    private Slider slider;
+    private GameObject parent;
+    private GameObject slider;
+    private Vector3 startPoint;
+    private Vector3 endPoint;
+    private GameObject goalBar;
+
     public bool engaged;
+    private bool isActive;
 
     [SerializeField]
     float sliderSpeed;
@@ -15,63 +21,79 @@ public class TimerMinigame : MonoBehaviour
     [SerializeField]
     float sliderHighRange;
 
-    private void Awake()
+    private void Start()
     {
-        slider = transform.Find("Canvas/Slider").GetComponent<Slider>();
+        parent = transform.Find("Parent").gameObject;
+        slider = transform.Find("Parent/Slider").gameObject;
+        startPoint = transform.Find("Parent/StartPoint").transform.position;
+        endPoint = transform.Find("Parent/EndPoint").transform.position;
+        goalBar = transform.Find("Parent/GoalBar").gameObject;
+
+        print(startPoint);
         Hide();
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+   
 
     // Update is called once per frame
     void Update()
     {
         if (!engaged) return;
 
-        slider.value += sliderSpeed * Time.deltaTime;
+        slider.transform.position +=  sliderSpeed * Time.deltaTime * Vector3.right;
 
-        if (slider.value >= 1)
+        if (slider.transform.position.x >= endPoint.x )
         {
-            slider.value = 0;
+            slider.transform.position = startPoint;
         }
 
     }
 
     public void Hide()
     {
-        slider.gameObject.SetActive(false);
-       
+        parent.SetActive(false);
+        isActive = false;
     }
 
     public void Show()
     {
-        slider.gameObject.SetActive(true);
+       
+        parent.SetActive(true);
+        SetGoalBar();
 
-
-        slider.value = 0;
+        
+        slider.transform.position = startPoint;
+        isActive = true;
     }
 
     public void EndInteraction()
     {
-        engaged = false;     
-        slider.value = 0;
+        engaged = false;
+        slider.transform.position = startPoint;
         Hide();
+    }
+
+    void SetGoalBar()
+    {
+        float xVal = Random.Range(startPoint.x, endPoint.x);
+        goalBar.transform.position = new Vector2(xVal, goalBar.transform.position.y);
+        print(goalBar.transform.position);
     }
 
     public bool WasButtonPressedOnTime()
     {
-        if(slider.value < sliderHighRange && slider.value > sliderLowRange)
+       
+
+        if (slider.transform.position.x < (goalBar.transform.position.x + 5) && slider.transform.position.x > (goalBar.transform.position.x - 5))
         {
 
-            slider.value = 0;
+            slider.transform.position = startPoint;
+            SetGoalBar();
             return true;
         }
 
-        slider.value = 0;
+        SetGoalBar();
+        slider.transform.position = startPoint;
         return false;
     }
 
