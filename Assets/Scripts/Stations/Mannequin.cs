@@ -53,6 +53,7 @@ public class Mannequin : StationController
   
     protected override bool HandlePlayerItem(PlayerController currentPlayer)
     {
+        Debug.Log("Player interacting with mannequin, holding " + currentPlayer.currentItem + ", color type = " + currentPlayer.currentColor);
         if (currentPlayer == null)
         {
             return false;
@@ -77,7 +78,6 @@ public class Mannequin : StationController
                 {
                     AddDress(ColorTypes.White);
                 }
-                hasDress = true;
                 break;
             case ItemTypes.Ribbon:
                 if (currentPlayer.currentColor != null)
@@ -88,7 +88,6 @@ public class Mannequin : StationController
                 {
                     AddRibbon(ColorTypes.White);
                 }
-                hasRibbon = true;
                 break;
             default:
                 return false;
@@ -128,7 +127,7 @@ public class Mannequin : StationController
             Debug.Log("no color assigned to dress");
             return;
         }
-
+        hasDress = true;
         currentOrder.dress = new ItemObject(ItemTypes.Dress, color);
         _dressRenderer.sprite = dresses[(int)color];
         _dressRenderer.enabled = true;
@@ -140,7 +139,7 @@ public class Mannequin : StationController
         {
             return;
         }*/
-
+        hasRibbon = true;
         currentOrder.ribbon = new ItemObject(ItemTypes.Ribbon, color);
         _ribbonRenderer.sprite = ribbons[(int)color];
         _ribbonRenderer.enabled = true;
@@ -182,13 +181,15 @@ public class Mannequin : StationController
 
     void ClearContents()
     {
+        Debug.Log("clearing contents");
         _ribbonRenderer.sprite = null;
         _ribbonRenderer.enabled = false;
 
         _dressRenderer.sprite = null;
         _dressRenderer.enabled = false;
 
-
+        hasDress = false;
+        hasRibbon = false;
       
         _itemsOnMannequin.Clear();
     }
