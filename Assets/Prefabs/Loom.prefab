@@ -26,8 +26,8 @@ Transform:
   m_GameObject: {fileID: 4286394953956497860}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -0.000000078479, y: 0, z: 0}
+  m_LocalScale: {x: 0.37088743, y: 0.3283203, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 524107136860771256}
@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 297540844d0ff804eb8436f54bd77b86, type: 3}
+  m_Sprite: {fileID: 21300000, guid: dea9769cdc1ca02428182f0dddde9eb1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -110,8 +110,8 @@ Transform:
   m_GameObject: {fileID: 6587925536924423071}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.41, y: 4.46, z: 0}
-  m_LocalScale: {x: 1.64, y: 1.64, z: 1.64}
+  m_LocalPosition: {x: 1.1899999, y: 4.3199997, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1.64}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8809480064828178246}
@@ -332,7 +332,7 @@ Transform:
   m_GameObject: {fileID: 7655530293102989696}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.62, y: 4.38, z: 0}
+  m_LocalPosition: {x: -0.67, y: 4.24, z: 0}
   m_LocalScale: {x: 1.5189872, y: 1.5189872, z: 5.063291}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -425,8 +425,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.02, y: -0.05}
-  m_SizeDelta: {x: 2.223, y: 2.03}
+  m_AnchoredPosition: {x: -0.009, y: -0.0261}
+  m_SizeDelta: {x: 1.8025, y: 0.847}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!23 &1496433913702591652
 MeshRenderer:
@@ -517,7 +517,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 16.55
+  m_fontSize: 6.9
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -826,7 +826,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6254083438381493012, guid: bcb8c8ac69f196f4795452fd8cbcaadb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7.18
+      value: 5.23
       objectReference: {fileID: 0}
     - target: {fileID: 6254083438381493012, guid: bcb8c8ac69f196f4795452fd8cbcaadb, type: 3}
       propertyPath: m_LocalPosition.z

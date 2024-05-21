@@ -329,7 +329,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   engaged: 0
-  sliderSpeed: 1
+  sliderSpeed: 3
   sliderLowRange: 0.5
   sliderHighRange: 0.8
 --- !u!1 &7250933766604563427

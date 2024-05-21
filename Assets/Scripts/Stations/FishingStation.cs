@@ -171,21 +171,24 @@ public class FishingStation : StationController
 
         if (stationInUse || _isAbleToCharge)
         {
-            _uiRenderer.sprite = _redCircle;
+            // _uiRenderer.sprite = _redCircle;
+            _uiButton?.SetActive(false);
             _iconObject?.SetActive(false);
+            _chargeBarController?.HideChargeBar();
 
         }
         else if (playersByStation == 0)
         {
             _uiButton?.SetActive(false);
             _iconObject?.SetActive(false);
-            _chargeBarController?.HideChargeBar();
+            
 
 
         }
         else
         {
-            _uiRenderer.sprite = _blueCircle;
+           // _uiRenderer.sprite = _blueCircle;
+           // _uiRenderer.sprite = _blueCircle;
             _iconObject?.SetActive(true);
         }
     }
