@@ -95,7 +95,6 @@ public class StationController : MonoBehaviour
             return;
         }
 
-        AssignUI();
         _playerInRange = true;
 
         PlayerController playerController = collision.gameObject.GetComponent<PlayerController>();
@@ -128,6 +127,9 @@ public class StationController : MonoBehaviour
 
         playerController.currentStation = gameObject;
         playersByStation++;
+
+        AssignUI();
+       
 
     }
 
