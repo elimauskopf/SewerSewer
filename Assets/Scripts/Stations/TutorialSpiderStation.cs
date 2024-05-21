@@ -5,11 +5,13 @@ using UnityEngine;
 public class TutorialSpiderStation : Spider
 {
     bool _hasTriggeredNextTutorial;
+    bool _hasCollectedSilk;
 
     protected override void Start()
     {
         base.Start();
         _hasTriggeredNextTutorial = false;
+        _hasCollectedSilk = false;
         _isAbleToCharge = false;
         _timer = 0;
     }
@@ -25,9 +27,18 @@ public class TutorialSpiderStation : Spider
         }
         else if(!_hasTriggeredNextTutorial)
         {
-            Debug.Log("Spider calling next clip");
             TutorialController.Instance.PlayNextClip();
             _hasTriggeredNextTutorial=true;
+        }
+    }
+
+    public override void CompleteTask()
+    {
+        base.CompleteTask();
+        if(!_hasCollectedSilk)
+        {
+            _hasCollectedSilk=true;
+            TutorialController.Instance.PlayNextClip();
         }
     }
 }

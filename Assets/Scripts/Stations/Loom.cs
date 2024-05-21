@@ -34,6 +34,7 @@ public class Loom : StationController
     //used when player interacts with station
     public override bool Initiate(GameObject player)
     {
+        Debug.Log("Player engaging with loom");
         if (stationInUse)
         {
             Debug.Log("Station is in use");

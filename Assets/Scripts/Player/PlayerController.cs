@@ -227,6 +227,12 @@ public class PlayerController : MonoBehaviour
 
     public void OnFish(InputAction.CallbackContext ctx)
     {
+        if(fishingGame == null)
+        {
+            fishingGame = GameObject.Find("FishingRod")?.transform.Find("ButtonGame").GetComponent<ButtonMiniGame>();
+            Debug.Log("fishing game = " + fishingGame);
+        }
+
         if (fishingGame.engaged)
         {
             fishingGame.stickValue = ctx.ReadValue<Vector2>();

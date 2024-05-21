@@ -22,7 +22,7 @@ public class TutorialFishingStation : FishingStation
             _hasBeenInitiated = true;
         }
 
-        //REMOVE ONCE STATION IS WORKING
+ /*       //REMOVE ONCE STATION IS WORKING
         else if(!_hasGivenPlayerFish)
         {
             _assignedPlayer?.GetComponent<PlayerController>().AssignItem(itemOnCompletion, _currentColor);
@@ -30,7 +30,7 @@ public class TutorialFishingStation : FishingStation
             TutorialController.Instance.PlayNextClip();
             _hasGivenPlayerFish = true;
         }
-        //
+        //*/
        
         base.Initiate(player);
         return false;
@@ -38,6 +38,10 @@ public class TutorialFishingStation : FishingStation
 
     public override void CompleteTask()
     {
+        if(!gameObject.activeSelf)
+        {
+            return;
+        }
         if(!_hasGivenPlayerFish)
         {
             TutorialController.Instance.PlayNextClip();

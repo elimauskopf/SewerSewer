@@ -20,7 +20,7 @@ public class Boat : StationController
         GameManager.Instance?.CompleteOrder(customerIndex);
     }
 
-    void StartDelivery()
+    protected virtual void StartDelivery()
     {
         stationInUse = true;
         _animator.SetTrigger(Tags.Moving);

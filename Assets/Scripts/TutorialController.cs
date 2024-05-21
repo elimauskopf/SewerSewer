@@ -8,12 +8,14 @@ public class TutorialController : MonoBehaviour
     public static TutorialController Instance { get; private set; }
 
     public List<AudioClip> _audioClips = new List<AudioClip>();
+    List<PlayableDirector> _timelines = new List<PlayableDirector>();
 
-    PlayableDirector _timeline;
+    PlayableDirector _currentTimeline;
+
     AudioSource _audioSource;
 
     bool _timelinePaused;
-    int _narrationClipIndex;
+    int _timelineIndex;
 
     private void Awake()
     {
@@ -21,10 +23,14 @@ public class TutorialController : MonoBehaviour
         {
             Instance = this;
         }
-        _timeline = GameObject.Find("Timeline").GetComponent<PlayableDirector>();
+        foreach(Transform child in transform)
+        {
+            _timelines.Add(child.GetComponent<PlayableDirector>());
+        }
         _audioSource = GetComponent<AudioSource>();
-        _narrationClipIndex = 0;
+        _timelineIndex = 0;
         _timelinePaused = false;
+        _currentTimeline = _timelines[_timelineIndex];
     }
 
     private void Start()
@@ -33,7 +39,7 @@ public class TutorialController : MonoBehaviour
         _audioSource.Play();
     }
 
-    private void Update()
+   /* private void Update()
     {
         //if the audio has stopped but the timeline is still running, pause it
         if(_audioSource.isPlaying)
@@ -48,26 +54,28 @@ public class TutorialController : MonoBehaviour
         {
             PauseTimeline();
         }
-    }
+    }*/
 
     public void PlayNextClip()
     {
         Debug.Log("Playing next clip");
-        _narrationClipIndex++;
-        _audioSource.clip = _audioClips[_narrationClipIndex];
+        _timelineIndex++;
+        _audioSource.clip = _audioClips[_timelineIndex];
+        _currentTimeline.Pause();
         _audioSource.Play();
         PlayTimeline();
     }
 
     public void PauseTimeline()//used as an animation event during the tutorial timeline
     {
-        _timeline.Pause();
-        _timelinePaused=true;
+        _currentTimeline.Pause();
+        _timelinePaused = true;
     }
 
     public void PlayTimeline()
     {
-        _timeline.Play();
-        _timelinePaused=false;
+        _currentTimeline = _timelines[_timelineIndex];
+        _currentTimeline.Play();
+        _timelinePaused = false;
     }
 }

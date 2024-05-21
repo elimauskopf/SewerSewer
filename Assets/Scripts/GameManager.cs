@@ -56,7 +56,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (!SceneManager.GetActiveScene().name.Equals("Tutorial"))
+        if (!SceneManager.GetActiveScene().name.Contains("Tutorial"))
         {
             if (_levelTimer > 0)
             {
@@ -64,9 +64,10 @@ public class GameManager : MonoBehaviour
                 CalculateTimer();
             }
         }
-        else
+        else//
         {
-            CalculateTimer();
+            return;
+            //CalculateTimer();
         }
 
         //if all the orders for the level have entered the scene, don't add any more
