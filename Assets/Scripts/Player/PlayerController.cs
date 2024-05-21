@@ -195,7 +195,7 @@ public class PlayerController : MonoBehaviour
         //Made the following change so that the player doesn't slow down over time
         _movement = ctx.ReadValue<Vector2>();
 
-        if (Mathf.Abs(_movement.x) < jumpXThreshold &&  _movement.y >jumpYThreshold) // Jump
+        if (Mathf.Abs(_movement.x) < jumpXThreshold &&  _movement.y > jumpYThreshold) // Jump
         {
             timeSinceJumpPressed = jumpPressedRememberTime;
         }
@@ -312,7 +312,7 @@ public class PlayerController : MonoBehaviour
         groundCheckRay = Physics2D.CircleCast(rayCastTransform.position, circleCastRadius, -Vector2.up, 0, groundCheckLayers);
 
         //print(groundCheckRay.collider.gameObject.layer);
-        if (groundCheckRay.collider && groundCheckRay.collider.gameObject.layer == 6)
+        if (groundCheckRay.collider)
         {
             _isGrounded = true;
             timeSinceGrounded = groundedRememberTime;
