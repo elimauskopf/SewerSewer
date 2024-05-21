@@ -75,7 +75,7 @@ public class TimerMinigame : MonoBehaviour
 
     void SetGoalBar()
     {
-        float xVal = Random.Range(startPoint.x, endPoint.x);
+        float xVal = Random.Range(startPoint.x + 0.1f, endPoint.x - 0.1f);
         goalBar.transform.position = new Vector2(xVal, goalBar.transform.position.y);
         print(goalBar.transform.position);
     }
@@ -84,7 +84,7 @@ public class TimerMinigame : MonoBehaviour
     {
        
 
-        if (slider.transform.position.x < (goalBar.transform.position.x + 5) && slider.transform.position.x > (goalBar.transform.position.x - 5))
+        if (slider.transform.position.x < (goalBar.transform.position.x + 0.5f) && slider.transform.position.x > (goalBar.transform.position.x - 0.5f))
         {
 
             slider.transform.position = startPoint;
