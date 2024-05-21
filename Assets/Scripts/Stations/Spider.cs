@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Spider : StationController
 {
-    private void Start()
+    protected virtual void Start()
     {
         _timer = timeToComplete;
         _chargeBarController.UpdateChargeBar();

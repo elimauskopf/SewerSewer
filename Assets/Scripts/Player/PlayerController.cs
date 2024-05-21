@@ -107,7 +107,7 @@ public class PlayerController : MonoBehaviour
         rayCastTransform = transform.Find("BottomPlayer");
         _startScale = transform.localScale;
 
-        fishingGame = GameObject.Find("FishingRod").transform.Find("ButtonGame").GetComponent<ButtonMiniGame>();
+        fishingGame = GameObject.Find("FishingRod")?.transform.Find("ButtonGame").GetComponent<ButtonMiniGame>();
     }
 
     void Start()
@@ -120,12 +120,12 @@ public class PlayerController : MonoBehaviour
     /* private void OnEnable()
      {
          _playerControls.Player.Enable();
-     }
+     }*/
 
      private void OnDisable()
      {
-         _playerControls.Player.Disable();
-     } */
+        Debug.Log("Disabling player controller");
+     } 
 
 
     // Update is called once per frame
