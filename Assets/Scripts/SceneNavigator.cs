@@ -22,6 +22,10 @@ public class SceneNavigator : MonoBehaviour
         SceneManager.LoadScene(sceneToLoad.ToString());
     }
 
+    public void LoadScene(string scene)
+    {
+        SceneManager.LoadScene(scene);
+    }
     public void StartGame()
     {
         StartCoroutine(WaitToStart());
