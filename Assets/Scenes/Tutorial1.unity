@@ -6127,6 +6127,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1932622095777464561, guid: dd398251c023fa84ea1a7d2dbbf839de, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 1.6838989
+      objectReference: {fileID: 0}
+    - target: {fileID: 2585744567408367283, guid: dd398251c023fa84ea1a7d2dbbf839de, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 1.6838989
+      objectReference: {fileID: 0}
     - target: {fileID: 4311376793268680695, guid: dd398251c023fa84ea1a7d2dbbf839de, type: 3}
       propertyPath: m_Name
       value: Canvas_LevelUI
@@ -6210,6 +6218,14 @@ PrefabInstance:
     - target: {fileID: 4500731742054927546, guid: dd398251c023fa84ea1a7d2dbbf839de, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5484957813764581045, guid: dd398251c023fa84ea1a7d2dbbf839de, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 1.6838989
+      objectReference: {fileID: 0}
+    - target: {fileID: 6599433363671418300, guid: dd398251c023fa84ea1a7d2dbbf839de, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 1.6838989
       objectReference: {fileID: 0}
     - target: {fileID: 8752456073237050235, guid: dd398251c023fa84ea1a7d2dbbf839de, type: 3}
       propertyPath: m_Camera
