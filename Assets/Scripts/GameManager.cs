@@ -34,6 +34,8 @@ public class GameManager : MonoBehaviour
     float _orderTimer;
     float _timeUntilNextOrder;
 
+    bool _timerPaused;
+
     // Order generation
     private string[] colors = { "White", "Red", "Green", "Yellow" };
 
@@ -50,13 +52,14 @@ public class GameManager : MonoBehaviour
         _orderCompleteAudio = transform.Find(Tags.OrderCompleteAudio)?.GetComponent<AudioSource>();
         _levelEndAudio = transform.Find(Tags.LevelEndAudio)?.GetComponent<AudioSource>();
         _levelTimer = _secondsPerLevel;
-        _timerText = transform.Find(Tags.Timer)?.GetComponent<TMP_Text>();
+        _timerText = GameObject.FindWithTag(Tags.Timer)?.GetComponent<TMP_Text>();
+        _timerPaused = false;
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     private void Update()
     {
-        if (!SceneManager.GetActiveScene().name.Contains("Tutorial"))
+        if (!SceneManager.GetActiveScene().name.Contains("Tutorial") || !_timerPaused)
         {
             if (_levelTimer > 0)
             {
@@ -64,10 +67,9 @@ public class GameManager : MonoBehaviour
                 CalculateTimer();
             }
         }
-        else//
+        else
         {
             return;
-            //CalculateTimer();
         }
 
         //if all the orders for the level have entered the scene, don't add any more
@@ -178,6 +180,10 @@ public class GameManager : MonoBehaviour
         {
             return;
         }
+        if(_timerPaused)
+        {
+            return;
+        }
 
         int orderAudio = Random.Range(0, _orderCompleteClips.Count - 1);
         _orderCompleteAudio.clip = _orderCompleteClips[orderAudio];
@@ -247,5 +253,17 @@ public class GameManager : MonoBehaviour
         _levelEndAudio.clip = _levelLostClip;
         _levelEndAudio.Play();
         EndLevelUI.Instance.OnLevelLost();
+    }
+
+    public void PauseTimer()
+    {
+        _timerPaused = true;
+        _timerText.enabled = false;
+    }
+
+    public void ResumeTimer()
+    {
+        _timerPaused = false;
+        _timerText.enabled = true;
     }
 }

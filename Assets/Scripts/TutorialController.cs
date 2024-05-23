@@ -37,24 +37,23 @@ public class TutorialController : MonoBehaviour
     {
         _audioSource.clip = _audioClips[0];
         _audioSource.Play();
+        GameManager.Instance.PauseTimer();
     }
 
-   /* private void Update()
+    private void Update()
     {
-        //if the audio has stopped but the timeline is still running, pause it
-        if(_audioSource.isPlaying)
+        //at the end of timeline 8, start the next timeline immediatly
+        if(!_audioSource.isPlaying && _currentTimeline.Equals(_timelines[7]))
         {
-            return;
+            PlayNextClip();
         }
-        else if(_timelinePaused)
+
+        //at the end of timeline 9, begin the timed challenge
+        if(!_audioSource.isPlaying && _currentTimeline.Equals(_timelines[8]))
         {
-            return;
+            GameManager.Instance.ResumeTimer();
         }
-        else
-        {
-            PauseTimeline();
-        }
-    }*/
+    }
 
     public void PlayNextClip()
     {

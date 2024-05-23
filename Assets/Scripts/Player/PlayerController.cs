@@ -30,6 +30,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField]//just used for testing, player will not start with an item
     ItemTypes _itemOnStart;
 
+    int _playerIndex;
+
     public ItemTypes currentItem;
     public ColorTypes? currentColor;
 
@@ -88,7 +90,6 @@ public class PlayerController : MonoBehaviour
 
     //added by jonah to test something out
     Vector2 _movement;
-
 
     private void Awake()
     {
@@ -186,6 +187,7 @@ public class PlayerController : MonoBehaviour
     {
         jacketFront.sprite = jacketFrontColors[playerNumber];
         jacketBack.sprite = jacketBackColors[playerNumber];
+        _playerIndex = playerNumber;
     }
 
     public void OnMovement(InputAction.CallbackContext ctx)
@@ -421,8 +423,11 @@ public class PlayerController : MonoBehaviour
             {
                 item.SetActive(true);
                 item.GetComponent<SpriteRenderer>().sprite = itemPrefab.GetComponent<ItemObject>().ChooseSprite(newItem, newColor);
+                PlayerInventoryUI.Instance?.AssingPlayerItem(_playerIndex, item.GetComponent<SpriteRenderer>().sprite);
+                return;
             }
         }
+        PlayerInventoryUI.Instance?.AssingPlayerItem(_playerIndex, null);
     }
     public void AssignRibbon()
     {
