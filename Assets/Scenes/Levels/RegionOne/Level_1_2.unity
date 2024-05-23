@@ -1333,7 +1333,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2104234902457308506, guid: b1889428083936d449756da06d06b435, type: 3}
       propertyPath: sliderSpeed
-      value: 3
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7520295353744414722, guid: b1889428083936d449756da06d06b435, type: 3}
       propertyPath: m_Name
@@ -1843,6 +1843,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1415426389}
+    - target: {fileID: 4146392252223847477, guid: dd398251c023fa84ea1a7d2dbbf839de, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.4000244
+      objectReference: {fileID: 0}
     - target: {fileID: 4311376793268680695, guid: dd398251c023fa84ea1a7d2dbbf839de, type: 3}
       propertyPath: m_Name
       value: Canvas_LevelUI
