@@ -8,7 +8,7 @@ public class EndLevelUI : MonoBehaviour
     public static EndLevelUI Instance { get; private set; }
 
     public TMP_Text _rightButtonText;
-    public TMP_Text timeLeftText;
+    public GameObject stars;
 
     Animator _animator;
     TMP_Text _messageText;
@@ -26,11 +26,12 @@ public class EndLevelUI : MonoBehaviour
         _animator = GetComponent<Animator>();
         _messageText = transform.GetChild(0).GetComponent<TMP_Text>();
         _messageText.enabled = false;
-        timeLeftText = transform.Find("TimeLeft/Text").GetComponent<TMP_Text>();
+        stars = transform.Find("Stars").gameObject;
     }
 
     public void LevelComplete()
     {
+        
         _animator.SetTrigger(Tags.Moving);
         _messageText.text = "The king is satisfied.\nYou may live.";
         _messageText.enabled = true;
@@ -64,11 +65,24 @@ public class EndLevelUI : MonoBehaviour
 
     public void OnLevelLost()
     {
+        stars.SetActive(false);
         _levelLost = true;
         _rightButtonText.text = "Try Again";
         _messageText.text = "The king is upset.\nBeg for mercy.";
       
         _messageText.enabled = true;
         _animator.SetTrigger(Tags.Moving);
+    }
+
+    public void HandleStars(float timeLeft)
+    {
+        if (timeLeft > 40)
+        {
+            stars.transform.GetChild(1).gameObject.SetActive(true);
+            stars.transform.GetChild(2).gameObject.SetActive(true);
+        } else if ( timeLeft > 20)
+        {
+            stars.transform.GetChild(1).gameObject.SetActive(true);
+        }
     }
 }

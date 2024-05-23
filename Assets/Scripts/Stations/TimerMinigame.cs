@@ -77,7 +77,6 @@ public class TimerMinigame : MonoBehaviour
     {
         float xVal = Random.Range(startPoint.x + 0.1f, endPoint.x - 0.1f);
         goalBar.transform.position = new Vector2(xVal, goalBar.transform.position.y);
-        print(goalBar.transform.position);
     }
 
     public bool WasButtonPressedOnTime()
