@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
     public bool isRegionOne;
     public bool isRegionTwo;
     public bool isRegionThree;
-
+    public bool levelCompleted;
     public List<bool> pendingOrders;
     int ordersComplete;
     int currentLevel;
@@ -93,7 +93,7 @@ public class GameManager : MonoBehaviour
 
         if (sceneName.Equals(Scenes.Home.ToString()))
         {
-            Destroy(gameObject);
+            //Destroy(gameObject);
         }
 
         ordersComplete = 0;
@@ -108,6 +108,8 @@ public class GameManager : MonoBehaviour
         {
             currentLevel = 0;
         }
+
+        levelCompleted = false;
         CalculateOrders();
     }
 
@@ -206,6 +208,8 @@ public class GameManager : MonoBehaviour
         else if (EndLevelUI.Instance != null)
         {
             EndLevelUI.Instance.LevelComplete();
+            EndLevelUI.Instance.HandleStars(_levelTimer);
+              levelCompleted = true;
             _levelEndAudio.clip = _levelWonClip;
             _levelEndAudio.Play();
         }
@@ -231,6 +235,9 @@ public class GameManager : MonoBehaviour
 
     void CalculateTimer()
     {
+
+        if (levelCompleted) return;
+
         if (_levelTimer <= 0)
         {
             LoseLevel();

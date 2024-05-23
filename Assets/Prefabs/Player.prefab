@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 2181029408838259139}
   - component: {fileID: 2004289682224122912}
   - component: {fileID: 6754332163118834612}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: Net
   m_TagString: Untagged
   m_Icon: {fileID: 0}
