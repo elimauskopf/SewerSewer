@@ -5,6 +5,7 @@ using UnityEngine;
 public class BatSpawner : MonoBehaviour
 {
     public GameObject bat;
+    private GameManager gameManager;
     private float _minBoundY = -6f;
     private float maxBoundY = 3.5f;
     [Range(5, 50)]
@@ -18,6 +19,7 @@ public class BatSpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        gameManager = GetComponent<GameManager>();
         _timer = 0;
         DecideNextSpawnTime();
     }
@@ -25,6 +27,7 @@ public class BatSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (gameManager.levelCompleted) return;
         _timer += Time.deltaTime;
 
         if (_timer > _nextSpawnTime)
@@ -44,6 +47,8 @@ public class BatSpawner : MonoBehaviour
 
     IEnumerator SpawnBat()
     {
+        if (gameManager.levelCompleted) yield return null;
+
         float _ySpawnPoint = Random.Range(_minBoundY, maxBoundY);
         GameObject obj = Instantiate(bat, new Vector3(0, _ySpawnPoint , 0), bat.transform.rotation);
         GameObject obj2 = Instantiate(bat, new Vector3(0.5f, _ySpawnPoint -1f, 0), bat.transform.rotation);

@@ -7,6 +7,7 @@ public class AlligatorSpawner : MonoBehaviour
 {
 
     public GameObject alligator;
+    private GameManager gameManager;
     private int _minBoundX = -17;
     private int maxBoundX = 18;
     private int _ySpawnPoint = -16;
@@ -21,6 +22,7 @@ public class AlligatorSpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        gameManager = GetComponent<GameManager>();
         _timer = 0;
         DecideNextSpawnTime();
     }
@@ -28,6 +30,7 @@ public class AlligatorSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (gameManager.levelCompleted) return;
         _timer += Time.deltaTime;
 
         if (_timer > _nextSpawnTime)
@@ -48,6 +51,8 @@ public class AlligatorSpawner : MonoBehaviour
 
     IEnumerator SpawnAlligator()
     {
+        if (gameManager.levelCompleted) yield return null;
+
         float xSpawnPoint = Random.Range(_minBoundX, maxBoundX);
         GameObject obj = Instantiate(alligator, new Vector3(xSpawnPoint, _ySpawnPoint, 0), alligator.transform.rotation);
 

@@ -8,6 +8,7 @@ public class EndLevelUI : MonoBehaviour
     public static EndLevelUI Instance { get; private set; }
 
     public TMP_Text _rightButtonText;
+    public TMP_Text timeLeftText;
 
     Animator _animator;
     TMP_Text _messageText;
@@ -25,6 +26,7 @@ public class EndLevelUI : MonoBehaviour
         _animator = GetComponent<Animator>();
         _messageText = transform.GetChild(0).GetComponent<TMP_Text>();
         _messageText.enabled = false;
+        timeLeftText = transform.Find("TimeLeft/Text").GetComponent<TMP_Text>();
     }
 
     public void LevelComplete()
@@ -65,6 +67,7 @@ public class EndLevelUI : MonoBehaviour
         _levelLost = true;
         _rightButtonText.text = "Try Again";
         _messageText.text = "The king is upset.\nBeg for mercy.";
+      
         _messageText.enabled = true;
         _animator.SetTrigger(Tags.Moving);
     }
