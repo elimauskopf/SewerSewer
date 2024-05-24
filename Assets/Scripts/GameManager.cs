@@ -1,9 +1,7 @@
-using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using TMPro;
-using System;
 using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
@@ -46,8 +44,11 @@ public class GameManager : MonoBehaviour
             Destroy(this.gameObject);
             return;
         }
+        else
+        {
+            Instance = this;
+        }
 
-        Instance = this;
 
         _orderCompleteAudio = transform.Find(Tags.OrderCompleteAudio)?.GetComponent<AudioSource>();
         _levelEndAudio = transform.Find(Tags.LevelEndAudio)?.GetComponent<AudioSource>();
@@ -199,8 +200,10 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void CompleteLevel()
+    public void CompleteLevel()
     {
+        Save(_levelTimer);
+
         if (SceneManager.GetActiveScene().name.Equals(Scenes.Level_3_5.ToString()))
         {
             FinalLevelOutro.Instance.OnLevelComplete();
@@ -209,7 +212,7 @@ public class GameManager : MonoBehaviour
         {
             EndLevelUI.Instance.LevelComplete();
             EndLevelUI.Instance.HandleStars(_levelTimer);
-              levelCompleted = true;
+            levelCompleted = true;
             _levelEndAudio.clip = _levelWonClip;
             _levelEndAudio.Play();
         }
@@ -265,5 +268,10 @@ public class GameManager : MonoBehaviour
     {
         _timerPaused = false;
         _timerText.enabled = true;
+    }
+
+    void Save(float timer)
+    {
+        ES3.Save(Tags.TimeRemaining + SceneManager.GetActiveScene().name, timer);
     }
 }

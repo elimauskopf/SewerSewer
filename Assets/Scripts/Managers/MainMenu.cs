@@ -13,20 +13,9 @@ public class MainMenu : MonoBehaviour
     public GameObject regionTwoLevels;
     public GameObject regionThreeLevels;
     public GameObject backButton;
+    public GameObject levelButton;
 
     private State state;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void Back()
     {
@@ -46,11 +35,11 @@ public class MainMenu : MonoBehaviour
         boat.SetActive(false);
         start.SetActive(false);
         exit.SetActive(false);
+        levelButton.SetActive(false);
 
         OpenRegionSelectMenu();
 
         backButton.SetActive(true);
-
     }
 
     public void HideLevelMenu()
@@ -58,6 +47,7 @@ public class MainMenu : MonoBehaviour
         boat.SetActive(true);
         start.SetActive(true);
         exit.SetActive(true);
+        levelButton.SetActive(true);
 
         regionButtons.SetActive(false);
         backButton.SetActive(false);

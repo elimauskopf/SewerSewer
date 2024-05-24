@@ -27,4 +27,7 @@ internal static class Tags
     public const string Next = "Next";
     public const string Return = "Return";
     public const string Hit = "Hit";
+
+    //SaveTags
+    public const string TimeRemaining = "TimeRemaining";
 }

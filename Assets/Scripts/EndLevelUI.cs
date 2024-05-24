@@ -76,13 +76,16 @@ public class EndLevelUI : MonoBehaviour
 
     public void HandleStars(float timeLeft)
     {
-        if (timeLeft > 40)
+        //star 0 enabled by default, disabled if level lost in OnLevelLost
+        switch (StarCount.NumberOfStars(timeLeft))
         {
-            stars.transform.GetChild(1).gameObject.SetActive(true);
-            stars.transform.GetChild(2).gameObject.SetActive(true);
-        } else if ( timeLeft > 20)
-        {
-            stars.transform.GetChild(1).gameObject.SetActive(true);
+            case 3:
+                stars.transform.GetChild(1).gameObject.SetActive(true);
+                stars.transform.GetChild(2).gameObject.SetActive(true);
+                break;
+            case 2:
+                stars.transform.GetChild(1).gameObject.SetActive(true);
+                break;
         }
     }
 }
