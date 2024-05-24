@@ -197,7 +197,7 @@ public class PlayerController : MonoBehaviour
         //Made the following change so that the player doesn't slow down over time
         _movement = ctx.ReadValue<Vector2>();
 
-        if (Mathf.Abs(_movement.x) < jumpXThreshold &&  _movement.y > jumpYThreshold) // Jump
+        if (  _movement.y > jumpYThreshold) // Jump
         {
             timeSinceJumpPressed = jumpPressedRememberTime;
         }
