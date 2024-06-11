@@ -43,7 +43,7 @@ public class Waterfall : MonoBehaviour
 
         // Randomize color
         Array colors = Enum.GetValues(typeof(ColorTypes));
-        ColorTypes colorType = (ColorTypes)colors.GetValue(Random.Range(1, colors.Length));
+        ColorTypes colorType = (ColorTypes)colors.GetValue(Random.Range(1, colors.Length-1));
 
         // Spawn item
         GameObject newJunk = Instantiate(junk, spawnLocation, transform.rotation);

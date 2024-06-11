@@ -244,7 +244,7 @@ public class PlayerController : MonoBehaviour
     void SheathNet()
     {
         _animator.SetFloat("PlayerHoldingNet", 0);
-        isHoldingNet = false;
+      
         if(_currentJunk != null)
         {
             Debug.Log("Player grabbing dye");
@@ -252,6 +252,7 @@ public class PlayerController : MonoBehaviour
             Destroy(_currentJunk.gameObject);
             _currentJunk = null;
         }
+          isHoldingNet = false;
     }
     void TakeOutNet()
     {

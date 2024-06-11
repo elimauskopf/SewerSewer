@@ -665,9 +665,25 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 891064113304708257, guid: b1889428083936d449756da06d06b435, type: 3}
+      propertyPath: m_SortingOrder
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4187492632510353613, guid: b1889428083936d449756da06d06b435, type: 3}
+      propertyPath: m_SortingOrder
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 4264892614114790644, guid: b1889428083936d449756da06d06b435, type: 3}
+      propertyPath: m_SortingOrder
+      value: 99
+      objectReference: {fileID: 0}
     - target: {fileID: 7520295353744414722, guid: b1889428083936d449756da06d06b435, type: 3}
       propertyPath: m_Name
       value: Loom
+      objectReference: {fileID: 0}
+    - target: {fileID: 8137097818088324033, guid: b1889428083936d449756da06d06b435, type: 3}
+      propertyPath: m_SortingOrder
+      value: 101
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
