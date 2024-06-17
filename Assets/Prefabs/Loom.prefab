@@ -265,7 +265,7 @@ SortingGroup:
   m_Enabled: 1
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 11
   m_SortAtRoot: 0
 --- !u!95 &3535671516124112043
 Animator:
@@ -816,6 +816,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 102746057351714730}
     m_Modifications:
+    - target: {fileID: 1197925983047574094, guid: bcb8c8ac69f196f4795452fd8cbcaadb, type: 3}
+      propertyPath: m_SortingOrder
+      value: 101
+      objectReference: {fileID: 0}
     - target: {fileID: 4185362088885082429, guid: bcb8c8ac69f196f4795452fd8cbcaadb, type: 3}
       propertyPath: m_Name
       value: TimerGame
@@ -859,6 +863,14 @@ PrefabInstance:
     - target: {fileID: 6254083438381493012, guid: bcb8c8ac69f196f4795452fd8cbcaadb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6583371173256467835, guid: bcb8c8ac69f196f4795452fd8cbcaadb, type: 3}
+      propertyPath: m_SortingOrder
+      value: 99
+      objectReference: {fileID: 0}
+    - target: {fileID: 7795333038382021934, guid: bcb8c8ac69f196f4795452fd8cbcaadb, type: 3}
+      propertyPath: m_SortingOrder
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

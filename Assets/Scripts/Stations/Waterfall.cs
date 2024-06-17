@@ -71,7 +71,7 @@ public class Waterfall : MonoBehaviour
     {
         SpawnItem();
 
-        yield return new WaitForSeconds(Random.Range(repeatRateRangeMin, repeatRateRangeMax));
+        yield return new WaitForSeconds(repeatRateRangeMin);
 
         StartCoroutine(SpawnCoroutine());
     }
