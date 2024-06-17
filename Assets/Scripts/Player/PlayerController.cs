@@ -197,10 +197,7 @@ public class PlayerController : MonoBehaviour
         //Made the following change so that the player doesn't slow down over time
         _movement = ctx.ReadValue<Vector2>();
 
-        if (  _movement.y > jumpYThreshold) // Jump
-        {
-            timeSinceJumpPressed = jumpPressedRememberTime;
-        }
+       
         //MovePlayer(ctx.ReadValue<Vector2>());
     }
 
@@ -298,9 +295,11 @@ public class PlayerController : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext ctx)
     {
-        if (ctx.ReadValue<Vector2>().y > jumpYThreshold)
+        if (ctx.performed)
         {
-                           
+            
+           timeSinceJumpPressed = jumpPressedRememberTime;
+            
         }
     }
 
